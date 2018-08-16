@@ -11,25 +11,17 @@
 <head>
 <meta charset="UTF-8">
 <meta name="authoring-tool" content="Adobe_Animate_CC">
-<title>walkpower</title>
+<title>select_modal</title>
 <!-- write your code here -->
-<style>
-  #animation_container {
-	position:absolute;
-	margin:auto;
-	left:0;right:0;
-	top:0;bottom:0;
-  }
-</style>
 <script src="https://code.createjs.com/createjs-2015.11.26.min.js"></script>
-<script src="walkpower.js?1534403610717"></script>
+<script src="select_modal.js?1534408221425"></script>
 <script>
 var canvas, stage, exportRoot, anim_container, dom_overlay_container, fnStartAnimation;
 function init() {
 	canvas = document.getElementById("canvas");
 	anim_container = document.getElementById("animation_container");
 	dom_overlay_container = document.getElementById("dom_overlay_container");
-	var comp=AdobeAn.getComposition("CCBAC15313E34F7CA9B7FCA0D59D14DA");
+	var comp=AdobeAn.getComposition("BB2E763C01F640CB8E12385CE18CCC8D");
 	var lib=comp.getLibrary();
 	var loader = new createjs.LoadQueue(false);
 	loader.addEventListener("fileload", function(evt){handleFileLoad(evt,comp)});
@@ -50,7 +42,7 @@ function handleComplete(evt,comp) {
 	for(i=0; i<ssMetadata.length; i++) {
 		ss[ssMetadata[i].name] = new createjs.SpriteSheet( {"images": [queue.getResult(ssMetadata[i].name)], "frames": ssMetadata[i].frames} )
 	}
-	exportRoot = new lib.walkpower();
+	exportRoot = new lib.select_modal();
 	stage = new lib.Stage(canvas);
 	stage.enableMouseOver();	
 	//Registers the "tick" event listener.
@@ -95,7 +87,7 @@ function handleComplete(evt,comp) {
 			stage.tickOnUpdate = true;		
 		}
 	}
-	makeResponsive(true,'both',true,1);	
+	makeResponsive(false,'both',false,1);	
 	AdobeAn.compositionLoaded(lib.properties.id);
 	fnStartAnimation();
 }
@@ -103,8 +95,8 @@ function handleComplete(evt,comp) {
 <!-- write your code here -->
 </head>
 <body onload="init();" style="margin:0px;">
-	<div id="animation_container" style="background-color:rgba(255, 255, 255, 0.00); width:1200px; height:760px">
-		<canvas id="canvas" width="1200" height="760" style="position: absolute; display: block; background-color:rgba(255, 255, 255, 0.00);"></canvas>
+	<div id="animation_container" style="background-color:rgba(255, 255, 255, 1.00); width:1200px; height:760px">
+		<canvas id="canvas" width="1200" height="760" style="position: absolute; display: block; background-color:rgba(255, 255, 255, 1.00);"></canvas>
 		<div id="dom_overlay_container" style="pointer-events:none; overflow:hidden; width:1200px; height:760px; position: absolute; left: 0px; top: 0px; display: block;">
 		</div>
 	</div>
