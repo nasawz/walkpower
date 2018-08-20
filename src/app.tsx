@@ -1,6 +1,5 @@
 // import { h, render, Component } from 'preact';
 import './style/app.less';
-import { tiles_event, run_plan } from './common/tiles';
 import Game from './an/game';
 import SelectModal from './an/selectModal';
 let selectModal = new SelectModal();
@@ -26,81 +25,10 @@ let wardsModal = new WardsModal();
 import EventProxy from './utils/eventproxy';
 let game = new Game();
 
+import { walk_dice, walk_share, walk_userInfo, walk_putRole } from './api';
 import { shake, setCount, stopAt, setDiscBtn, setLab } from './common/disc';
 
 declare let window: any;
-
-//每一步轨迹的类型（award：奖励 knowledge：知识点弹框  addtime:增加次数弹框  destination：终点 ）
-let tiles_events = tiles_event('');
-
-//行走方案 plan_1、plan_2、plan_3不需要分享 plan_4、plan_5、plan_6需要分享
-let run_plans = run_plan('');
-
-function testmove(plan_key, current_index, next_index) {
-  var target = window.boy;
-  var tiles_xy = window.tiles_xy;
-  //获取方案的数组
-  let plan: any = run_plans[plan_key];
-  //计算需要走到第几个方块
-  let to = plan.reduce(function(pre, cur, index, arr) {
-    if (index > next_index) {
-      return pre + 0;
-    }
-    return pre + cur;
-  });
-
-  //计算当前在第几个方块
-  let current = to - plan[next_index];
-  console.log('current--', current, 'to----', to);
-  //定位小人到当前位置
-  if (current > 0) {
-    window.boy.x = tiles_xy[current - 1][0];
-    window.boy.y = tiles_xy[current - 1][1];
-  }
-
-  function move() {
-    createjs.Tween.get(target)
-      .wait(500)
-      .to({ x: tiles_xy[current][0], y: tiles_xy[current][1] }, 1000)
-      .call(() => {
-        let event: any = tiles_events[current];
-        if (event && event.type == 'destination') {
-          alert('恭喜到达终点');
-        }
-        if (event && event.type == 'award') {
-          console.log('奖励------');
-          alert('恭喜获得奖励');
-        }
-
-        console.log('[[[[[[[[object]]]]]]]]');
-        current++;
-        console.log('current--', current);
-        if (current < to) {
-          console.log('-----');
-          move();
-        }
-      });
-  }
-  move();
-}
-window.testmove = testmove;
-function yao(plan_key, next_index) {
-  //获取方案的数组
-  let plan: any = run_plans[plan_key];
-  return plan[next_index];
-}
-
-let next_index = 0;
-// let current_index = -1;
-document.getElementById('yao')!.addEventListener('click', function() {
-  let number = yao('plan_1', next_index);
-  console.log('number', number);
-  testmove('plan_1', next_index - 1, next_index);
-  // setTimeout(() => {
-  //   testmove('plan_1', next_index - 1, next_index);
-  //   next_index++;
-  // }, 1000);
-});
 
 window.gameReady = () => {};
 
@@ -181,31 +109,176 @@ let initGame = () => {
   window.game.btn_wards.addEventListener('click', showWardsModal);
 };
 
-let mock = [];
+//plan_1: [3, 6, 5, 3, 4, 3, 4],
+let mock = [
+  //教学楼
+  {
+    resCode: '00',
+    message: '掷骰子成功',
+    resInfo: {
+      nextWalk: '3',
+      index: '0',
+      giftName: '京东满减券',
+      spacing: '0',
+      type: '1',
+      giftUrl: 'www.baidu.com',
+      end: 'N'
+    }
+  },
+  //超市
+  {
+    resCode: '00',
+    message: '掷骰子成功',
+    resInfo: {
+      nextWalk: '6',
+      index: '3',
+      giftName: '京东满减券',
+      spacing: '0',
+      type: '1',
+      giftUrl: 'www.baidu.com',
+      end: 'N'
+    }
+  },
+  //营业厅
+  {
+    resCode: '00',
+    message: '掷骰子成功',
+    resInfo: {
+      nextWalk: '5',
+      index: '9',
+      giftName: '京东满减券',
+      spacing: '0',
+      type: '0',
+      giftUrl: 'www.baidu.com',
+      end: 'N'
+    }
+  },
+  //小花园
+  {
+    resCode: '00',
+    message: '掷骰子成功',
+    resInfo: {
+      nextWalk: '3',
+      index: '14',
+      giftName: '京东满减券',
+      spacing: '0',
+      type: '2',
+      giftUrl: 'www.baidu.com',
+      end: 'N'
+    }
+  },
+  //小礼堂
+  {
+    resCode: '00',
+    message: '掷骰子成功',
+    resInfo: {
+      nextWalk: '4',
+      index: '17',
+      giftName: '京东满减券',
+      spacing: '0',
+      type: '1',
+      giftUrl: 'www.baidu.com',
+      end: 'N'
+    }
+  },
+  //食堂
+  {
+    resCode: '00',
+    message: '掷骰子成功',
+    resInfo: {
+      nextWalk: '3',
+      index: '21',
+      giftName: '京东满减券',
+      spacing: '0',
+      type: '1',
+      giftUrl: 'www.baidu.com',
+      end: 'N'
+    }
+  },
+  //终点
+  {
+    resCode: '00',
+    message: '掷骰子成功',
+    resInfo: {
+      nextWalk: '4',
+      index: '24',
+      giftName: '京东满减券',
+      spacing: '0',
+      type: '1',
+      giftUrl: 'www.baidu.com',
+      end: 'Y'
+    }
+  }
+];
 /**
  * 行走
  */
-let movePeo = (nextWalk, index, giftName, giftUrl) => {
+let movePeo = (nextWalk, index, type, end, giftName, giftUrl) => {
   // TODO 行走
   console.log('走啊走');
-  setTimeout(() => {
-    setDiscBtn(true);
-    setCount(5);
-    showCommonModal();
-  }, 1000);
+  var tiles_xy = window.tiles_xy;
+  let to = index + nextWalk;
+  console.log('to--', to);
+  //到达终点
+  if (end == 'Y') to = 27;
+
+  //定位小人到当前位置
+  if (index > 0) {
+    window.boy.x = tiles_xy[index - 1][0];
+    window.boy.y = tiles_xy[index - 1][1];
+  }
+
+  function move() {
+    createjs.Tween.get(window.peo_target)
+      .wait(500)
+      .to({ x: tiles_xy[index][0], y: tiles_xy[index][1] }, 1000)
+      .call(() => {
+        index++;
+        if (index < to) {
+          move();
+        } else {
+          setDiscBtn(true);
+          setCount(5);
+          //type:0=知识点 1=奖品点 2=花园增加掷骰子次数 3=白点
+          if (end == 'Y') {
+            showSuccessModal();
+          } else {
+            if (type == '0') {
+              console.log('到达知识点');
+              showCommonModal();
+            } else if (type == '1') {
+              console.log('到达奖品点');
+              showGetAwardModal();
+            } else if (type == '2') {
+              console.log('到达花园增加掷骰子次数');
+            }
+          }
+        }
+      });
+  }
+  move();
 };
 
 /**
  * 点击骰子
  */
+let mockindex = 0; //模拟获取Mock中的数据
 let doShake = () => {
   setDiscBtn(false);
-  // {"resCode":"00","message":"掷骰子成功","resInfo":{"nextWalk":"2","index":"7","giftName":"京东小金库现金红包","spacing":"2","giftUrl":"www.baidu.com"}}
-  shake(3, () => {
+  let obj: any = mock[mockindex];
+  //{"resCode":"00","message":"掷骰子成功","resInfo":{"nextWalk":"6","index":"1","giftName":"京东满减券","spacing":"0","type":"1","giftUrl":"www.baidu.com","end":"N"}}
+  shake(parseInt(obj.resInfo.nextWalk), () => {
     // TODO 位移
-    movePeo(0, 0, 0, 0);
-    console.log('TODO 位移');
+    movePeo(
+      parseInt(obj.resInfo.nextWalk),
+      parseInt(obj.resInfo.index),
+      obj.resInfo.type,
+      obj.resInfo.end,
+      0,
+      0
+    );
   });
+  mockindex++;
 };
 
 Zepto(function($: any) {

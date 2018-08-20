@@ -6,6 +6,8 @@ const __basename = path.dirname(__dirname);
 
 const port = 8000;
 
+const h5 = process.env.h5;
+
 function startDevServer() {
   const app = express();
 
@@ -21,8 +23,13 @@ function startDevServer() {
 
   app.use(express.static(path.resolve(__basename, 'static')));
   app.use(express.static(path.resolve(__basename, 'dist')));
-  app.use('/lib', express.static(path.resolve(__basename, 'fla')));
-  app.use('/images', express.static(path.resolve(__basename, 'fla/images')));
+  if (h5) {
+    app.use('/lib', express.static(path.resolve(__basename, 'fla_h5')));
+    app.use('/images', express.static(path.resolve(__basename, 'fla_h5/images')));
+  } else {
+    app.use('/lib', express.static(path.resolve(__basename, 'fla')));
+    app.use('/images', express.static(path.resolve(__basename, 'fla/images')));
+  }
 
   /*=============proxy start==============*/
   // (() => {
