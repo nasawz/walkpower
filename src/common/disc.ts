@@ -5,7 +5,7 @@ export const shake = (num, cb) => {
   setTimeout(() => {
     window.dice_mc.ss.gotoAndStop(num + 1);
     cb();
-  }, 3000);
+  }, 1000);
 };
 
 export const stopAt = num => {
