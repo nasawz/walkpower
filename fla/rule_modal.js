@@ -3,7 +3,7 @@
 var p; // shortcut to reference prototypes
 var lib={};var ss={};var img={};
 lib.ssMetadata = [
-		{name:"modal_test_atlas_", frames: [[0,589,776,265],[0,0,964,587],[778,589,151,37],[778,628,151,37]]}
+		{name:"rule_modal_atlas_", frames: [[778,589,151,37],[778,628,151,37],[0,0,964,587],[0,589,776,265]]}
 ];
 
 
@@ -11,29 +11,29 @@ lib.ssMetadata = [
 
 
 
-(lib._1活动期间每位会员初始有六次扔骰子的机会可以根据提示学习相关知识点后分享增加摇骰子次数2中奖的流量奖品将于 = function() {
-	this.spriteSheet = ss["modal_test_atlas_"];
+(lib.close_btn = function() {
+	this.spriteSheet = ss["rule_modal_atlas_"];
 	this.gotoAndStop(0);
 }).prototype = p = new cjs.Sprite();
 
 
 
-(lib.info = function() {
-	this.spriteSheet = ss["modal_test_atlas_"];
+(lib.close_click_btn = function() {
+	this.spriteSheet = ss["rule_modal_atlas_"];
 	this.gotoAndStop(1);
 }).prototype = p = new cjs.Sprite();
 
 
 
-(lib.组12b = function() {
-	this.spriteSheet = ss["modal_test_atlas_"];
+(lib.rule_bg2 = function() {
+	this.spriteSheet = ss["rule_modal_atlas_"];
 	this.gotoAndStop(2);
 }).prototype = p = new cjs.Sprite();
 
 
 
-(lib.组12 = function() {
-	this.spriteSheet = ss["modal_test_atlas_"];
+(lib.rule_text = function() {
+	this.spriteSheet = ss["rule_modal_atlas_"];
 	this.gotoAndStop(3);
 }).prototype = p = new cjs.Sprite();
 // helper functions:
@@ -60,34 +60,33 @@ function getMCSymbolPrototype(symbol, nominalBounds, frameBounds) {
 
 	// timeline functions:
 	this.frame_0 = function() {
-		this.visible=false
+		this.addEventListener('click',function(){})
 	}
 
 	// actions tween:
 	this.timeline.addTween(cjs.Tween.get(this).call(this.frame_0).wait(1));
 
 	// Layer_1
-	this.instance = new lib._1活动期间每位会员初始有六次扔骰子的机会可以根据提示学习相关知识点后分享增加摇骰子次数2中奖的流量奖品将于();
-	this.instance.parent = this;
-	this.instance.setTransform(0,279);
+	this.shape = new cjs.Shape();
+	this.shape.graphics.f().s("#454545").ss(1,1,1).p("Ehdvg7XMC7fAAAMAAAB2vMi7fAAAg");
 
-	this.instance_1 = new lib._1活动期间每位会员初始有六次扔骰子的机会可以根据提示学习相关知识点后分享增加摇骰子次数2中奖的流量奖品将于();
-	this.instance_1.parent = this;
+	this.shape_1 = new cjs.Shape();
+	this.shape_1.graphics.f("rgba(0,0,0,0.8)").s().p("EhdvA7YMAAAh2vMC7fAAAMAAAB2vg");
 
-	this.timeline.addTween(cjs.Tween.get({}).to({state:[{t:this.instance_1},{t:this.instance}]}).wait(1));
+	this.timeline.addTween(cjs.Tween.get({}).to({state:[{t:this.shape_1},{t:this.shape}]}).wait(1));
 
-}).prototype = getMCSymbolPrototype(lib.Symbol1, new cjs.Rectangle(0,0,776,544), null);
+}).prototype = getMCSymbolPrototype(lib.Symbol1, new cjs.Rectangle(-601,-381,1202,762), null);
 
 
-(lib.btn_close = function(mode,startPosition,loop) {
+(lib.rule_close_btn = function(mode,startPosition,loop) {
 	this.initialize(mode,startPosition,loop,{});
 
-	// Layer_1
-	this.instance = new lib.组12();
+	// 图层_1
+	this.instance = new lib.close_btn();
 	this.instance.parent = this;
 	this.instance.setTransform(-75.5,-18.5);
 
-	this.instance_1 = new lib.组12b();
+	this.instance_1 = new lib.close_click_btn();
 	this.instance_1.parent = this;
 	this.instance_1.setTransform(-75.5,-18.5);
 
@@ -98,95 +97,69 @@ p.nominalBounds = new cjs.Rectangle(-75.5,-18.5,151,37);
 
 
 // stage content:
-(lib.modal_test = function(mode,startPosition,loop) {
+(lib.rule_modal = function(mode,startPosition,loop) {
 	this.initialize(mode,startPosition,loop,{});
 
 	// timeline functions:
 	this.frame_0 = function() {
-		//this.visible=false
-		
-		window.modal_intro=this	
-		var self=this
-		setTimeout(function()  {
-		  self.removeChild(self.txt)
-			
-		var canvas = document.querySelector("body")
-		var scroll = new createjs.ScrollContainer(canvas)
-		scroll.x = 213
-		scroll.y = 295
-		scroll.setBounds(0, 0, 820, 265)
-		scroll.contentSize = {
-		  width: 800,
-		  height: 565
-		}
-		self.addChild(scroll)
-		//this.txt.visible=false
-		
-		//this.removeChild(this.txt)
-		
-		console.log(self.txt,'--')
-		self.txt.x=0
-		self.txt.y=0
-		self.txt.visible=true
-		scroll.addChild(self.txt)
-		}, 300);
+		this.visible = false
+		window.ruleModal_mc = this
 	}
 	this.frame_1 = function() {
-		//this.visible=false
 		this.stop()
-		var self=this
-		this.btn_close.addEventListener('click',function(){
-			self.visible=false
-			window.closeModals()
+		//console.log(this.ruleclose_btn)
+		
+		var self = this
+		this.ruleclose_btn.addEventListener("click",function(){
+			self.visible = false
 		})
 	}
 
 	// actions tween:
 	this.timeline.addTween(cjs.Tween.get(this).call(this.frame_0).wait(1).call(this.frame_1).wait(1));
 
-	// Layer_5
-	this.btn_close = new lib.btn_close();
-	this.btn_close.name = "btn_close";
-	this.btn_close.parent = this;
-	this.btn_close.setTransform(600.5,613.5);
-	new cjs.ButtonHelper(this.btn_close, 0, 1, 2, false, new lib.btn_close(), 3);
+	// 关闭按钮
+	this.ruleclose_btn = new lib.rule_close_btn();
+	this.ruleclose_btn.name = "ruleclose_btn";
+	this.ruleclose_btn.parent = this;
+	this.ruleclose_btn.setTransform(606.5,607.5);
+	new cjs.ButtonHelper(this.ruleclose_btn, 0, 1, 2, false, new lib.rule_close_btn(), 3);
 
-	this.timeline.addTween(cjs.Tween.get(this.btn_close).wait(2));
+	this.timeline.addTween(cjs.Tween.get(this.ruleclose_btn).wait(2));
 
-	// Layer_4
-	this.txt = new lib.Symbol1();
-	this.txt.name = "txt";
-	this.txt.parent = this;
-	this.txt.setTransform(213,295);
-
-	this.timeline.addTween(cjs.Tween.get(this.txt).wait(2));
-
-	// Layer_2
-	this.instance = new lib.info();
+	// 文字
+	this.instance = new lib.rule_text();
 	this.instance.parent = this;
-	this.instance.setTransform(112,129);
+	this.instance.setTransform(217,306);
 
 	this.timeline.addTween(cjs.Tween.get(this.instance).wait(2));
 
-	// Layer_3
-	this.shape = new cjs.Shape();
-	this.shape.graphics.f("rgba(0,0,0,0.8)").s().p("EhdvA7YMAAAh2vMC7fAAAMAAAB2vg");
-	this.shape.setTransform(600,380);
+	// 边框
+	this.instance_1 = new lib.rule_bg2();
+	this.instance_1.parent = this;
+	this.instance_1.setTransform(114,131);
 
-	this.timeline.addTween(cjs.Tween.get(this.shape).wait(2));
+	this.timeline.addTween(cjs.Tween.get(this.instance_1).wait(2));
+
+	// 遮罩
+	this.instance_2 = new lib.Symbol1();
+	this.instance_2.parent = this;
+	this.instance_2.setTransform(601,381);
+
+	this.timeline.addTween(cjs.Tween.get(this.instance_2).wait(2));
 
 }).prototype = p = new cjs.MovieClip();
-p.nominalBounds = new cjs.Rectangle(600,380,1200,839);
+p.nominalBounds = new cjs.Rectangle(600.5,380.5,1201,761);
 // library properties:
 lib.properties = {
-	id: '29581F431D944269B91C16911D5E4A1D',
+	id: '86C8271FEF2F9D43A3ED9526A9A787E7',
 	width: 1200,
 	height: 760,
 	fps: 24,
 	color: "#FFFFFF",
 	opacity: 1.00,
 	manifest: [
-		{src:"images/modal_test_atlas_.png?1534476143918", id:"modal_test_atlas_"}
+		{src:"images/rule_modal_atlas_.png?1534498953706", id:"rule_modal_atlas_"}
 	],
 	preloads: []
 };
@@ -224,7 +197,7 @@ an.bootstrapCallback=function(fnCallback) {
 };
 
 an.compositions = an.compositions || {};
-an.compositions['29581F431D944269B91C16911D5E4A1D'] = {
+an.compositions['86C8271FEF2F9D43A3ED9526A9A787E7'] = {
 	getStage: function() { return exportRoot.getStage(); },
 	getLibrary: function() { return lib; },
 	getSpriteSheet: function() { return ss; },

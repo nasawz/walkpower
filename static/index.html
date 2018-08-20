@@ -12,8 +12,16 @@
     <meta name="renderer" content="webkit">
     <link rel="icon" href="favicon.ico" type="image/x-icon">
     <script src="./lib/createjs-2015.11.26.min.js"></script>
+    <script src="./lib/scroll-container.js"></script>
     <script src="./lib/zepto.min.js"></script>
+    <script src="./lib/fx.js"></script>
     <script src="./lib/select_modal.js"></script>
+    <script src="./lib/common_modal.js"></script>
+    <script src="./lib/success_modal.js"></script>
+    <script src="./lib/getAward_modal.js"></script>
+    <script src="./lib/rule_modal.js"></script>
+    <script src="./lib/introduce_modal.js"></script>
+    <script src="./lib/wards_modal.js"></script>
     <script src="./lib/axios.min.js"></script>
     <script src="./lib/walkpower.js"></script>
     <script src="./lib/modal_test.js"></script>
@@ -22,8 +30,9 @@
 </head>
 
 <body>
+    <a id='yao' href="javascript:;">go</a>
     <div id="animation_container" style="background-color:rgba(255, 255, 255, 0.00); width:1200px; height:760px">
-        <canvas id="canvas" width="1200" height="760" style="position: absolute; display: block; background-color:rgba(255, 255, 255, 0.00);"></canvas>
+        <canvas id="canvas" width="1200" height="760" style="position: absolute; display: block; background-color:rgba(255, 255, 255, 0.00);opacity:0;"></canvas>
         <div id="dom_overlay_container" style="pointer-events:none; overflow:hidden; width:1200px; height:760px; position: absolute; left: 0px; top: 0px; display: block;">
         </div>
         <canvas class="modals" id="canvas_test" width="1200" height="760" style="position: absolute; display: none; background-color:rgba(255, 255, 255, 0);z-index: 99;"></canvas>

@@ -47,7 +47,9 @@ export default class Test {
     this.fnStartAnimation = () => {
       this.stage.addChild(this.exportRoot);
       createjs.Ticker.setFPS(lib.properties.fps);
-      createjs.Ticker.addEventListener('tick', this.stage);
+      createjs.Ticker.addEventListener('tick', () => {
+        this.stage.update();
+      });
     };
     //Code to support hidpi screens and responsive scaling.
     let makeResponsive = (isResp, respDim, isScale, scaleType) => {

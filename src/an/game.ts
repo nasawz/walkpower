@@ -6,8 +6,10 @@ export default class Game {
   dom_overlay_container;
   fnStartAnimation;
   ep;
-  init(ep) {
+  done;
+  init(ep, done) {
     this.ep = ep;
+    this.done = done;
     this.canvas = document.getElementById('canvas');
     this.anim_container = document.getElementById('animation_container');
     this.dom_overlay_container = document.getElementById('dom_overlay_container');
@@ -43,11 +45,15 @@ export default class Game {
     }
     this.exportRoot = new lib.walkpower();
     this.stage = new lib.Stage(this.canvas);
+    this.stage.enableMouseOver();
     //Registers the "tick" event listener.
     this.fnStartAnimation = () => {
       this.stage.addChild(this.exportRoot);
       createjs.Ticker.setFPS(lib.properties.fps);
-      createjs.Ticker.addEventListener('tick', this.stage);
+      createjs.Ticker.addEventListener('tick', () => {
+        // console.log('game');
+        this.stage.update();
+      });
     };
     //Code to support hidpi screens and responsive scaling.
     let makeResponsive = (isResp, respDim, isScale, scaleType) => {
@@ -96,8 +102,7 @@ export default class Game {
     AdobeAn.compositionLoaded(lib.properties.id);
     this.fnStartAnimation();
 
-    if (this.ep) {
-      this.ep.emit('game');
-    }
+    this.ep.emit('game', this.stage);
+    this.done();
   }
 }

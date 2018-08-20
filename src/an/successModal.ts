@@ -1,11 +1,11 @@
-export default class SelectModal {
+export default class SuccessModal {
   stage;
   exportRoot;
   fnStartAnimation;
   ep;
   init(ep) {
     this.ep = ep;
-    var comp = AdobeAn.getComposition('BB2E763C01F640CB8E12385CE18CCC8D');
+    var comp = AdobeAn.getComposition('19687C43A5D84B4DB360D426314E3B78');
     var lib = comp.getLibrary();
     var loader = new createjs.LoadQueue(false);
     loader.addEventListener('fileload', evt => {
@@ -34,7 +34,7 @@ export default class SelectModal {
         frames: ssMetadata[i].frames
       });
     }
-    this.exportRoot = new lib.select_modal();
-    this.ep.emit('selectModal', this.exportRoot);
+    this.exportRoot = new lib.success_modal();
+    this.ep.emit('successModal', this.exportRoot);
   }
 }

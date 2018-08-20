@@ -106,7 +106,43 @@ lib.ssMetadata = [
 	this.spriteSheet = ss["select_modal_atlas_"];
 	this.gotoAndStop(13);
 }).prototype = p = new cjs.Sprite();
+// helper functions:
 
+function mc_symbol_clone() {
+	var clone = this._cloneProps(new this.constructor(this.mode, this.startPosition, this.loop));
+	clone.gotoAndStop(this.currentFrame);
+	clone.paused = this.paused;
+	clone.framerate = this.framerate;
+	return clone;
+}
+
+function getMCSymbolPrototype(symbol, nominalBounds, frameBounds) {
+	var prototype = cjs.extend(symbol, cjs.MovieClip);
+	prototype.clone = mc_symbol_clone;
+	prototype.nominalBounds = nominalBounds;
+	prototype.frameBounds = frameBounds;
+	return prototype;
+	}
+
+
+(lib.Symbol1 = function(mode,startPosition,loop) {
+	this.initialize(mode,startPosition,loop,{});
+
+	// timeline functions:
+	this.frame_0 = function() {
+		this.addEventListener('click',function(){})
+	}
+
+	// actions tween:
+	this.timeline.addTween(cjs.Tween.get(this).call(this.frame_0).wait(1));
+
+	// Layer_1
+	this.shape = new cjs.Shape();
+	this.shape.graphics.f("rgba(0,0,0,0.8)").s().p("EhdvA7YMAAAh2vMC7fAAAMAAAB2vg");
+
+	this.timeline.addTween(cjs.Tween.get(this.shape).wait(1));
+
+}).prototype = getMCSymbolPrototype(lib.Symbol1, new cjs.Rectangle(-600,-380,1200,760), null);
 
 
 (lib.mm = function(mode,startPosition,loop) {
@@ -299,8 +335,7 @@ p.nominalBounds = new cjs.Rectangle(-38,-24,76,48);
 
 	// timeline functions:
 	this.frame_0 = function() {
-		//console.log(this)
-		window.girl = this
+		
 	}
 
 	// actions tween:
@@ -347,14 +382,6 @@ p.nominalBounds = new cjs.Rectangle(-95.5,-269,177.5,269);
 
 (lib.boy = function(mode,startPosition,loop) {
 	this.initialize(mode,startPosition,loop,{});
-
-	// timeline functions:
-	this.frame_0 = function() {
-		window.boy=this
-	}
-
-	// actions tween:
-	this.timeline.addTween(cjs.Tween.get(this).call(this.frame_0).wait(20));
 
 	// boy_main
 	this.instance = new lib.boy_main_1("synched",0);
@@ -450,8 +477,8 @@ p.nominalBounds = new cjs.Rectangle(-212.2,-114,425.2,227.1);
 		
 		this.ok_btn.addEventListener('click', function () {
 			window.onSelectPeo(sel)
-			this.visible = false
-			window.closeModals()
+			self.visible = false
+			//window.closeModals()
 		})
 	}
 
@@ -498,11 +525,11 @@ p.nominalBounds = new cjs.Rectangle(-212.2,-114,425.2,227.1);
 	this.timeline.addTween(cjs.Tween.get(this.instance).wait(1));
 
 	// Layer_7
-	this.shape = new cjs.Shape();
-	this.shape.graphics.f("rgba(0,0,0,0.8)").s().p("EhdvA7YMAAAh2vMC7fAAAMAAAB2vg");
-	this.shape.setTransform(600,380);
+	this.instance_1 = new lib.Symbol1();
+	this.instance_1.parent = this;
+	this.instance_1.setTransform(600,380);
 
-	this.timeline.addTween(cjs.Tween.get(this.shape).wait(1));
+	this.timeline.addTween(cjs.Tween.get(this.instance_1).wait(1));
 
 }).prototype = p = new cjs.MovieClip();
 p.nominalBounds = new cjs.Rectangle(600,380,1200,760);
@@ -515,7 +542,7 @@ lib.properties = {
 	color: "#FFFFFF",
 	opacity: 1.00,
 	manifest: [
-		{src:"images/select_modal_atlas_.png?1534408221408", id:"select_modal_atlas_"}
+		{src:"images/select_modal_atlas_.png?1534499033437", id:"select_modal_atlas_"}
 	],
 	preloads: []
 };
