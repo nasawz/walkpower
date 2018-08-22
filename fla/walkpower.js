@@ -3,7 +3,7 @@
 var p; // shortcut to reference prototypes
 var lib={};var ss={};var img={};
 lib.ssMetadata = [
-		{name:"walkpower_atlas_", frames: [[1900,90,19,31],[1873,325,24,31],[1877,212,24,31],[1325,323,26,31],[1337,220,25,31],[1337,253,24,32],[1900,58,24,30],[1409,370,25,32],[1337,287,24,32],[1445,486,76,48],[1785,212,90,111],[1540,459,82,71],[1369,0,161,202],[1737,495,77,45],[1445,370,93,114],[1532,0,148,111],[1325,370,82,53],[1202,0,165,218],[1811,432,79,20],[1545,219,119,105],[1545,113,121,104],[1545,326,120,104],[1202,323,121,105],[1202,430,120,104],[1324,430,119,104],[1682,106,101,106],[1667,326,101,104],[1666,219,103,105],[1682,0,103,104],[1770,326,101,104],[1785,106,101,104],[0,0,1200,760],[1202,220,133,101],[966,762,811,225],[1540,432,269,25],[1787,58,111,34],[1624,459,111,34],[1737,459,111,34],[1624,495,111,34],[0,762,964,371],[1369,204,174,164],[1787,0,154,56]]}
+		{name:"walkpower_atlas_", frames: [[1409,370,25,32],[1888,123,19,31],[1877,212,24,31],[1900,58,24,31],[1325,323,26,31],[1337,254,25,31],[1337,287,24,32],[1900,91,24,30],[1337,220,25,32],[1873,325,24,32],[1445,486,76,48],[1785,212,90,111],[1540,459,82,71],[1369,0,161,202],[1737,495,77,45],[1445,370,93,114],[1532,0,148,111],[1325,370,82,53],[1202,0,165,218],[1811,432,79,20],[1545,219,119,105],[1545,113,121,104],[1202,430,120,104],[1202,323,121,105],[1545,326,120,104],[1324,430,119,104],[1682,106,101,106],[1667,326,101,104],[1666,219,103,105],[1682,0,103,104],[1770,326,101,104],[1785,106,101,104],[0,0,1200,760],[1202,220,133,101],[966,762,811,225],[1540,432,269,25],[1787,58,111,34],[1624,459,111,34],[1737,459,111,34],[1624,495,111,34],[0,762,964,371],[1369,204,174,164],[1787,0,154,56]]}
 ];
 
 
@@ -11,296 +11,303 @@ lib.ssMetadata = [
 
 
 
-(lib._1 = function() {
+(lib._0 = function() {
 	this.spriteSheet = ss["walkpower_atlas_"];
 	this.gotoAndStop(0);
 }).prototype = p = new cjs.Sprite();
 
 
 
-(lib._2 = function() {
+(lib._1 = function() {
 	this.spriteSheet = ss["walkpower_atlas_"];
 	this.gotoAndStop(1);
 }).prototype = p = new cjs.Sprite();
 
 
 
-(lib._3 = function() {
+(lib._2 = function() {
 	this.spriteSheet = ss["walkpower_atlas_"];
 	this.gotoAndStop(2);
 }).prototype = p = new cjs.Sprite();
 
 
 
-(lib._4 = function() {
+(lib._3 = function() {
 	this.spriteSheet = ss["walkpower_atlas_"];
 	this.gotoAndStop(3);
 }).prototype = p = new cjs.Sprite();
 
 
 
-(lib._5 = function() {
+(lib._4 = function() {
 	this.spriteSheet = ss["walkpower_atlas_"];
 	this.gotoAndStop(4);
 }).prototype = p = new cjs.Sprite();
 
 
 
-(lib._6 = function() {
+(lib._5 = function() {
 	this.spriteSheet = ss["walkpower_atlas_"];
 	this.gotoAndStop(5);
 }).prototype = p = new cjs.Sprite();
 
 
 
-(lib._7 = function() {
+(lib._6 = function() {
 	this.spriteSheet = ss["walkpower_atlas_"];
 	this.gotoAndStop(6);
 }).prototype = p = new cjs.Sprite();
 
 
 
-(lib._8 = function() {
+(lib._7 = function() {
 	this.spriteSheet = ss["walkpower_atlas_"];
 	this.gotoAndStop(7);
 }).prototype = p = new cjs.Sprite();
 
 
 
-(lib._9 = function() {
+(lib._8 = function() {
 	this.spriteSheet = ss["walkpower_atlas_"];
 	this.gotoAndStop(8);
 }).prototype = p = new cjs.Sprite();
 
 
 
-(lib.boy_arm = function() {
+(lib._9 = function() {
 	this.spriteSheet = ss["walkpower_atlas_"];
 	this.gotoAndStop(9);
 }).prototype = p = new cjs.Sprite();
 
 
 
-(lib.boy_bag = function() {
+(lib.boy_arm = function() {
 	this.spriteSheet = ss["walkpower_atlas_"];
 	this.gotoAndStop(10);
 }).prototype = p = new cjs.Sprite();
 
 
 
-(lib.boy_leg = function() {
+(lib.boy_bag = function() {
 	this.spriteSheet = ss["walkpower_atlas_"];
 	this.gotoAndStop(11);
 }).prototype = p = new cjs.Sprite();
 
 
 
-(lib.boy_main = function() {
+(lib.boy_leg = function() {
 	this.spriteSheet = ss["walkpower_atlas_"];
 	this.gotoAndStop(12);
 }).prototype = p = new cjs.Sprite();
 
 
 
-(lib.girl_arm = function() {
+(lib.boy_main = function() {
 	this.spriteSheet = ss["walkpower_atlas_"];
 	this.gotoAndStop(13);
 }).prototype = p = new cjs.Sprite();
 
 
 
-(lib.girl_beg = function() {
+(lib.girl_arm = function() {
 	this.spriteSheet = ss["walkpower_atlas_"];
 	this.gotoAndStop(14);
 }).prototype = p = new cjs.Sprite();
 
 
 
-(lib.girl_hair = function() {
+(lib.girl_beg = function() {
 	this.spriteSheet = ss["walkpower_atlas_"];
 	this.gotoAndStop(15);
 }).prototype = p = new cjs.Sprite();
 
 
 
-(lib.girl_leg = function() {
+(lib.girl_hair = function() {
 	this.spriteSheet = ss["walkpower_atlas_"];
 	this.gotoAndStop(16);
 }).prototype = p = new cjs.Sprite();
 
 
 
-(lib.girl_main = function() {
+(lib.girl_leg = function() {
 	this.spriteSheet = ss["walkpower_atlas_"];
 	this.gotoAndStop(17);
 }).prototype = p = new cjs.Sprite();
 
 
 
-(lib.shengyu = function() {
+(lib.girl_main = function() {
 	this.spriteSheet = ss["walkpower_atlas_"];
 	this.gotoAndStop(18);
 }).prototype = p = new cjs.Sprite();
 
 
 
-(lib.sm1 = function() {
+(lib.shengyu = function() {
 	this.spriteSheet = ss["walkpower_atlas_"];
 	this.gotoAndStop(19);
 }).prototype = p = new cjs.Sprite();
 
 
 
-(lib.sm2 = function() {
+(lib.sm1 = function() {
 	this.spriteSheet = ss["walkpower_atlas_"];
 	this.gotoAndStop(20);
 }).prototype = p = new cjs.Sprite();
 
 
 
-(lib.sm3 = function() {
+(lib.sm2 = function() {
 	this.spriteSheet = ss["walkpower_atlas_"];
 	this.gotoAndStop(21);
 }).prototype = p = new cjs.Sprite();
 
 
 
-(lib.sm4 = function() {
+(lib.sm3 = function() {
 	this.spriteSheet = ss["walkpower_atlas_"];
 	this.gotoAndStop(22);
 }).prototype = p = new cjs.Sprite();
 
 
 
-(lib.sm5 = function() {
+(lib.sm4 = function() {
 	this.spriteSheet = ss["walkpower_atlas_"];
 	this.gotoAndStop(23);
 }).prototype = p = new cjs.Sprite();
 
 
 
-(lib.sm6 = function() {
+(lib.sm5 = function() {
 	this.spriteSheet = ss["walkpower_atlas_"];
 	this.gotoAndStop(24);
 }).prototype = p = new cjs.Sprite();
 
 
 
-(lib.ss1 = function() {
+(lib.sm6 = function() {
 	this.spriteSheet = ss["walkpower_atlas_"];
 	this.gotoAndStop(25);
 }).prototype = p = new cjs.Sprite();
 
 
 
-(lib.ss2 = function() {
+(lib.ss1 = function() {
 	this.spriteSheet = ss["walkpower_atlas_"];
 	this.gotoAndStop(26);
 }).prototype = p = new cjs.Sprite();
 
 
 
-(lib.ss3 = function() {
+(lib.ss2 = function() {
 	this.spriteSheet = ss["walkpower_atlas_"];
 	this.gotoAndStop(27);
 }).prototype = p = new cjs.Sprite();
 
 
 
-(lib.ss4 = function() {
+(lib.ss3 = function() {
 	this.spriteSheet = ss["walkpower_atlas_"];
 	this.gotoAndStop(28);
 }).prototype = p = new cjs.Sprite();
 
 
 
-(lib.ss5 = function() {
+(lib.ss4 = function() {
 	this.spriteSheet = ss["walkpower_atlas_"];
 	this.gotoAndStop(29);
 }).prototype = p = new cjs.Sprite();
 
 
 
-(lib.ss6 = function() {
+(lib.ss5 = function() {
 	this.spriteSheet = ss["walkpower_atlas_"];
 	this.gotoAndStop(30);
 }).prototype = p = new cjs.Sprite();
 
 
 
-(lib.web_01 = function() {
+(lib.ss6 = function() {
 	this.spriteSheet = ss["walkpower_atlas_"];
 	this.gotoAndStop(31);
 }).prototype = p = new cjs.Sprite();
 
 
 
-(lib.web_02 = function() {
+(lib.web_01 = function() {
 	this.spriteSheet = ss["walkpower_atlas_"];
 	this.gotoAndStop(32);
 }).prototype = p = new cjs.Sprite();
 
 
 
-(lib.web_03 = function() {
+(lib.web_02 = function() {
 	this.spriteSheet = ss["walkpower_atlas_"];
 	this.gotoAndStop(33);
 }).prototype = p = new cjs.Sprite();
 
 
 
-(lib.web_15 = function() {
+(lib.web_03 = function() {
 	this.spriteSheet = ss["walkpower_atlas_"];
 	this.gotoAndStop(34);
 }).prototype = p = new cjs.Sprite();
 
 
 
-(lib.我的奖品down = function() {
+(lib.web_15 = function() {
 	this.spriteSheet = ss["walkpower_atlas_"];
 	this.gotoAndStop(35);
 }).prototype = p = new cjs.Sprite();
 
 
 
-(lib.我的奖品 = function() {
+(lib.我的奖品down = function() {
 	this.spriteSheet = ss["walkpower_atlas_"];
 	this.gotoAndStop(36);
 }).prototype = p = new cjs.Sprite();
 
 
 
-(lib.活动规则down = function() {
+(lib.我的奖品 = function() {
 	this.spriteSheet = ss["walkpower_atlas_"];
 	this.gotoAndStop(37);
 }).prototype = p = new cjs.Sprite();
 
 
 
-(lib.活动规则 = function() {
+(lib.活动规则down = function() {
 	this.spriteSheet = ss["walkpower_atlas_"];
 	this.gotoAndStop(38);
 }).prototype = p = new cjs.Sprite();
 
 
 
-(lib.路线 = function() {
+(lib.活动规则 = function() {
 	this.spriteSheet = ss["walkpower_atlas_"];
 	this.gotoAndStop(39);
 }).prototype = p = new cjs.Sprite();
 
 
 
-(lib.骰子bg = function() {
+(lib.路线 = function() {
 	this.spriteSheet = ss["walkpower_atlas_"];
 	this.gotoAndStop(40);
 }).prototype = p = new cjs.Sprite();
 
 
 
-(lib.骰子go = function() {
+(lib.骰子bg = function() {
 	this.spriteSheet = ss["walkpower_atlas_"];
 	this.gotoAndStop(41);
+}).prototype = p = new cjs.Sprite();
+
+
+
+(lib.骰子go = function() {
+	this.spriteSheet = ss["walkpower_atlas_"];
+	this.gotoAndStop(42);
 }).prototype = p = new cjs.Sprite();
 // helper functions:
 
@@ -321,25 +328,16 @@ function getMCSymbolPrototype(symbol, nominalBounds, frameBounds) {
 	}
 
 
-(lib.补间2 = function(mode,startPosition,loop) {
-	this.initialize(mode,startPosition,loop,{});
-
-	// 图层 1
-	this.mingdan_txt = new cjs.Text("定时达奥奥奥奥奥奥奥奥奥奥奥奥奥奥奥奥奥奥奥奥奥奥", "12px 'Arial'", "#F08300");
-	this.mingdan_txt.name = "mingdan_txt";
-	this.mingdan_txt.lineHeight = 19;
-	this.mingdan_txt.lineWidth = 323;
-	this.mingdan_txt.parent = this;
-	this.mingdan_txt.setTransform(-161.5,-6.7);
-
-	this.timeline.addTween(cjs.Tween.get(this.mingdan_txt).wait(1));
-
-}).prototype = p = new cjs.MovieClip();
-p.nominalBounds = new cjs.Rectangle(-163.5,-8.7,327,20.8);
-
-
 (lib.补间1 = function(mode,startPosition,loop) {
 	this.initialize(mode,startPosition,loop,{});
+
+	// timeline functions:
+	this.frame_0 = function() {
+		window.mingdan_txt=this.mingdan_txt
+	}
+
+	// actions tween:
+	this.timeline.addTween(cjs.Tween.get(this).call(this.frame_0).wait(1));
 
 	// 图层 1
 	this.mingdan_txt = new cjs.Text("定时达奥奥奥奥奥奥奥奥奥奥奥奥奥奥奥奥奥奥奥奥奥奥", "12px 'Andale Mono'", "#F08300");
@@ -351,8 +349,7 @@ p.nominalBounds = new cjs.Rectangle(-163.5,-8.7,327,20.8);
 
 	this.timeline.addTween(cjs.Tween.get(this.mingdan_txt).wait(1));
 
-}).prototype = p = new cjs.MovieClip();
-p.nominalBounds = new cjs.Rectangle(-163.5,-8.7,327,20.8);
+}).prototype = getMCSymbolPrototype(lib.补间1, new cjs.Rectangle(-163.5,-8.7,327,20.8), null);
 
 
 (lib.tile_mc = function(mode,startPosition,loop) {
@@ -498,57 +495,60 @@ p.nominalBounds = new cjs.Rectangle(-60.5,-52.5,119,105);
 	// timeline functions:
 	this.frame_0 = function() {
 		this.stop()
-		this.visible = false
 	}
 
 	// actions tween:
-	this.timeline.addTween(cjs.Tween.get(this).call(this.frame_0).wait(10));
+	this.timeline.addTween(cjs.Tween.get(this).call(this.frame_0).wait(11));
 
 	// Layer_2
-	this.instance = new lib._1();
+	this.instance = new lib._0();
 	this.instance.parent = this;
-	this.instance.setTransform(0,-18,0.846,0.846);
+	this.instance.setTransform(-3,-18,0.84,0.814);
 
-	this.instance_1 = new lib._2();
+	this.instance_1 = new lib._1();
 	this.instance_1.parent = this;
-	this.instance_1.setTransform(-2,-18,0.846,0.846);
+	this.instance_1.setTransform(0,-18,0.846,0.846);
 
-	this.instance_2 = new lib._3();
+	this.instance_2 = new lib._2();
 	this.instance_2.parent = this;
 	this.instance_2.setTransform(-2,-18,0.846,0.846);
 
-	this.instance_3 = new lib._4();
+	this.instance_3 = new lib._3();
 	this.instance_3.parent = this;
-	this.instance_3.setTransform(-3,-18,0.846,0.846);
+	this.instance_3.setTransform(-2,-18,0.846,0.846);
 
-	this.instance_4 = new lib._5();
+	this.instance_4 = new lib._4();
 	this.instance_4.parent = this;
-	this.instance_4.setTransform(-2,-18,0.846,0.846);
+	this.instance_4.setTransform(-3,-18,0.846,0.846);
 
-	this.instance_5 = new lib._6();
+	this.instance_5 = new lib._5();
 	this.instance_5.parent = this;
 	this.instance_5.setTransform(-2,-18,0.846,0.846);
 
-	this.instance_6 = new lib._7();
+	this.instance_6 = new lib._6();
 	this.instance_6.parent = this;
-	this.instance_6.setTransform(-2,-17,0.846,0.846);
+	this.instance_6.setTransform(-2,-18,0.846,0.846);
 
-	this.instance_7 = new lib._8();
+	this.instance_7 = new lib._7();
 	this.instance_7.parent = this;
-	this.instance_7.setTransform(-2,-18,0.846,0.846);
+	this.instance_7.setTransform(-2,-17,0.846,0.846);
 
-	this.instance_8 = new lib._9();
+	this.instance_8 = new lib._8();
 	this.instance_8.parent = this;
 	this.instance_8.setTransform(-2,-18,0.846,0.846);
 
-	this.timeline.addTween(cjs.Tween.get({}).to({state:[]}).to({state:[{t:this.instance}]},1).to({state:[{t:this.instance_1}]},1).to({state:[{t:this.instance_2}]},1).to({state:[{t:this.instance_3}]},1).to({state:[{t:this.instance_4}]},1).to({state:[{t:this.instance_5}]},1).to({state:[{t:this.instance_6}]},1).to({state:[{t:this.instance_7}]},1).to({state:[{t:this.instance_8}]},1).wait(1));
+	this.instance_9 = new lib._9();
+	this.instance_9.parent = this;
+	this.instance_9.setTransform(-2,-18,0.846,0.846);
+
+	this.timeline.addTween(cjs.Tween.get({}).to({state:[]}).to({state:[{t:this.instance}]},1).to({state:[{t:this.instance_1}]},1).to({state:[{t:this.instance_2}]},1).to({state:[{t:this.instance_3}]},1).to({state:[{t:this.instance_4}]},1).to({state:[{t:this.instance_5}]},1).to({state:[{t:this.instance_6}]},1).to({state:[{t:this.instance_7}]},1).to({state:[{t:this.instance_8}]},1).to({state:[{t:this.instance_9}]},1).wait(1));
 
 	// Layer_1
-	this.instance_9 = new lib.shengyu();
-	this.instance_9.parent = this;
-	this.instance_9.setTransform(-39.5,-10);
+	this.instance_10 = new lib.shengyu();
+	this.instance_10.parent = this;
+	this.instance_10.setTransform(-39.5,-10);
 
-	this.timeline.addTween(cjs.Tween.get(this.instance_9).wait(10));
+	this.timeline.addTween(cjs.Tween.get(this.instance_10).wait(11));
 
 }).prototype = p = new cjs.MovieClip();
 p.nominalBounds = new cjs.Rectangle(-39.5,-10,79,20);
@@ -661,6 +661,18 @@ p.nominalBounds = new cjs.Rectangle(-38,-24,76,48);
 (lib.mingdan_mc = function(mode,startPosition,loop) {
 	this.initialize(mode,startPosition,loop,{});
 
+	// timeline functions:
+	this.frame_0 = function() {
+		this.stop()
+	}
+	this.frame_139 = function() {
+		window.changeMingdan()
+		this.gotoAndPlay(1)
+	}
+
+	// actions tween:
+	this.timeline.addTween(cjs.Tween.get(this).call(this.frame_0).wait(139).call(this.frame_139).wait(1));
+
 	// 图层 3 (mask)
 	var mask = new cjs.Shape();
 	mask._off = true;
@@ -668,29 +680,24 @@ p.nominalBounds = new cjs.Rectangle(-38,-24,76,48);
 	mask.setTransform(0.3,-0.1);
 
 	// mingdan_txt
-	this.instance = new lib.补间1("synched",0);
+	this.instance = new lib.补间1();
 	this.instance.parent = this;
 	this.instance.setTransform(301.5,1);
 
-	this.instance_1 = new lib.补间2("synched",0);
-	this.instance_1.parent = this;
-	this.instance_1.setTransform(-299.4,1);
-
-	var maskedShapeInstanceList = [this.instance,this.instance_1];
+	var maskedShapeInstanceList = [this.instance];
 
 	for(var shapedInstanceItr = 0; shapedInstanceItr < maskedShapeInstanceList.length; shapedInstanceItr++) {
 		maskedShapeInstanceList[shapedInstanceItr].mask = mask;
 	}
 
-	this.timeline.addTween(cjs.Tween.get({}).to({state:[{t:this.instance}]}).to({state:[{t:this.instance_1}]},139).wait(1));
-	this.timeline.addTween(cjs.Tween.get(this.instance).to({_off:true,x:-299.4},139).wait(1));
+	this.timeline.addTween(cjs.Tween.get(this.instance).to({x:-298.5},139).wait(1));
 
 	// 图层 1
-	this.instance_2 = new lib.web_15();
-	this.instance_2.parent = this;
-	this.instance_2.setTransform(-134.5,-12.5);
+	this.instance_1 = new lib.web_15();
+	this.instance_1.parent = this;
+	this.instance_1.setTransform(-134.5,-12.5);
 
-	this.timeline.addTween(cjs.Tween.get(this.instance_2).wait(140));
+	this.timeline.addTween(cjs.Tween.get(this.instance_1).wait(140));
 
 }).prototype = p = new cjs.MovieClip();
 p.nominalBounds = new cjs.Rectangle(-134.5,-12.5,269,25);
@@ -1050,7 +1057,7 @@ p.nominalBounds = new cjs.Rectangle(-99,-262,175,262);
 		
 		window.boy=this.boy
 		window.girl = this.girl
-		
+		window.mingdan=this.mingdan
 		this.boy.visible=false
 		this.girl.visible=false
 		
@@ -1088,25 +1095,26 @@ p.nominalBounds = new cjs.Rectangle(-99,-262,175,262);
 	this.timeline.addTween(cjs.Tween.get(this.instance).wait(2));
 
 	// power_mingdan 
-	this.instance_1 = new lib.mingdan_mc();
+	this.mingdan = new lib.mingdan_mc();
+	this.mingdan.name = "mingdan";
+	this.mingdan.parent = this;
+	this.mingdan.setTransform(704.5,297.5);
+
+	this.timeline.addTween(cjs.Tween.get(this.mingdan).wait(2));
+
+	// power_logo
+	this.instance_1 = new lib.web_02();
 	this.instance_1.parent = this;
-	this.instance_1.setTransform(704.5,297.5);
+	this.instance_1.setTransform(39,35);
 
 	this.timeline.addTween(cjs.Tween.get(this.instance_1).wait(2));
 
-	// power_logo
-	this.instance_2 = new lib.web_02();
+	// power_title
+	this.instance_2 = new lib.web_03();
 	this.instance_2.parent = this;
-	this.instance_2.setTransform(39,35);
+	this.instance_2.setTransform(260,60);
 
 	this.timeline.addTween(cjs.Tween.get(this.instance_2).wait(2));
-
-	// power_title
-	this.instance_3 = new lib.web_03();
-	this.instance_3.parent = this;
-	this.instance_3.setTransform(260,60);
-
-	this.timeline.addTween(cjs.Tween.get(this.instance_3).wait(2));
 
 	// power_boy
 	this.boy = new lib.boy();
@@ -1125,17 +1133,17 @@ p.nominalBounds = new cjs.Rectangle(-99,-262,175,262);
 	this.timeline.addTween(cjs.Tween.get(this.girl).wait(2));
 
 	// power_luxian
-	this.instance_4 = new lib.luxian_mc();
-	this.instance_4.parent = this;
-	this.instance_4.setTransform(595,514.5,1,1,0,0,0,595,514.5);
+	this.instance_3 = new lib.luxian_mc();
+	this.instance_3.parent = this;
+	this.instance_3.setTransform(595,514.5,1,1,0,0,0,595,514.5);
 
-	this.timeline.addTween(cjs.Tween.get(this.instance_4).wait(2));
+	this.timeline.addTween(cjs.Tween.get(this.instance_3).wait(2));
 
 	// power_bg
-	this.instance_5 = new lib.power_bgimg("synched",0);
-	this.instance_5.parent = this;
+	this.instance_4 = new lib.power_bgimg("synched",0);
+	this.instance_4.parent = this;
 
-	this.timeline.addTween(cjs.Tween.get(this.instance_5).wait(2));
+	this.timeline.addTween(cjs.Tween.get(this.instance_4).wait(2));
 
 }).prototype = p = new cjs.MovieClip();
 p.nominalBounds = new cjs.Rectangle(600,380,1250.9,820.9);
@@ -1148,7 +1156,7 @@ lib.properties = {
 	color: "#FFFFFF",
 	opacity: 0.00,
 	manifest: [
-		{src:"images/walkpower_atlas_.png?1534728762190", id:"walkpower_atlas_"}
+		{src:"images/walkpower_atlas_.png?1534901770695", id:"walkpower_atlas_"}
 	],
 	preloads: []
 };

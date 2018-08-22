@@ -66,7 +66,7 @@ export const walk_share = (activityId, channel) => {
     {"resCode":"01","message":"未登陆","resInfo":{}}
     {"resCode":"02","message":"系统异常","resInfo":{}}
  */
-export const walk_userInfo = () => {
+export const walk_userInfo: any = () => {
   return axios.get(`/portal/walk/userWalkInfo`);
 };
 
@@ -92,4 +92,93 @@ export const walk_putRole = (role, channel) => {
       channel
     }
   });
+};
+
+/**
+ * 抽奖
+ * @param activityId
+ * @param channel 
+ * 
+ 5.抽奖
+    url: /portal/lottery/luck
+    method: get
+    param：activityId channel
+    return：
+    00: 成功中奖   giftName
+    01: 未登录
+    02: 非俱乐部会员
+    03: 参数错误  activityId
+    10: 参数错误  channel
+    11: 非活动抽奖时间
+    12: 去分享增加抽奖机会
+    13: 抽奖机会用完了
+    14: 已经中过奖了
+    15: 很遗憾,没中奖
+    16: 系统繁忙，请稍后再试。
+    17: 没有奖品了,明天再来!
+ */
+export const walk_lottery = (activityId, channel) => {
+  return axios.get(`/portal/lottery/luck`, {
+    params: {
+      activityId,
+      channel
+    }
+  });
+};
+/**
+ * 我的奖品
+ * @param activityId
+ */
+export const walk_myGifts = activityId => {
+  return axios.post(
+    `/portal/specialTraval/myGifts`,
+    {
+      activityIdList: activityId
+    },
+    {
+      transformRequest: [
+        function(data) {
+          console.log(data);
+          let ret = '';
+          for (let it in data) {
+            ret += encodeURIComponent(it) + '=' + encodeURIComponent(data[it]) + '&';
+          }
+          return ret;
+        }
+      ],
+      headers: {
+        'Content-Type': 'application/x-www-form-urlencoded'
+      }
+    }
+  );
+};
+
+/**
+ * 中奖名单
+ * @param activityId
+ * @param channel
+ */
+export const walk_memberLotterys = (activityId, channel) => {
+  return axios.post(
+    `/portal/lottery/memberLotterys/nameList`,
+    {
+      activityIdList: activityId,
+      channel
+    },
+    {
+      transformRequest: [
+        function(data) {
+          console.log(data);
+          let ret = '';
+          for (let it in data) {
+            ret += encodeURIComponent(it) + '=' + encodeURIComponent(data[it]) + '&';
+          }
+          return ret;
+        }
+      ],
+      headers: {
+        'Content-Type': 'application/x-www-form-urlencoded'
+      }
+    }
+  );
 };

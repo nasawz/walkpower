@@ -1,6 +1,30 @@
 body {
 }
-
+html { font-size: 20px; }
+@media (min-width:401px) {
+    html { font-size: 25px !important; }
+}
+@media (min-width:428px) {
+    html { font-size: 26.75px !important; }
+}
+@media (min-width:481px) {
+    html { font-size: 28px !important; }
+}
+@media (min-width:569px) {
+    html { font-size: 30px !important; }
+}
+@media (min-width:641px) {
+    html { font-size: 34px !important; }
+}
+@media (min-width:768px) {
+    html { font-size: 36px !important; }
+}
+@media (min-width:992px) {
+    html { font-size: 38px !important; }
+}
+@media (min-width:1200px) {
+    html { font-size: 40px !important; }
+}
 #animation_container {
   position: absolute;
   margin: auto;
@@ -8,4 +32,87 @@ body {
   right: 0;
   top: 0;
   bottom: 0;
+}
+#zhezhao{
+  background: rgba(51,51,51,.8);
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 19;
+  display: none;
+}
+
+// 分享
+#soshid{
+    width: 80%;
+    position: absolute;
+    top: 40%;
+    left: 0;
+    right: 0;
+    display: none;
+    z-index: 20;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    margin:0 auto;
+    @media (max-width:768px) {
+      .sosh-item{
+        width: 34% !important;
+      }
+    }
+    .sosh-item{
+      display: inline-block;
+      float: none;
+      width: 20%;
+    }
+    .sosh-item-icon{
+        width: 40px;
+        height: 40px;
+        padding: 5px;
+    }
+    .sosh-item-text{
+        padding: 5px;
+        margin-left: 0;
+        margin-right: 0;
+        display: block;
+        color: #fff;
+    }
+}
+// 抽奖转盘
+.lottery-case {
+  width: 15.0rem;
+  margin: 0 auto;
+  overflow: hidden;
+  position: absolute;
+  top: 9%;
+  left: 0;
+  right: 0;
+  display: none;
+  z-index: 21;
+}
+.lottery-box {
+  width: 15.0rem;
+  height: 14.3rem;
+  position: relative;
+  background: url(images/lottery_03.png) no-repeat;
+  background-size: 100%;
+  .lottery-img {
+    width: 9.2rem;
+    height: 9.2rem;
+    position: relative;
+    left: 2.7rem;
+    top: 3.6rem;
+    background: url(images/lottery_09.png) no-repeat;
+      background-size: 100%;
+  }
+  .playbtn {
+    width: 3.85rem;
+    height: 4.3rem;
+    position: absolute;
+    top: 41%;
+    left: 35.4%;
+    background: url(images/lottery_06.png) no-repeat;
+      background-size: 100%;
+  }
 }

@@ -3,7 +3,7 @@
 var p; // shortcut to reference prototypes
 var lib={};var ss={};var img={};
 lib.ssMetadata = [
-		{name:"success_modal_atlas_", frames: [[153,1254,151,37],[0,1254,151,37],[0,623,551,510],[0,0,791,621],[306,1254,151,37],[359,1135,151,37],[0,1135,357,117]]}
+		{name:"success_modal_atlas_", frames: [[0,1254,151,37],[153,1254,151,37],[0,623,551,510],[0,0,791,621],[306,1254,151,37],[359,1135,151,37],[0,1135,357,117]]}
 ];
 
 
@@ -152,6 +152,7 @@ p.nominalBounds = new cjs.Rectangle(-75.5,-18.5,151,37);
 		
 		this.golottery_btn.addEventListener("click",function(){
 			self.visible = false
+			window.goLottery()
 		})
 	}
 
@@ -219,7 +220,7 @@ lib.properties = {
 	color: "#FFFFFF",
 	opacity: 1.00,
 	manifest: [
-		{src:"images/success_modal_atlas_.png?1534499106964", id:"success_modal_atlas_"}
+		{src:"images/success_modal_atlas_.png?1534905903133", id:"success_modal_atlas_"}
 	],
 	preloads: []
 };

@@ -5,9 +5,9 @@
   "main": "index.js",
   "scripts": {
     "start": "cross-env NODE_ENV=development module=app npx concurrently --kill-others \"node tools/server.js\" --prefix \"[{name}]\" --names \"ROLLUP,SERVER\"",
-    "start:h5": "cross-env NODE_ENV=development module=app h5=true npx concurrently --kill-others \"node tools/server.js\" --prefix \"[{name}]\" --names \"ROLLUP,SERVER\"",
+    "start:h5": "cross-env NODE_ENV=development module=h5 h5=true npx concurrently --kill-others \"node tools/server.js\" --prefix \"[{name}]\" --names \"ROLLUP,SERVER\"",
     "build:watch": "cross-env NODE_ENV=development module=app npx rollup -c tools/rollup.config.js -w",
-    "build": "cross-env NODE_ENV=production module=app npx rollup -c tools/rollup.config.js"
+    "build:watch:h5": "cross-env NODE_ENV=development module=h5 npx rollup -c tools/rollup.config.js -w"
   },
   "author": "nasa.wang",
   "dependencies": {

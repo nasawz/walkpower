@@ -24,6 +24,7 @@ function startDevServer() {
   app.use(express.static(path.resolve(__basename, 'static')));
   app.use(express.static(path.resolve(__basename, 'dist')));
   if (h5) {
+    console.log('h5');
     app.use('/lib', express.static(path.resolve(__basename, 'fla_h5')));
     app.use('/images', express.static(path.resolve(__basename, 'fla_h5/images')));
   } else {
@@ -32,20 +33,28 @@ function startDevServer() {
   }
 
   /*=============proxy start==============*/
-  // (() => {
-  //   const proxy_options_mock = {
-  //     target: `http://127.0.0.1:${port}/`,
-  //     secure: false,
-  //     changeOrigin: true,
-  //     ws: true,
-  //     ignorePath: false,
-  //     pathRewrite: {
-  //       '^/api_mock': ''
-  //     }
-  //   };
-  //   const webProxyMock = proxy(proxy_options_mock);
-  //   app.use('/api_mock/*', webProxyMock);
-  // })();
+  (() => {
+    const proxy_options_mock = {
+      target: `http://16.158.50.144:81/`,
+      secure: false,
+      changeOrigin: true,
+      ws: true,
+      ignorePath: false
+    };
+    const webProxyMock = proxy(proxy_options_mock);
+    app.use('/portal/*', webProxyMock);
+  })();
+  (() => {
+    const proxy_options_mock = {
+      target: `http://16.158.50.144:81/`,
+      secure: false,
+      changeOrigin: true,
+      ws: true,
+      ignorePath: false
+    };
+    const webProxyMock = proxy(proxy_options_mock);
+    app.use('/front/*', webProxyMock);
+  })();
   // =======
 
   app.listen(port, err => {

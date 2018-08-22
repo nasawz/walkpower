@@ -45,7 +45,10 @@ const defaultPlugins = type => {
           preamble: licenseText
         }
       }),
-    replace({ ENV: JSON.stringify(process.env.NODE_ENV || 'development') })
+    replace({
+      ENV: JSON.stringify(process.env.NODE_ENV || 'development'),
+      H5: process.env.H5 || ''
+    })
   ]);
   return plugins;
 };

@@ -11,8 +11,11 @@
     <Meta name='WT.plat' content='PC'>
     <meta name="renderer" content="webkit">
     <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <script src="./lib/axios.min.js"></script>
     <script src="./lib/createjs-2015.11.26.min.js"></script>
+    <script src="./lib/layer.js"></script>
     <script src="./lib/scroll-container.js"></script>
+    <script src="./lib/introduce_modal.js"></script>
     <script src="./lib/zepto.min.js"></script>
     <script src="./lib/fx.js"></script>
     <script src="./lib/select_modal.js"></script>
@@ -20,11 +23,11 @@
     <script src="./lib/success_modal.js"></script>
     <script src="./lib/getAward_modal.js"></script>
     <script src="./lib/rule_modal.js"></script>
-    <script src="./lib/introduce_modal.js"></script>
     <script src="./lib/wards_modal.js"></script>
-    <script src="./lib/axios.min.js"></script>
+    <script src="./lib/share_modal.js"></script>
+    <script src="./lib/knowledge_madal.js"></script>
     <script src="./lib/walkpower.js"></script>
-    <script src="./lib/modal_test.js"></script>
+    <script src="./lib/kinerLottery.js"></script>
     <link rel="stylesheet" href="./app.css">
 
 </head>
@@ -36,8 +39,20 @@
         </div>
         <canvas class="modals" id="canvas_test" width="1200" height="760" style="position: absolute; display: none; background-color:rgba(255, 255, 255, 0);z-index: 99;"></canvas>
         <canvas class="modals" id="select_modal" width="1200" height="760" style="position: absolute; display: none; background-color:rgba(255, 255, 255, 0);z-index: 99;"></canvas>
+        <!-- 分享 -->
+        <div id="zhezhao"></div>
+        <div id="soshid"></div>
+        <!-- 转盘 -->
+        <div class="lottery-case">
+            <div id="lotteryBox" class="box lottery-box">
+                <div class="outer KinerLottery KinerLotteryContent lottery-img"></div>
+                <!-- 大专盘分为三种状态：活动未开始（no-start）、活动进行中(start)、活动结束(completed),可通过切换class进行切换状态，js会根据这3个class进行匹配状态 -->
+                <div class="inner KinerLotteryBtn start playbtn"></div>
+            </div>
+        </div>
     </div>
     <script src="./app.js"></script>
+    <script src="./lib/sosh.js"></script>
 </body>
 
 </html>

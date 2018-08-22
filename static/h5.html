@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>行走的力量-拼步数，赢流量</title>
+    <meta name="keywords" content="行走的力量 全球通 动感地带 俱乐部 中国移动">
+    <meta name="description" content="青春时尚有料，移动引领未来！中国移动俱乐部为您提供精彩专属的俱乐部服务。这里有“商务、理财、艺术、生活”等专业资讯，更有适合年轻动感族群的动漫、视频资源，别犹豫赶快加入我们！">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="applicable-device" content="pc">
+    <Meta name='WT.plat' content='PC'>
+    <meta name="renderer" content="webkit">
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no" />
+    <script src="./lib/axios.min.js"></script>
+    <script src="./lib/createjs-2015.11.26.min.js"></script>
+    <script src="./lib/layer.js"></script>
+    <script src="./lib/scroll-container.js"></script>
+    <script src="./lib/zepto.min.js"></script>
+    <script src="./lib/fx.js"></script>
+    <script src="./lib/introduce_modal.js"></script>
+    <script src="./lib/select_modal.js"></script>
+    <script src="./lib/common_modal.js"></script>
+    <script src="./lib/success_modal.js"></script>
+    <script src="./lib/getAward_modal.js"></script>
+    <script src="./lib/rule_modal.js"></script>
+    <script src="./lib/wards_modal.js"></script>
+    <script src="./lib/share_modal.js"></script>
+    <script src="./lib/walkpower.js"></script>
+    <link rel="stylesheet" href="./h5.css">
+    <style type="text/css">
+        #soshid {
+            background: #fff;
+            position: absolute;
+            top: 40px;
+            box-shadow: 0px 0px 16px #999;
+            display: none;
+            z-index: 20;
+            padding-top: 5px;
+            padding-bottom: 5px;
+        }
+
+        #soshid .sosh-item-icon {
+            width: 40px;
+            height: 40px;
+            padding: 5px;
+        }
+
+        #soshid .sosh-item-text {
+            padding: 5px;
+            margin-left: 0;
+            margin-right: 0;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="animation_container" style="background-color:rgba(255, 255, 255, 0.00); width:750px; height:1334px">
+        <canvas id="canvas" width="750" height="1334" style="position: absolute; display: block; background-color:rgba(255, 255, 255, 0.00);opacity:0;"></canvas>
+        <div id="dom_overlay_container" style="pointer-events:none; overflow:hidden; width:750px; height:1334px; position: absolute; left: 0px; top: 0px; display: block;">
+        </div>
+        <canvas class="modals" id="canvas_test" width="750" height="1334" style="position: absolute; display: none; background-color:rgba(255, 255, 255, 0);z-index: 99;"></canvas>
+        <canvas class="modals" id="select_modal" width="750" height="1334" style="position: absolute; display: none; background-color:rgba(255, 255, 255, 0);z-index: 99;"></canvas>
+        <!-- 分享 -->
+        <div id="soshid"></div>
+        <!-- 转盘 -->
+        <div class="t-lottery-case">
+            <div class="t-lottery-box">
+                <div class="t-lottery-img"></div>
+                <a class="playbtn" href="javascript:;" rel="external nofollow" rel="external nofollow" title="开始抽奖"></a>
+            </div>
+        </div>
+    </div>
+    <script src="./h5.js"></script>
+    <script src="./lib/sosh.js"></script>
+</body>
+
+</html>

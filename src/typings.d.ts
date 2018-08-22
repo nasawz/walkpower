@@ -4,6 +4,8 @@ declare module '*.json' {
 }
 declare const createjs: any;
 declare const AdobeAn: any;
+declare const layer: any;
+declare const sosh: any;
 declare const EventProxy: any;
 declare module 'history/createHashHistory';
 declare const Zepto: any;

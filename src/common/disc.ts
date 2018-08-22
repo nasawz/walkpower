@@ -13,7 +13,7 @@ export const stopAt = num => {
 };
 
 export const setCount = count => {
-  window.dice_mc.dice_label.gotoAndStop(count);
+  window.dice_mc.dice_label.gotoAndStop(count + 1);
 };
 
 export const setDiscBtn = enb => {
