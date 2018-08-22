@@ -2,38 +2,32 @@
 import './style/app.less';
 import Game from './an/game';
 import SelectModal from './an/selectModal';
-let selectModal = new SelectModal();
-
 import CommonModal from './an/commonModal';
-let commonModal = new CommonModal();
-
 import GetAwardModal from './an/getAwardModal';
-let getAwardModal = new GetAwardModal();
-
 import IntroduceModal from './an/introduceModal';
-let introduceModal = new IntroduceModal();
-
-import RuleModal from './an/ruleModal';
-let ruleModal = new RuleModal();
-
 import SuccessModal from './an/successModal';
-let successModal = new SuccessModal();
-
+import RuleModal from './an/ruleModal';
 import WardsModal from './an/wardsModal';
-let wardsModal = new WardsModal();
-
 import ShareModal from './an/shareModal';
-let shareModal = new ShareModal();
-
 import KnowledgeModal from './an/knowledgeModal';
-let knowledgeModal = new KnowledgeModal();
-
+import LiuliangModal from './an/liuliangModal';
 import EventProxy from './utils/eventproxy';
+
+let selectModal = new SelectModal();
+let commonModal = new CommonModal();
+let getAwardModal = new GetAwardModal();
+let introduceModal = new IntroduceModal();
+let ruleModal = new RuleModal();
+let successModal = new SuccessModal();
+let wardsModal = new WardsModal();
+let shareModal = new ShareModal();
+let knowledgeModal = new KnowledgeModal();
+let liuliangModal = new LiuliangModal();
+
 let game = new Game();
 
 let activityId = 364;
 let channel = 'web';
-let surplusCount = 0;
 // let channel = getChannel();
 // function getChannel() {
 //   var ua = window.navigator.userAgent.toLowerCase();
@@ -63,7 +57,7 @@ import { locationPeo, movePeo } from './common/peo';
 
 import { onShare } from './common/share';
 import { onLottery } from './common/lottery';
-import { iAlert, goLogin } from './common/help';
+import { iAlert, goLogin, goVipJoin } from './common/help';
 
 declare let window: any;
 
@@ -195,9 +189,38 @@ let showKnowledgeModal = type => {
 };
 
 /**
+ * 显示抽奖流量弹窗
+ */
+let showLiuliangModal = type => {
+  window.liuliangModal_mc.visible = true;
+  window.liuliangModal_mc.gotoAndStop(type);
+};
+/**
  * 分享方法
  */
 window.onShare = info => {
+  window.shareModal_mc.visible = false;
+  walk_share(activityId, channel).then(res => {
+    let resCode = res.data.resCode;
+    let resInfo = res.data.resInfo;
+    switch (resCode) {
+      case '00': //分享成功
+        console.log('分享成功');
+        // 机会+1
+        setDiscBtn(true);
+        setCount(parseInt(resInfo.diceCount));
+        break;
+      case '01': //未登录
+        noLogin();
+        break;
+      case '02': //系统异常
+      case '03': //渠道错误
+      default:
+        iAlert('请求超时，请稍后重试！', '确定', () => {});
+        console.log(res.data.message);
+        break;
+    }
+  });
   onShare(info);
 };
 
@@ -257,11 +280,12 @@ let initGame = (walkIndex, sex, isEuccess, diceCount) => {
 let moveFinish = (type, end, giftList, knowledgeName, garden, diceCount) => {
   setDiscBtn(true);
   //如果到小花园增加一次机会
-  if (type == '2') {
-    setCount(parseInt(diceCount) + 1);
-  } else {
-    setCount(parseInt(diceCount));
-  }
+  // if (type == '2') {
+  //   setCount(parseInt(diceCount) + 1);
+  // } else {
+  //   setCount(parseInt(diceCount));
+  // }
+  setCount(parseInt(diceCount));
   //type:0=知识点 1=奖品点 2=花园增加掷骰子次数 3=白点
   if (end == 'Y') {
     showSuccessModal();
@@ -285,53 +309,15 @@ let noLogin = () => {
   });
 };
 /**
- * 没有掷骰子机会，引导用户去分享，增加机会
- */
-let guideShare = () => {
-  iAlert('分享后，扔骰子次数加一哦！', '分享', () => {
-    onShare('');
-    walk_share(activityId, channel).then(res => {
-      let resCode = res.data.resCode;
-      switch (resCode) {
-        case '00': //分享成功
-          console.log('分享成功');
-          // TODO 机会+1
-
-          break;
-        case '01': //未登录
-          noLogin();
-          break;
-        case '02': //系统异常
-        case '03': //渠道错误
-          iAlert('请求超时，请稍后重试！', '确定', () => {});
-          console.log(res.data.message);
-          break;
-        default:
-          break;
-      }
-    });
-  });
-};
-/**
  * 点击骰子
+ *
  */
 let doShake = () => {
   setDiscBtn(false);
   walk_dice(activityId, channel).then(res => {
-    console.log(res.data.resCode);
     let resCode = res.data.resCode;
     let resInfo = res.data.resInfo;
-    resCode = '03';
     switch (resCode) {
-      case '01': //未登陆
-        noLogin();
-        break;
-      case '02': //系统异常
-        iAlert('请求超时，请稍后重试！', '确定', () => {});
-        break;
-      case '03': //没有掷骰子机会
-        guideShare();
-        break;
       case '00': //掷骰子成功
         shake(parseInt(resInfo.nextWalk), () => {
           movePeo(resInfo.nextWalk, resInfo.index, resInfo.end, () => {
@@ -346,7 +332,28 @@ let doShake = () => {
             );
           });
         });
-
+        break;
+      case '01': //未登陆
+        noLogin();
+        break;
+      case '02': //系统异常
+        iAlert('请求超时，请稍后重试！', '确定', () => {});
+        break;
+      case '03': //没有掷骰子机会
+        showShareModal();
+        break;
+      case '04': //没有选取角色
+        showSelectModal();
+        break;
+      case '06': //活动未开始
+      case '07': //活动已结束
+        iAlert('不在活动时间内哦！', '确定', () => {});
+        break;
+      case '08': //非俱乐部会员
+        goVipJoin(activityId);
+        break;
+      case '09': //已完成
+        showSuccessModal();
         break;
       default:
         //不正确的code
@@ -451,6 +458,7 @@ Zepto(function($: any) {
     'wardsModal',
     'shareModal',
     'knowledgeModal',
+    'liuliangModal',
     (
       game,
       selectModal,
@@ -461,7 +469,8 @@ Zepto(function($: any) {
       introduceModal,
       wardsModal,
       shareModal,
-      knowledgeModal
+      knowledgeModal,
+      liuliangModal
     ) => {
       game.addChild(selectModal);
       game.addChild(commonModal);
@@ -472,9 +481,11 @@ Zepto(function($: any) {
       game.addChild(wardsModal);
       game.addChild(shareModal);
       game.addChild(knowledgeModal);
+      game.addChild(liuliangModal);
       setTimeout(() => {
         playLotterys(activityId, channel);
         userWalkInfo();
+        // showLiuliangModal('100m')
         // showGetAwardModal();
       }, 500);
       setTimeout(() => {
@@ -499,5 +510,6 @@ Zepto(function($: any) {
     wardsModal.init(ep);
     shareModal.init(ep);
     knowledgeModal.init(ep);
+    liuliangModal.init(ep);
   });
 });

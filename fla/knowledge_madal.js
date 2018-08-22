@@ -3,7 +3,7 @@
 var p; // shortcut to reference prototypes
 var lib={};var ss={};var img={};
 lib.ssMetadata = [
-		{name:"knowledge_madal_atlas_", frames: [[0,762,964,622],[966,1291,964,490],[966,762,964,527],[0,0,1200,760],[1202,0,795,308],[1202,515,793,172],[1202,310,786,203],[1202,689,157,37],[1361,689,157,37],[1520,689,156,37],[1678,689,156,37]]}
+		{name:"knowledge_madal_atlas_", frames: [[0,762,964,622],[966,1291,964,490],[966,762,964,527],[0,0,1200,760],[1202,0,795,308],[1202,515,800,172],[1202,310,783,203],[1202,689,157,37],[1361,689,157,37],[1520,689,156,37],[1678,689,156,37]]}
 ];
 
 
@@ -267,7 +267,7 @@ lib.properties = {
 	color: "#FFFFFF",
 	opacity: 1.00,
 	manifest: [
-		{src:"images/knowledge_madal_atlas_.png?1534907975937", id:"knowledge_madal_atlas_"}
+		{src:"images/knowledge_madal_atlas_.png?1534922830152", id:"knowledge_madal_atlas_"}
 	],
 	preloads: []
 };

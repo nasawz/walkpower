@@ -17,8 +17,8 @@ export const movePeo = (nextWalk, index, end, cb) => {
 
   function move() {
     createjs.Tween.get(window.peo_target)
-      .wait(500)
-      .to({ x: tiles_xy[index][0], y: tiles_xy[index][1] }, 1000)
+      .wait(300)
+      .to({ x: tiles_xy[index][0], y: tiles_xy[index][1] }, 500)
       .call(() => {
         index++;
         if (index < to) {
@@ -40,10 +40,8 @@ export const locationPeo = index => {
   //   index = 27;
   //定位小人到当前位置
   var tiles_xy = window.tiles_xy;
-  if (index >= 27) {
-    window.peo_target.x = tiles_xy[tiles_xy.length - 1][0];
-    window.peo_target.y = tiles_xy[tiles_xy.length - 1][1];
-  } else if (index > 0) {
+  index = index >= 27 ? 27 : index;
+  if (index > 0) {
     window.peo_target.x = tiles_xy[index - 1][0];
     window.peo_target.y = tiles_xy[index - 1][1];
   } else {
