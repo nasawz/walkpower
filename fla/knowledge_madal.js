@@ -170,8 +170,6 @@ p.nominalBounds = new cjs.Rectangle(-78.5,-18.5,157,37);
 		this.visible = false
 		window.knowledgeModal_mc = this
 		
-		console.log(this)
-		
 		this.share_btn.addEventListener('click', window.onShare)
 		this.goon_btn.addEventListener('click', closeModalsWards)
 		
@@ -269,7 +267,7 @@ lib.properties = {
 	color: "#FFFFFF",
 	opacity: 1.00,
 	manifest: [
-		{src:"images/knowledge_madal_atlas_.png?1534842215061", id:"knowledge_madal_atlas_"}
+		{src:"images/knowledge_madal_atlas_.png?1534907975937", id:"knowledge_madal_atlas_"}
 	],
 	preloads: []
 };

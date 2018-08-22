@@ -168,7 +168,6 @@ export const walk_memberLotterys = (activityId, channel) => {
     {
       transformRequest: [
         function(data) {
-          console.log(data);
           let ret = '';
           for (let it in data) {
             ret += encodeURIComponent(it) + '=' + encodeURIComponent(data[it]) + '&';

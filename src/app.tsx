@@ -366,7 +366,6 @@ let gameState: IGameState = {};
 
 let userWalkInfo = () => {
   walk_userInfo().then(res => {
-    console.log(res.data.resCode);
     let resCode = res.data.resCode;
     switch (resCode) {
       case '01':
