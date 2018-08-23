@@ -3,7 +3,7 @@
 var p; // shortcut to reference prototypes
 var lib={};var ss={};var img={};
 lib.ssMetadata = [
-		{name:"liuliang_modal_atlas_", frames: [[205,1583,526,57],[0,1737,526,57],[205,1642,526,57],[205,1524,526,57],[0,0,1200,760],[0,1848,155,50],[0,1524,203,211],[0,1796,155,50],[0,762,1200,760]]}
+		{name:"liuliang_modal_atlas_", frames: [[1407,436,526,57],[1407,495,526,57],[1407,554,526,57],[1407,613,526,57],[0,0,1200,760],[1202,649,155,50],[1202,436,203,211],[1359,672,155,50],[1202,0,720,434]]}
 ];
 
 
@@ -39,7 +39,7 @@ lib.ssMetadata = [
 
 
 
-(lib.jp = function() {
+(lib.jpweb = function() {
 	this.spriteSheet = ss["liuliang_modal_atlas_"];
 	this.gotoAndStop(4);
 }).prototype = p = new cjs.Sprite();
@@ -67,7 +67,7 @@ lib.ssMetadata = [
 
 
 
-(lib.获得500M流量 = function() {
+(lib.webfc_03 = function() {
 	this.spriteSheet = ss["liuliang_modal_atlas_"];
 	this.gotoAndStop(8);
 }).prototype = p = new cjs.Sprite();
@@ -90,6 +90,34 @@ lib.ssMetadata = [
 
 }).prototype = p = new cjs.MovieClip();
 p.nominalBounds = new cjs.Rectangle(-77.5,-25,155,50);
+
+
+(lib.hua_pic = function(mode,startPosition,loop) {
+	this.initialize(mode,startPosition,loop,{});
+
+	// Layer_1
+	this.instance = new lib.webfc_03();
+	this.instance.parent = this;
+	this.instance.setTransform(-360,-217);
+
+	this.timeline.addTween(cjs.Tween.get(this.instance).wait(1));
+
+}).prototype = p = new cjs.MovieClip();
+p.nominalBounds = new cjs.Rectangle(-360,-217,720,434);
+
+
+(lib.hua = function(mode,startPosition,loop) {
+	this.initialize(mode,startPosition,loop,{});
+
+	// Layer_1
+	this.instance = new lib.hua_pic("synched",0);
+	this.instance.parent = this;
+	this.instance.setTransform(0,0,0.456,0.456);
+
+	this.timeline.addTween(cjs.Tween.get(this.instance).to({scaleX:1.39,scaleY:1.39,alpha:0.09},31).wait(12));
+
+}).prototype = p = new cjs.MovieClip();
+p.nominalBounds = new cjs.Rectangle(-163.9,-98.8,328,197.7);
 
 
 // stage content:
@@ -162,36 +190,30 @@ p.nominalBounds = new cjs.Rectangle(-77.5,-25,155,50);
 
 	this.timeline.addTween(cjs.Tween.get(this.quedingbtn).wait(5));
 
-	// Layer_3
-	this.instance_5 = new lib.jp();
+	// Layer_12
+	this.instance_5 = new lib.hua();
 	this.instance_5.parent = this;
+	this.instance_5.setTransform(608,369);
 
-	this.shape = new cjs.Shape();
-	this.shape.graphics.f().s("rgba(0,0,0,0.8)").ss(1,1,1).p("ArPhtIWfAAIAADbI2fAAg");
-	this.shape.setTransform(621.8,342.9);
+	this.timeline.addTween(cjs.Tween.get(this.instance_5).wait(5));
 
-	this.shape_1 = new cjs.Shape();
-	this.shape_1.graphics.f("rgba(0,0,0,0.8)").s().p("ArPBuIAAjbIWfAAIAADbg");
-	this.shape_1.setTransform(621.8,342.9);
+	// Layer_3
+	this.instance_6 = new lib.jpweb();
+	this.instance_6.parent = this;
+	this.instance_6.setTransform(1,0);
 
-	this.timeline.addTween(cjs.Tween.get({}).to({state:[{t:this.shape_1},{t:this.shape},{t:this.instance_5}]}).wait(5));
+	this.timeline.addTween(cjs.Tween.get(this.instance_6).wait(5));
 
 	// Layer_2
-	this.shape_2 = new cjs.Shape();
-	this.shape_2.graphics.f().s("rgba(0,0,0,0.8)").ss(1,1,1).p("Ehdvg7XMC7fAAAMAAAB2vMi7fAAAg");
-	this.shape_2.setTransform(600,380);
+	this.shape = new cjs.Shape();
+	this.shape.graphics.f().s("rgba(0,0,0,0.8)").ss(1,1,1).p("Ehdvg7XMC7fAAAMAAAB2vMi7fAAAg");
+	this.shape.setTransform(600,380);
 
-	this.shape_3 = new cjs.Shape();
-	this.shape_3.graphics.f("rgba(0,0,0,0.8)").s().p("EhdvA7YMAAAh2vMC7fAAAMAAAB2vg");
-	this.shape_3.setTransform(600,380);
+	this.shape_1 = new cjs.Shape();
+	this.shape_1.graphics.f("rgba(0,0,0,0.8)").s().p("EhdvA7YMAAAh2vMC7fAAAMAAAB2vg");
+	this.shape_1.setTransform(600,380);
 
-	this.timeline.addTween(cjs.Tween.get({}).to({state:[{t:this.shape_3},{t:this.shape_2}]}).wait(5));
-
-	// Layer_1
-	this.instance_6 = new lib.获得500M流量();
-	this.instance_6.parent = this;
-
-	this.timeline.addTween(cjs.Tween.get(this.instance_6).to({_off:true},1).wait(4));
+	this.timeline.addTween(cjs.Tween.get({}).to({state:[{t:this.shape_1},{t:this.shape}]}).wait(5));
 
 }).prototype = p = new cjs.MovieClip();
 p.nominalBounds = new cjs.Rectangle(599,379,1202,762);
@@ -204,7 +226,7 @@ lib.properties = {
 	color: "#FFFFFF",
 	opacity: 1.00,
 	manifest: [
-		{src:"images/liuliang_modal_atlas_.png?1534928637695", id:"liuliang_modal_atlas_"}
+		{src:"images/liuliang_modal_atlas_.png?1534988469318", id:"liuliang_modal_atlas_"}
 	],
 	preloads: []
 };

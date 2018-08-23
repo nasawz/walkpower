@@ -3,7 +3,7 @@
 var p; // shortcut to reference prototypes
 var lib={};var ss={};var img={};
 lib.ssMetadata = [
-		{name:"liuliang_modal_atlas_", frames: [[703,1537,533,65],[703,1336,533,65],[703,1403,533,65],[703,1470,533,65],[703,1604,202,49],[907,1604,202,49],[0,1336,701,649],[0,0,750,1334]]}
+		{name:"liuliang_modal_atlas_", frames: [[0,636,563,340],[0,0,674,634],[0,978,209,208],[0,1188,533,65],[211,978,533,65],[211,1045,533,65],[211,1112,533,65],[565,636,202,49],[565,687,202,49]]}
 ];
 
 
@@ -11,60 +11,81 @@ lib.ssMetadata = [
 
 
 
-(lib.h5100m_03 = function() {
+(lib.h5fcnew_03 = function() {
 	this.spriteSheet = ss["liuliang_modal_atlas_"];
 	this.gotoAndStop(0);
 }).prototype = p = new cjs.Sprite();
 
 
 
-(lib.h51g_03 = function() {
+(lib.h5jpnew_03 = function() {
 	this.spriteSheet = ss["liuliang_modal_atlas_"];
 	this.gotoAndStop(1);
 }).prototype = p = new cjs.Sprite();
 
 
 
-(lib.h52g_03 = function() {
+(lib.h5lh_03 = function() {
 	this.spriteSheet = ss["liuliang_modal_atlas_"];
 	this.gotoAndStop(2);
 }).prototype = p = new cjs.Sprite();
 
 
 
-(lib.h5500m_03 = function() {
+(lib.h5100m_03 = function() {
 	this.spriteSheet = ss["liuliang_modal_atlas_"];
 	this.gotoAndStop(3);
 }).prototype = p = new cjs.Sprite();
 
 
 
-(lib.h5500m_07 = function() {
+(lib.h51g_03 = function() {
 	this.spriteSheet = ss["liuliang_modal_atlas_"];
 	this.gotoAndStop(4);
 }).prototype = p = new cjs.Sprite();
 
 
 
-(lib.h5jpqddown = function() {
+(lib.h52g_03 = function() {
 	this.spriteSheet = ss["liuliang_modal_atlas_"];
 	this.gotoAndStop(5);
 }).prototype = p = new cjs.Sprite();
 
 
 
-(lib.h5ll_03 = function() {
+(lib.h5500m_03 = function() {
 	this.spriteSheet = ss["liuliang_modal_atlas_"];
 	this.gotoAndStop(6);
 }).prototype = p = new cjs.Sprite();
 
 
 
-(lib.获得500M流量的副本 = function() {
+(lib.h5500m_07 = function() {
 	this.spriteSheet = ss["liuliang_modal_atlas_"];
 	this.gotoAndStop(7);
 }).prototype = p = new cjs.Sprite();
 
+
+
+(lib.h5jpqddown = function() {
+	this.spriteSheet = ss["liuliang_modal_atlas_"];
+	this.gotoAndStop(8);
+}).prototype = p = new cjs.Sprite();
+
+
+
+(lib.huapic = function(mode,startPosition,loop) {
+	this.initialize(mode,startPosition,loop,{});
+
+	// Layer_1
+	this.instance = new lib.h5fcnew_03();
+	this.instance.parent = this;
+	this.instance.setTransform(-281.5,-170);
+
+	this.timeline.addTween(cjs.Tween.get(this.instance).wait(1));
+
+}).prototype = p = new cjs.MovieClip();
+p.nominalBounds = new cjs.Rectangle(-281.5,-170,563,340);
 
 
 (lib.h5llqd_btn = function(mode,startPosition,loop) {
@@ -85,6 +106,20 @@ lib.ssMetadata = [
 p.nominalBounds = new cjs.Rectangle(-101,-24.5,202,49);
 
 
+(lib.hua = function(mode,startPosition,loop) {
+	this.initialize(mode,startPosition,loop,{});
+
+	// Layer_1
+	this.instance = new lib.huapic("synched",0);
+	this.instance.parent = this;
+	this.instance.setTransform(0,0,0.247,0.247,0,0,180);
+
+	this.timeline.addTween(cjs.Tween.get(this.instance).to({scaleX:1.41,scaleY:1.41,alpha:0},31).wait(17));
+
+}).prototype = p = new cjs.MovieClip();
+p.nominalBounds = new cjs.Rectangle(-69.6,-41.9,139.1,84);
+
+
 // stage content:
 (lib.liuliang_modal = function(mode,startPosition,loop) {
 	this.initialize(mode,startPosition,loop,{"100m":1,"500m":2,"1g":3,"2g":4});
@@ -92,7 +127,7 @@ p.nominalBounds = new cjs.Rectangle(-101,-24.5,202,49);
 	// timeline functions:
 	this.frame_0 = function() {
 		this.stop()
-		this.visible = false
+		//this.visible = false
 		window.liuliangModal_mc = this
 		
 		this.quedingbtn.addEventListener('click', closeModalsWards)
@@ -118,7 +153,7 @@ p.nominalBounds = new cjs.Rectangle(-101,-24.5,202,49);
 	}
 
 	// actions tween:
-	this.timeline.addTween(cjs.Tween.get(this).call(this.frame_0).wait(1).call(this.frame_1).wait(1).call(this.frame_2).wait(1).call(this.frame_3).wait(1).call(this.frame_4).wait(2));
+	this.timeline.addTween(cjs.Tween.get(this).call(this.frame_0).wait(1).call(this.frame_1).wait(1).call(this.frame_2).wait(1).call(this.frame_3).wait(1).call(this.frame_4).wait(1));
 
 	// Layer_5
 	this.instance = new lib.h5100m_03();
@@ -137,7 +172,7 @@ p.nominalBounds = new cjs.Rectangle(-101,-24.5,202,49);
 	this.instance_3.parent = this;
 	this.instance_3.setTransform(143,560);
 
-	this.timeline.addTween(cjs.Tween.get({}).to({state:[]}).to({state:[{t:this.instance}]},1).to({state:[{t:this.instance_1}]},1).to({state:[{t:this.instance_2}]},1).to({state:[{t:this.instance_3}]},1).to({state:[]},1).wait(1));
+	this.timeline.addTween(cjs.Tween.get({}).to({state:[]}).to({state:[{t:this.instance}]},1).to({state:[{t:this.instance_1}]},1).to({state:[{t:this.instance_2}]},1).to({state:[{t:this.instance_3}]},1).wait(1));
 
 	// Layer_4
 	this.quedingbtn = new lib.h5llqd_btn();
@@ -146,48 +181,39 @@ p.nominalBounds = new cjs.Rectangle(-101,-24.5,202,49);
 	this.quedingbtn.setTransform(383,766.5);
 	new cjs.ButtonHelper(this.quedingbtn, 0, 1, 2, false, new lib.h5llqd_btn(), 3);
 
-	this.timeline.addTween(cjs.Tween.get(this.quedingbtn).to({_off:true},5).wait(1));
+	this.timeline.addTween(cjs.Tween.get(this.quedingbtn).wait(5));
+
+	// Layer_12
+	this.instance_4 = new lib.h5lh_03();
+	this.instance_4.parent = this;
+	this.instance_4.setTransform(287,452);
+
+	this.timeline.addTween(cjs.Tween.get(this.instance_4).wait(5));
+
+	// Layer_11
+	this.instance_5 = new lib.hua();
+	this.instance_5.parent = this;
+	this.instance_5.setTransform(403.5,572);
+
+	this.timeline.addTween(cjs.Tween.get(this.instance_5).wait(5));
 
 	// Layer_3
-	this.instance_4 = new lib.h5ll_03();
-	this.instance_4.parent = this;
-	this.instance_4.setTransform(30,278);
+	this.instance_6 = new lib.h5jpnew_03();
+	this.instance_6.parent = this;
+	this.instance_6.setTransform(46,290);
 
-	this.shape = new cjs.Shape();
-	this.shape.graphics.f().s("rgba(0,0,0,0.8)").ss(1,1,1).p("Au9rcId7AAIAAW5I97AAg");
-	this.shape.setTransform(444.2,500);
-
-	this.shape_1 = new cjs.Shape();
-	this.shape_1.graphics.f("rgba(0,0,0,0.8)").s().p("Au9LdIAA25Id8AAIAAW5g");
-	this.shape_1.setTransform(444.2,500);
-
-	this.timeline.addTween(cjs.Tween.get({}).to({state:[{t:this.shape_1},{t:this.shape},{t:this.instance_4}]}).to({state:[]},5).wait(1));
+	this.timeline.addTween(cjs.Tween.get(this.instance_6).wait(5));
 
 	// Layer_2
-	this.shape_2 = new cjs.Shape();
-	this.shape_2.graphics.f().s("rgba(0,0,0,0.8)").ss(1,1,1).p("Eg6lhoNMB1LAAAMAAADQbMh1LAAAg");
-	this.shape_2.setTransform(376,667);
+	this.shape = new cjs.Shape();
+	this.shape.graphics.f().s("rgba(0,0,0,0.8)").ss(1,1,1).p("Eg6lhoNMB1LAAAMAAADQbMh1LAAAg");
+	this.shape.setTransform(376,667);
 
-	this.shape_3 = new cjs.Shape();
-	this.shape_3.graphics.f("rgba(0,0,0,0.8)").s().p("Eg6lBoOMAAAjQbMB1LAAAMAAADQbg");
-	this.shape_3.setTransform(376,667);
+	this.shape_1 = new cjs.Shape();
+	this.shape_1.graphics.f("rgba(0,0,0,0.8)").s().p("Eg6lBoOMAAAjQbMB1LAAAMAAADQbg");
+	this.shape_1.setTransform(376,667);
 
-	this.timeline.addTween(cjs.Tween.get({}).to({state:[{t:this.shape_3},{t:this.shape_2}]}).wait(6));
-
-	// Layer_1
-	this.instance_5 = new lib.获得500M流量的副本();
-	this.instance_5.parent = this;
-	this.instance_5.setTransform(1,0);
-
-	this.shape_4 = new cjs.Shape();
-	this.shape_4.graphics.f().s("rgba(0,0,0,0.8)").ss(1,1,1).p("AlmlmILMAAIAALMIrMAAg");
-	this.shape_4.setTransform(384.2,609.2);
-
-	this.shape_5 = new cjs.Shape();
-	this.shape_5.graphics.f("#000000").s().p("AllFmIAArLILLAAIAALLg");
-	this.shape_5.setTransform(384.2,609.2);
-
-	this.timeline.addTween(cjs.Tween.get({}).to({state:[{t:this.shape_5},{t:this.shape_4},{t:this.instance_5}]}).to({state:[]},1).wait(5));
+	this.timeline.addTween(cjs.Tween.get({}).to({state:[{t:this.shape_1},{t:this.shape}]}).wait(5));
 
 }).prototype = p = new cjs.MovieClip();
 p.nominalBounds = new cjs.Rectangle(375,666,752,1336);
@@ -200,7 +226,7 @@ lib.properties = {
 	color: "#FFFFFF",
 	opacity: 1.00,
 	manifest: [
-		{src:"images/liuliang_modal_atlas_.png?1534929394517", id:"liuliang_modal_atlas_"}
+		{src:"images/liuliang_modal_atlas_.png?1534988401632", id:"liuliang_modal_atlas_"}
 	],
 	preloads: []
 };

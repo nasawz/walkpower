@@ -3,7 +3,7 @@
 var p; // shortcut to reference prototypes
 var lib={};var ss={};var img={};
 lib.ssMetadata = [
-		{name:"wards_modal_atlas_", frames: [[459,1524,151,37],[0,1524,151,44],[153,1524,151,44],[0,0,1200,760],[0,762,1200,760],[306,1524,151,37]]}
+		{name:"wards_modal_atlas_", frames: [[306,762,151,37],[0,762,151,44],[153,762,151,44],[0,0,1200,760],[459,762,151,37]]}
 ];
 
 
@@ -32,23 +32,16 @@ lib.ssMetadata = [
 
 
 
-(lib.modals_wards_all = function() {
+(lib.wardsall = function() {
 	this.spriteSheet = ss["wards_modal_atlas_"];
 	this.gotoAndStop(3);
 }).prototype = p = new cjs.Sprite();
 
 
 
-(lib.wardsall = function() {
-	this.spriteSheet = ss["wards_modal_atlas_"];
-	this.gotoAndStop(4);
-}).prototype = p = new cjs.Sprite();
-
-
-
 (lib.WechatIMG7 = function() {
 	this.spriteSheet = ss["wards_modal_atlas_"];
-	this.gotoAndStop(5);
+	this.gotoAndStop(4);
 }).prototype = p = new cjs.Sprite();
 // helper functions:
 
@@ -211,7 +204,7 @@ p.nominalBounds = new cjs.Rectangle(-75.5,-18.5,151,37);
 		window.wardText.push(this.ward2);
 		window.wardText.push(this.ward3);
 		window.wardText.push(this.ward4);
-		
+		console.log(window.wardText)
 		window.noneWard = this.noneward
 		// console.log(window.noneWard)
 		this.ward1.children[3].addEventListener('click',getWard)
@@ -289,12 +282,6 @@ p.nominalBounds = new cjs.Rectangle(-75.5,-18.5,151,37);
 
 	this.timeline.addTween(cjs.Tween.get(this.instance_1).wait(2));
 
-	// Layer_4
-	this.instance_2 = new lib.modals_wards_all();
-	this.instance_2.parent = this;
-
-	this.timeline.addTween(cjs.Tween.get(this.instance_2).wait(2));
-
 }).prototype = p = new cjs.MovieClip();
 p.nominalBounds = new cjs.Rectangle(599.5,379.6,1222.6,800.7);
 // library properties:
@@ -306,7 +293,7 @@ lib.properties = {
 	color: "#FFFFFF",
 	opacity: 1.00,
 	manifest: [
-		{src:"images/wards_modal_atlas_.png?1534908034004", id:"wards_modal_atlas_"}
+		{src:"images/wards_modal_atlas_.png?1534930408427", id:"wards_modal_atlas_"}
 	],
 	preloads: []
 };
