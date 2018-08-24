@@ -79,6 +79,40 @@ html { font-size: 20px; }
         color: #fff;
     }
 }
+#soshm{
+    width: 80%;
+    position: absolute;
+    top: 40%;
+    left: 0;
+    right: 0;
+    display: none;
+    z-index: 20;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    margin:0 auto;
+    @media (max-width:768px) {
+      .soshm-item{
+        width: 34% !important;
+      }
+    }
+    .soshm-item{
+      display: inline-block;
+      float: none;
+      width: 20%;
+    }
+    .soshm-item-icon{
+        width: 40px;
+        height: 40px;
+        padding: 5px;
+    }
+    .soshm-item-text{
+        padding: 5px;
+        margin-left: 0;
+        margin-right: 0;
+        display: block;
+        color: #fff;
+    }
+}
 // 抽奖转盘
 .lottery-case {
   width: 15.0rem;
@@ -90,6 +124,11 @@ html { font-size: 20px; }
   right: 0;
   display: none;
   z-index: 21;
+}
+@media (max-width:768px) {
+  .lottery-case {
+    top: 23% !important;
+  }
 }
 .lottery-box {
   width: 15.0rem;

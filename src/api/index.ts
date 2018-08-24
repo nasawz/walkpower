@@ -22,12 +22,27 @@ import axios from 'axios';
     value: 第几步
  */
 export const walk_dice = (activityId, channel) => {
-  return axios.get(`/portal/walk/dice`, {
-    params: {
+  return axios.post(
+    `/portal/walk/dice`,
+    {
       activityId,
       channel
+    },
+    {
+      transformRequest: [
+        function(data) {
+          let ret = '';
+          for (let it in data) {
+            ret += encodeURIComponent(it) + '=' + encodeURIComponent(data[it]) + '&';
+          }
+          return ret;
+        }
+      ],
+      headers: {
+        'Content-Type': 'application/x-www-form-urlencoded'
+      }
     }
-  });
+  );
 };
 
 /**
@@ -67,7 +82,26 @@ export const walk_share = (activityId, channel) => {
     {"resCode":"02","message":"系统异常","resInfo":{}}
  */
 export const walk_userInfo: any = () => {
-  return axios.get(`/portal/walk/userWalkInfo`);
+  return axios.post(
+    `/portal/walk/userWalkInfo`,
+    {},
+    {
+      transformRequest: [
+        function(data) {
+          console.log(data);
+          let ret = '';
+          for (let it in data) {
+            ret += encodeURIComponent(it) + '=' + encodeURIComponent(data[it]) + '&';
+          }
+          return ret;
+        }
+      ],
+      headers: {
+        'Content-Type': 'application/x-www-form-urlencoded'
+      }
+    }
+  );
+
 };
 
 /**

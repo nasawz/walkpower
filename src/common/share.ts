@@ -1,20 +1,55 @@
-export const onShare = info => {
+export const onShare = channel => {
   // TODO share
-  	Zepto('#zhezhao').toggle();
-	Zepto('#soshid').toggle(); //显示隐藏分享模块
-	//第一个参数为字符串类型，代表选择器。支持querySelectorAll 所支持的参数类型。第二个参数为对象字面量，配置分享的相关内容。
-	sosh('#soshid', {
-		url: window.location.href, // 分享的链接，默认使用location.href
-		title: '分享标题', // 分享的标题，默认使用document.title
-		digest: '分享摘要', // 分享的摘要，默认使用<meta name="description" content="">content的值
-		pic: '分享图片', // 分享的图片，默认获取本页面第一个img元素的src
-		sites: ['weixin', 'weibo', 'qq', 'qzone']
-		// 默认显示的网站为以上四个,支持设置的网站有
-		// weixin,qq,yixin,weibo,qzone,tqq,douban,renren,tieba
-	});
+	let shareUrl = window.location.href;
+    let shareTitle = '拼步数，赢流量，最高2G哦';
+    let burl = window.location.href.split("index")[0];
+    let picUrl = burl + '/images/share100.png';
+    let shareDesc = '';
+	if (channel == 'web') {
+		Zepto('#zhezhao').toggle();
+		Zepto('#soshid').toggle(); //显示隐藏分享模块
+		sosh('#soshid', {
+			url: shareUrl, // 分享的链接
+			title: shareTitle, // 分享的标题
+			digest: shareDesc, // 分享的摘要
+			pic: picUrl, // 分享的图片
+			sites: ['weixin', 'weibo', 'qq', 'qzone']
+		});
+	}else if (channel == 'app'){
+		leadeon.shareMessage({
+            debug: false,
+            title: shareTitle,    //分享标题
+            link: shareUrl,  //分享链接,参数中如果有中文，需要对参数进行编码
+            imgUrl: picUrl,     //分享图标
+            content: shareDesc,        //分享内容
+            type: '',       //分享类型,music、video或link，不填默认为link
+            dataUrl: '',     //如果type是music或video，则要提供数据链接，默认为空
+            funCode:'', // 功能编码-V3.8新加   不需要填写
+            stepId:'',   // 步骤ID-V3.8新加   不需要填写
+            success: function(res) {   //没有回调
+            },
+            error: function(res) {
+            }
+        });
+	}else {
+		Zepto('#zhezhao').toggle();
+		Zepto('#soshm').toggle(); //显示隐藏分享模块
+		soshm('#soshm', {
+			url: shareUrl, // 分享的链接
+			title: shareTitle, // 分享的标题
+			digest: shareDesc, // 分享的摘要
+			pic: picUrl, // 分享的图片
+			sites: ['weixin', 'weibo', 'qq', 'qzone']
+		});
+	}
+	
 	Zepto('#zhezhao').one('click',function () {
-		Zepto('#zhezhao').hide();
-		Zepto('#soshid').hide();
+		Zepto('#zhezhao').hide();	
+		if (channel == 'web') {
+			Zepto('#soshid').hide();
+		}else if (channel == 'touch' || channel == 'weChat'){
+			Zepto('#soshm').hide();
+		}
 	})
 
 };

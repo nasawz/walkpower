@@ -4,7 +4,7 @@ declare let window: any;
  */
 export const iAlert = (content, ok_txt, cb) => {
   layer.open({
-    style: 'width:40%;',
+    style: 'width:60%;',
     content: content,
     btn: ok_txt,
     shadeClose: false,

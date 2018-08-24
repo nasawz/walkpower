@@ -16,9 +16,9 @@
     <script src="./lib/createjs-2015.11.26.min.js"></script>
     <script src="./lib/layer.js"></script>
     <script src="./lib/scroll-container.js"></script>
+    <script src="./lib/introduce_modal.js"></script>
     <script src="./lib/zepto.min.js"></script>
     <script src="./lib/fx.js"></script>
-    <script src="./lib/introduce_modal.js"></script>
     <script src="./lib/select_modal.js"></script>
     <script src="./lib/common_modal.js"></script>
     <script src="./lib/success_modal.js"></script>
@@ -26,32 +26,11 @@
     <script src="./lib/rule_modal.js"></script>
     <script src="./lib/wards_modal.js"></script>
     <script src="./lib/share_modal.js"></script>
+    <script src="./lib/knowledge_madal.js"></script>
+    <script src="./lib/liuliang_modal.js"></script>
     <script src="./lib/walkpower.js"></script>
+    <script src="./lib/kinerLottery.js"></script>
     <link rel="stylesheet" href="./h5.css">
-    <style type="text/css">
-        #soshid {
-            background: #fff;
-            position: absolute;
-            top: 40px;
-            box-shadow: 0px 0px 16px #999;
-            display: none;
-            z-index: 20;
-            padding-top: 5px;
-            padding-bottom: 5px;
-        }
-
-        #soshid .sosh-item-icon {
-            width: 40px;
-            height: 40px;
-            padding: 5px;
-        }
-
-        #soshid .sosh-item-text {
-            padding: 5px;
-            margin-left: 0;
-            margin-right: 0;
-        }
-    </style>
 </head>
 
 <body>
@@ -62,17 +41,21 @@
         <canvas class="modals" id="canvas_test" width="750" height="1334" style="position: absolute; display: none; background-color:rgba(255, 255, 255, 0);z-index: 99;"></canvas>
         <canvas class="modals" id="select_modal" width="750" height="1334" style="position: absolute; display: none; background-color:rgba(255, 255, 255, 0);z-index: 99;"></canvas>
         <!-- 分享 -->
-        <div id="soshid"></div>
+        <div id="zhezhao"></div>
+        <div id="soshm"></div>
         <!-- 转盘 -->
-        <div class="t-lottery-case">
-            <div class="t-lottery-box">
-                <div class="t-lottery-img"></div>
-                <a class="playbtn" href="javascript:;" rel="external nofollow" rel="external nofollow" title="开始抽奖"></a>
+        <div class="lottery-case">
+            <div id="lotteryBox" class="box lottery-box">
+                <div class="outer KinerLottery KinerLotteryContent lottery-img"></div>
+                <!-- 大专盘分为三种状态：活动未开始（no-start）、活动进行中(start)、活动结束(completed),可通过切换class进行切换状态，js会根据这3个class进行匹配状态 -->
+                <div class="inner KinerLotteryBtn start playbtn"></div>
             </div>
         </div>
     </div>
     <script src="./h5.js"></script>
-    <script src="./lib/sosh.js"></script>
+    <script src="./lib/soshm.js"></script>
+    <!-- 调用手厅方法
+    <script type="text/javascript" src="https://app.10086.cn/appother/js/public/leadeon.js"></script> -->
 </body>
 
 </html>

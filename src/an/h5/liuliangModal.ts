@@ -1,11 +1,11 @@
-export default class SuccessModal {
+export default class LiuliangModal {
   stage;
   exportRoot;
   fnStartAnimation;
   ep;
   init(ep) {
     this.ep = ep;
-    var comp = AdobeAn.getComposition('62C90DB0EDF1494385014A9ABDD3935E');
+    var comp = AdobeAn.getComposition('25311CBAEE9847BA8B371D7BD1A1B3D2');
     var lib = comp.getLibrary();
     var loader = new createjs.LoadQueue(false);
     loader.addEventListener('fileload', evt => {
@@ -34,7 +34,7 @@ export default class SuccessModal {
         frames: ssMetadata[i].frames
       });
     }
-    this.exportRoot = new lib.success_modal();
-    this.ep.emit('successModal', this.exportRoot);
+    this.exportRoot = new lib.liuliang_modal();
+    this.ep.emit('liuliangModal', this.exportRoot);
   }
 }

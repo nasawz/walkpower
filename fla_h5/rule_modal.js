@@ -3,7 +3,7 @@
 var p; // shortcut to reference prototypes
 var lib={};var ss={};var img={};
 lib.ssMetadata = [
-		{name:"rule_modal_atlas_", frames: [[0,1662,181,44],[183,1662,181,44],[0,0,650,1007],[0,1009,528,651]]}
+		{name:"rule_modal_atlas_", frames: [[183,1662,181,44],[0,1662,181,44],[0,0,650,1007],[0,1009,528,651]]}
 ];
 
 
@@ -75,7 +75,7 @@ function getMCSymbolPrototype(symbol, nominalBounds, frameBounds) {
 }).prototype = getMCSymbolPrototype(lib.shade, new cjs.Rectangle(-375,-667,750,1334), null);
 
 
-(lib.rclose_btn = function(mode,startPosition,loop) {
+(lib.rule_close_btn = function(mode,startPosition,loop) {
 	this.initialize(mode,startPosition,loop,{});
 
 	// 图层_1
@@ -100,14 +100,14 @@ p.nominalBounds = new cjs.Rectangle(-90.5,-22,181,44);
 	// timeline functions:
 	this.frame_0 = function() {
 		this.visible = false
-		
 		window.ruleModal_mc = this
 	}
 	this.frame_1 = function() {
 		this.stop()
+		//console.log(this.ruleclose_btn)
 		
 		var self = this
-		this.rclose_btn.addEventListener('click',function(){
+		this.ruleclose_btn.addEventListener("click",function(){
 			self.visible = false
 		})
 	}
@@ -116,13 +116,13 @@ p.nominalBounds = new cjs.Rectangle(-90.5,-22,181,44);
 	this.timeline.addTween(cjs.Tween.get(this).call(this.frame_0).wait(1).call(this.frame_1).wait(1));
 
 	// 按钮
-	this.rclose_btn = new lib.rclose_btn();
-	this.rclose_btn.name = "rclose_btn";
-	this.rclose_btn.parent = this;
-	this.rclose_btn.setTransform(386.5,1098);
-	new cjs.ButtonHelper(this.rclose_btn, 0, 1, 2, false, new lib.rclose_btn(), 3);
+	this.ruleclose_btn = new lib.rule_close_btn();
+	this.ruleclose_btn.name = "ruleclose_btn";
+	this.ruleclose_btn.parent = this;
+	this.ruleclose_btn.setTransform(375,1098);
+	new cjs.ButtonHelper(this.ruleclose_btn, 0, 1, 2, false, new lib.rule_close_btn(), 3);
 
-	this.timeline.addTween(cjs.Tween.get(this.rclose_btn).wait(2));
+	this.timeline.addTween(cjs.Tween.get(this.ruleclose_btn).wait(2));
 
 	// 文字
 	this.instance = new lib.rule_text();
@@ -141,7 +141,7 @@ p.nominalBounds = new cjs.Rectangle(-90.5,-22,181,44);
 	// 遮罩
 	this.instance_2 = new lib.shade();
 	this.instance_2.parent = this;
-	this.instance_2.setTransform(375,664);
+	this.instance_2.setTransform(375,667,1,1.005);
 
 	this.shape = new cjs.Shape();
 	this.shape.graphics.f().s("#99FF66").ss(1,1,1).p("Eg6lhoNMB1LAAAMAAADQbMh1LAAAg");
@@ -150,7 +150,7 @@ p.nominalBounds = new cjs.Rectangle(-90.5,-22,181,44);
 	this.timeline.addTween(cjs.Tween.get({}).to({state:[{t:this.shape},{t:this.instance_2}]}).wait(2));
 
 }).prototype = p = new cjs.MovieClip();
-p.nominalBounds = new cjs.Rectangle(374,663,752,1336);
+p.nominalBounds = new cjs.Rectangle(374,663,752,1341);
 // library properties:
 lib.properties = {
 	id: '8ED7382E148ED3418F4F68B1F66D30A0',
@@ -160,7 +160,7 @@ lib.properties = {
 	color: "#FFFFFF",
 	opacity: 1.00,
 	manifest: [
-		{src:"images/rule_modal_atlas_.png?1534735855339", id:"rule_modal_atlas_"}
+		{src:"images/rule_modal_atlas_.png?1535011823752", id:"rule_modal_atlas_"}
 	],
 	preloads: []
 };

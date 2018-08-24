@@ -2,32 +2,41 @@
 import './style/app.less';
 import Game from './an/game';
 import SelectModal from './an/selectModal';
-import CommonModal from './an/commonModal';
-import GetAwardModal from './an/getAwardModal';
-import IntroduceModal from './an/introduceModal';
-import SuccessModal from './an/successModal';
-import RuleModal from './an/ruleModal';
-import WardsModal from './an/wardsModal';
-import ShareModal from './an/shareModal';
-import KnowledgeModal from './an/knowledgeModal';
-import LiuliangModal from './an/liuliangModal';
-import EventProxy from './utils/eventproxy';
-
 let selectModal = new SelectModal();
+
+import CommonModal from './an/commonModal';
 let commonModal = new CommonModal();
+
+import GetAwardModal from './an/getAwardModal';
 let getAwardModal = new GetAwardModal();
+
+import IntroduceModal from './an/introduceModal';
 let introduceModal = new IntroduceModal();
+
+import RuleModal from './an/ruleModal';
 let ruleModal = new RuleModal();
+
+import SuccessModal from './an/successModal';
 let successModal = new SuccessModal();
+
+import WardsModal from './an/wardsModal';
 let wardsModal = new WardsModal();
+
+import ShareModal from './an/shareModal';
 let shareModal = new ShareModal();
+
+import KnowledgeModal from './an/knowledgeModal';
 let knowledgeModal = new KnowledgeModal();
+
+import LiuliangModal from './an/liuliangModal';
 let liuliangModal = new LiuliangModal();
 
+import EventProxy from './utils/eventproxy';
 let game = new Game();
 
 let activityId = 364;
 let channel = 'web';
+let surplusCount = 0;
 // let channel = getChannel();
 // function getChannel() {
 //   var ua = window.navigator.userAgent.toLowerCase();
@@ -92,8 +101,9 @@ let showSelectModal = () => {
 /**
  * 显示通用弹窗
  */
-let showCommonModal = () => {
+let showCommonModal = type => {
   window.commonModal_mc.visible = true;
+  window.commonModal_mc.gotoAndStop(type);
 };
 
 /**
@@ -191,14 +201,15 @@ let showKnowledgeModal = type => {
 /**
  * 显示抽奖流量弹窗
  */
-let showLiuliangModal = type => {
+let showLiuliangModal = (window.showLiuliangModal = type => {
   window.liuliangModal_mc.visible = true;
   window.liuliangModal_mc.gotoAndStop(type);
-};
+});
+
 /**
  * 分享方法
  */
-window.onShare = info => {
+window.onShare = () => {
   window.shareModal_mc.visible = false;
   walk_share(activityId, channel).then(res => {
     let resCode = res.data.resCode;
@@ -213,15 +224,15 @@ window.onShare = info => {
       case '01': //未登录
         noLogin();
         break;
-      case '02': //系统异常
-      case '03': //渠道错误
+      // case '02': //系统异常
+      // case '03': //渠道错误
       default:
-        iAlert('请求超时，请稍后重试！', '确定', () => {});
+        iAlert('分享失败，请稍后重试！', '确定', () => {});
         console.log(res.data.message);
         break;
     }
   });
-  onShare(info);
+  onShare(channel);
 };
 
 /**
@@ -279,12 +290,6 @@ let initGame = (walkIndex, sex, isEuccess, diceCount) => {
  */
 let moveFinish = (type, end, giftList, knowledgeName, garden, diceCount) => {
   setDiscBtn(true);
-  //如果到小花园增加一次机会
-  // if (type == '2') {
-  //   setCount(parseInt(diceCount) + 1);
-  // } else {
-  //   setCount(parseInt(diceCount));
-  // }
   setCount(parseInt(diceCount));
   //type:0=知识点 1=奖品点 2=花园增加掷骰子次数 3=白点
   if (end == 'Y') {
@@ -298,7 +303,7 @@ let moveFinish = (type, end, giftList, knowledgeName, garden, diceCount) => {
       showGetAwardModal();
     } else if (type == '2') {
       console.log('到达花园增加掷骰子次数:', garden);
-      iAlert('恭喜您，增加一次摇骰子机会哦！', '确定', () => {});
+      showCommonModal('add_chance');
     }
   }
 };
@@ -485,7 +490,6 @@ Zepto(function($: any) {
       setTimeout(() => {
         playLotterys(activityId, channel);
         userWalkInfo();
-        // showLiuliangModal('100m')
         // showGetAwardModal();
       }, 500);
       setTimeout(() => {

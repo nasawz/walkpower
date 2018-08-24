@@ -5,7 +5,7 @@ export default class SuccessModal {
   ep;
   init(ep) {
     this.ep = ep;
-    var comp = AdobeAn.getComposition('19687C43A5D84B4DB360D426314E3B78');
+    var comp = AdobeAn.getComposition('FAEBC6A0C1903C4A9240C425DE650C0A');
     var lib = comp.getLibrary();
     var loader = new createjs.LoadQueue(false);
     loader.addEventListener('fileload', evt => {

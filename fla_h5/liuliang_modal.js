@@ -127,8 +127,9 @@ p.nominalBounds = new cjs.Rectangle(-69.6,-41.9,139.1,84);
 	// timeline functions:
 	this.frame_0 = function() {
 		this.stop()
-		//this.visible = false
+		
 		window.liuliangModal_mc = this
+		this.visible = false
 		
 		this.quedingbtn.addEventListener('click', closeModalsWards)
 		
@@ -226,7 +227,7 @@ lib.properties = {
 	color: "#FFFFFF",
 	opacity: 1.00,
 	manifest: [
-		{src:"images/liuliang_modal_atlas_.png?1534988401632", id:"liuliang_modal_atlas_"}
+		{src:"images/liuliang_modal_atlas_.png?1535008209717", id:"liuliang_modal_atlas_"}
 	],
 	preloads: []
 };
