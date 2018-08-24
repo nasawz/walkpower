@@ -104,7 +104,7 @@ export const onLottery = (activityId, channel) => {
 		        	break;
 		        case '02':
 		        	iAlert('请先加入中国移动客户俱乐部会员', '确定', () => {
-		        		goVipJoin(activityId);
+		        		goVipJoin(activityId,channel);
 			        });
 		        	break;
 		    	case '11':
@@ -112,13 +112,7 @@ export const onLottery = (activityId, channel) => {
 			        });
 		        	break;
 		        case '12':
-		        	iAlert('您目前没有抽奖机会哦', '确定', () => {
-			        });
-		        	break;
 		        case '13':
-		        	iAlert('您目前没有抽奖机会哦', '确定', () => {
-			        });
-		        	break;
 		        case '14':
 		        	iAlert('您目前没有抽奖机会哦', '确定', () => {
 			        });

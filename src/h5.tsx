@@ -31,7 +31,11 @@ let knowledgeModal = new KnowledgeModal();
 import LiuliangModal from './an/h5/liuliangModal';
 let liuliangModal = new LiuliangModal();
 
+import SanfangModal from './an/h5/sanfangModal';
+let sanfangModal = new SanfangModal();
+
 import EventProxy from './utils/eventproxy';
+import './utils/scroll-container';
 let game = new Game();
 
 let activityId = 364;
@@ -52,7 +56,7 @@ import { locationPeo, movePeo } from './common/peo';
 
 import { onShare } from './common/share';
 import { onLottery } from './common/lottery';
-import { iAlert, goLogin, goVipJoin } from './common/help';
+import { iAlert, goLogin, goVipJoin, getChannel } from './common/help';
 
 declare let window: any;
 
@@ -61,23 +65,6 @@ window.gameReady = () => {};
 window.closeModals = () => {
   Zepto('.modals').hide();
 };
-
-/**
- * 判断渠道
- */
-let getChannel = () => {
-  let ua = window.navigator.userAgent.toLowerCase();
-  if (ua.match(/MicroMessenger/i) == 'micromessenger') {
-    Zepto('head').prepend("<Meta name='WT.plat' content='TOUCH'>");
-    return 'weChat';
-  } else if (ua.match(/leadeon/i) == 'leadeon') {
-    Zepto('head').prepend("<Meta name='WT.plat' content='APP'>");
-    return 'app';
-  } else {
-    Zepto('head').prepend("<Meta name='WT.plat' content='TOUCH'>");
-    return 'touch';
-  }
-}
 
 let channel = getChannel();
 
@@ -122,7 +109,7 @@ let showRuleModal = () => {
  * 显示我的奖品
  */
 let showWardsModal = () => {
-  walk_myGifts(activityId)
+  walk_myGifts(`${activityId},363`)
     .then(res => {
       console.log('显示我的奖品', res.data);
       window.wardsModal_mc.visible = true;
@@ -159,6 +146,7 @@ let showWardsModal = () => {
     })
     .catch(err => {
       console.log(err);
+      iAlert('请求超时，请稍后重试！', '确定', () => {});
     });
 };
 
@@ -176,7 +164,7 @@ let showSuccessModal = () => {
     window.girl.visible = true;
     window.peo_target = window.girl;
   }
-  locationPeo('27');
+  locationPeo(channel, '27');
 
   window.successModal_mc.visible = true;
 };
@@ -184,9 +172,14 @@ let showSuccessModal = () => {
 /**
  * 显示奖品弹窗
  */
-let showGetAwardModal = () => {
-  window.getAwardModal_mc.visible = true;
+let showSanfangModal = gifts => {
+  window.sanfangModal_mc.initGifts(gifts);
+  window.sanfangModal_mc.visible = true;
 };
+let onLingqu = (window.onLingqu = (gift: { giftName: string; giftUrl: string }) => {
+  console.log(gift);
+  // window.open(gift.giftUrl);
+});
 
 /**
  * 显示分享弹窗
@@ -216,27 +209,32 @@ let showLiuliangModal = (window.showLiuliangModal = type => {
  */
 window.onShare = () => {
   window.shareModal_mc.visible = false;
-  walk_share(activityId, channel).then(res => {
-    let resCode = res.data.resCode;
-    let resInfo = res.data.resInfo;
-    switch (resCode) {
-      case '00': //分享成功
-        console.log('分享成功');
-        // 机会+1
-        setDiscBtn(true);
-        setCount(parseInt(resInfo.diceCount));
-        break;
-      case '01': //未登录
-        noLogin();
-        break;
-      // case '02': //系统异常
-      // case '03': //渠道错误
-      default:
-        iAlert('分享失败，请稍后重试！', '确定', () => {});
-        console.log(res.data.message);
-        break;
-    }
-  });
+  walk_share(activityId, channel)
+    .then(res => {
+      let resCode = res.data.resCode;
+      let resInfo = res.data.resInfo;
+      switch (resCode) {
+        case '00': //分享成功
+          console.log('分享成功');
+          // 机会+1
+          setDiscBtn(true);
+          setCount(parseInt(resInfo.diceCount));
+          break;
+        case '01': //未登录
+          noLogin();
+          break;
+        // case '02': //系统异常
+        // case '03': //渠道错误
+        default:
+          iAlert('分享失败，请稍后重试！', '确定', () => {});
+          console.log(res.data.message);
+          break;
+      }
+    })
+    .catch(err => {
+      console.log(err);
+      iAlert('请求超时，请稍后重试！', '确定', () => {});
+    });
   onShare(channel);
 };
 
@@ -278,7 +276,7 @@ let initGame = (walkIndex, sex, isEuccess, diceCount) => {
 
   console.log(walkIndex, sex, isEuccess, diceCount);
   if (isEuccess == 'Y') walkIndex = 27;
-  locationPeo(walkIndex);
+  locationPeo(channel, walkIndex);
 
   window.dice_mc.btn.addEventListener('click', doShake);
 };
@@ -305,7 +303,7 @@ let moveFinish = (type, end, giftList, knowledgeName, garden, diceCount) => {
       showKnowledgeModal(knowledgeName);
     } else if (type == '1') {
       console.log(`到达奖品点: 礼物名称：${giftList}`);
-      showGetAwardModal();
+      showSanfangModal(giftList);
     } else if (type == '2') {
       console.log('到达花园增加掷骰子次数:', garden);
       showCommonModal('add_chance');
@@ -324,53 +322,60 @@ let noLogin = () => {
  */
 let doShake = () => {
   setDiscBtn(false);
-  walk_dice(activityId, channel).then(res => {
-    let resCode = res.data.resCode;
-    let resInfo = res.data.resInfo;
-    switch (resCode) {
-      case '00': //掷骰子成功
-        shake(parseInt(resInfo.nextWalk), () => {
-          movePeo(resInfo.nextWalk, resInfo.index, resInfo.end, () => {
-            console.log('移动完成，开始回调');
-            moveFinish(
-              resInfo.type,
-              resInfo.end,
-              resInfo.giftList,
-              resInfo.name,
-              resInfo.garden,
-              resInfo.diceCount
-            );
+  walk_dice(activityId, channel)
+    .then(res => {
+      let resCode = res.data.resCode;
+      let resInfo = res.data.resInfo;
+      switch (resCode) {
+        case '00': //掷骰子成功
+          shake(parseInt(resInfo.nextWalk), () => {
+            movePeo(resInfo.nextWalk, resInfo.index, resInfo.end, () => {
+              console.log('移动完成，开始回调');
+              moveFinish(
+                resInfo.type,
+                resInfo.end,
+                resInfo.giftList,
+                resInfo.name,
+                resInfo.garden,
+                resInfo.diceCount
+              );
+            });
           });
-        });
-        break;
-      case '01': //未登陆
-        noLogin();
-        break;
-      case '02': //系统异常
-        iAlert('请求超时，请稍后重试！', '确定', () => {});
-        break;
-      case '03': //没有掷骰子机会
-        showShareModal();
-        break;
-      case '04': //没有选取角色
-        showSelectModal();
-        break;
-      case '06': //活动未开始
-      case '07': //活动已结束
-        iAlert('不在活动时间内哦！', '确定', () => {});
-        break;
-      case '08': //非俱乐部会员
-        goVipJoin(activityId);
-        break;
-      case '09': //已完成
-        showSuccessModal();
-        break;
-      default:
-        //不正确的code
-        iAlert('请求超时，请稍后重试！', '确定', () => {});
-        break;
-    }
-  });
+          break;
+        case '01': //未登陆
+          noLogin();
+          break;
+        case '02': //系统异常
+          iAlert('请求超时，请稍后重试！', '确定', () => {});
+          break;
+        case '03': //没有掷骰子机会
+          showShareModal();
+          break;
+        case '04': //没有选取角色
+          showSelectModal();
+          break;
+        case '06': //活动未开始
+        case '07': //活动已结束
+          iAlert('不在活动时间内哦！', '确定', () => {});
+          break;
+        case '08': //非俱乐部会员
+          iAlert('请先加入中国移动客户俱乐部会员', '确定', () => {
+            goVipJoin(activityId, channel);
+          });
+          break;
+        case '09': //已完成
+          showSuccessModal();
+          break;
+        default:
+          //不正确的code
+          iAlert('请求超时，请稍后重试！', '确定', () => {});
+          break;
+      }
+    })
+    .catch(err => {
+      console.log(err);
+      iAlert('请求超时，请稍后重试！', '确定', () => {});
+    });
 };
 
 interface IGameState {
@@ -382,30 +387,35 @@ interface IGameState {
 let gameState: IGameState = {};
 
 let userWalkInfo = () => {
-  walk_userInfo().then(res => {
-    let resCode = res.data.resCode;
-    switch (resCode) {
-      case '01':
-        showIntroduceModal(false);
-        break;
-      case '03':
-        showIntroduceModal(true);
-        break;
-      case '00':
-        sex = res.data.resInfo.sex;
-        gameState = res.data.resInfo;
-        if (gameState.isEuccess == 'Y') {
-          showSuccessModal();
-        } else {
+  walk_userInfo()
+    .then(res => {
+      let resCode = res.data.resCode;
+      switch (resCode) {
+        case '01':
+          showIntroduceModal(false);
+          break;
+        case '03':
           showIntroduceModal(true);
-        }
-        break;
-      default:
-        break;
-    }
-    window.game.btn_intro.addEventListener('click', showRuleModal);
-    window.game.btn_wards.addEventListener('click', showWardsModal);
-  });
+          break;
+        case '00':
+          sex = res.data.resInfo.sex;
+          gameState = res.data.resInfo;
+          if (gameState.isEuccess == 'Y') {
+            showSuccessModal();
+          } else {
+            showIntroduceModal(true);
+          }
+          break;
+        default:
+          break;
+      }
+      window.game.btn_intro.addEventListener('click', showRuleModal);
+      window.game.btn_wards.addEventListener('click', showWardsModal);
+    })
+    .catch(err => {
+      console.log(err);
+      iAlert('请求超时，请稍后重试！', '确定', () => {});
+    });
 };
 
 let sex = '-1';
@@ -434,26 +444,31 @@ let onSelectPeo = (window.onSelectPeo = peo => {
   if (peo == 'girl') {
     sel = '1';
   }
-  walk_putRole(sel, 'web').then(res => {
-    let resCode = res.data.resCode;
-    switch (resCode) {
-      case '00':
-        console.log(res.data.message);
-        initGame('0', sel, 'N', '6');
-        break;
-      case '01':
-        console.log(res.data.message);
-        break;
-      case '02':
-        console.log(res.data.message);
-        break;
-      case '03':
-        console.log(res.data.message);
-        break;
-      default:
-        break;
-    }
-  });
+  walk_putRole(sel, 'web')
+    .then(res => {
+      let resCode = res.data.resCode;
+      switch (resCode) {
+        case '00':
+          console.log(res.data.message);
+          initGame('0', sel, 'N', '6');
+          break;
+        case '01':
+          console.log(res.data.message);
+          break;
+        case '02':
+          console.log(res.data.message);
+          break;
+        case '03':
+          console.log(res.data.message);
+          break;
+        default:
+          break;
+      }
+    })
+    .catch(err => {
+      console.log(err);
+      iAlert('请求超时，请稍后重试！', '确定', () => {});
+    });
 });
 
 Zepto(function($: any) {
@@ -469,6 +484,7 @@ Zepto(function($: any) {
     'shareModal',
     'knowledgeModal',
     'liuliangModal',
+    'sanfangModal',
     (
       game,
       selectModal,
@@ -480,7 +496,8 @@ Zepto(function($: any) {
       wardsModal,
       shareModal,
       knowledgeModal,
-      liuliangModal
+      liuliangModal,
+      sanfangModal
     ) => {
       game.addChild(selectModal);
       game.addChild(commonModal);
@@ -492,6 +509,7 @@ Zepto(function($: any) {
       game.addChild(shareModal);
       game.addChild(knowledgeModal);
       game.addChild(liuliangModal);
+      game.addChild(sanfangModal);
       setTimeout(() => {
         playLotterys(activityId, channel);
         userWalkInfo();
@@ -520,5 +538,6 @@ Zepto(function($: any) {
     shareModal.init(ep);
     knowledgeModal.init(ep);
     liuliangModal.init(ep);
+    sanfangModal.init(ep);
   });
 });

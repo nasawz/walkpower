@@ -45,7 +45,8 @@ export default class Game {
     }
     this.exportRoot = new lib.walkpower();
     this.stage = new lib.Stage(this.canvas);
-    this.stage.enableMouseOver();
+    // this.stage.enableMouseOver();
+    createjs.Touch.enable(this.exportRoot);
     //Registers the "tick" event listener.
     this.fnStartAnimation = () => {
       this.stage.addChild(this.exportRoot);

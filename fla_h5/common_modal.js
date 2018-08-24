@@ -3,7 +3,7 @@
 var p; // shortcut to reference prototypes
 var lib={};var ss={};var img={};
 lib.ssMetadata = [
-		{name:"common_modal_atlas_", frames: [[621,670,183,45],[436,670,183,45],[0,0,661,621],[0,623,434,109],[622,623,184,45],[436,623,184,45]]}
+		{name:"common_modal_atlas_", frames: [[663,141,183,45],[663,188,183,45],[0,0,661,621],[0,623,434,109],[436,623,432,108],[663,0,184,45],[663,94,184,45],[663,47,184,45]]}
 ];
 
 
@@ -39,16 +39,30 @@ lib.ssMetadata = [
 
 
 
-(lib.ok_btn = function() {
+(lib.h5_add_chance = function() {
 	this.spriteSheet = ss["common_modal_atlas_"];
 	this.gotoAndStop(4);
 }).prototype = p = new cjs.Sprite();
 
 
 
-(lib.okclicked = function() {
+(lib.h5_add_chance_btn = function() {
 	this.spriteSheet = ss["common_modal_atlas_"];
 	this.gotoAndStop(5);
+}).prototype = p = new cjs.Sprite();
+
+
+
+(lib.ok_btn = function() {
+	this.spriteSheet = ss["common_modal_atlas_"];
+	this.gotoAndStop(6);
+}).prototype = p = new cjs.Sprite();
+
+
+
+(lib.okclicked = function() {
+	this.spriteSheet = ss["common_modal_atlas_"];
+	this.gotoAndStop(7);
 }).prototype = p = new cjs.Sprite();
 // helper functions:
 
@@ -128,18 +142,48 @@ p.nominalBounds = new cjs.Rectangle(-92,-22.5,184,45);
 p.nominalBounds = new cjs.Rectangle(-91.5,-22.5,183,45);
 
 
+(lib.add_chance_ok_btn = function(mode,startPosition,loop) {
+	this.initialize(mode,startPosition,loop,{});
+
+	// 图层_1
+	this.instance = new lib.h5_add_chance_btn();
+	this.instance.parent = this;
+	this.instance.setTransform(-92,-22.5);
+
+	this.instance_1 = new lib.okclicked();
+	this.instance_1.parent = this;
+	this.instance_1.setTransform(-92,-22.5);
+
+	this.timeline.addTween(cjs.Tween.get({}).to({state:[{t:this.instance}]}).to({state:[{t:this.instance_1}]},2).wait(2));
+
+}).prototype = p = new cjs.MovieClip();
+p.nominalBounds = new cjs.Rectangle(-92,-22.5,184,45);
+
+
 // stage content:
 (lib.common_modal = function(mode,startPosition,loop) {
-	this.initialize(mode,startPosition,loop,{});
+	this.initialize(mode,startPosition,loop,{lottery_one:0,add_chance:1,add_chance_ok_btn:1});
 
 	// timeline functions:
 	this.frame_0 = function() {
+		this.stop()
 		window.commonModal_mc = this
 		this.visible = false
-	}
-	this.frame_1 = function() {
+		
 		this.okbtn.addEventListener('click', closeModalsWards)
 		this.cancelbtn.addEventListener('click', closeModalsWards)
+		
+		
+		
+		var self = this;
+		
+		function closeModalsWards() {
+			self.visible = false
+		}
+	}
+	this.frame_1 = function() {
+		this.stop()
+		this.add_chance_ok_btn.addEventListener('click', closeModalsWards)
 		
 		var self = this;
 		
@@ -158,7 +202,13 @@ p.nominalBounds = new cjs.Rectangle(-91.5,-22.5,183,45);
 	this.okbtn.setTransform(256,857.5);
 	new cjs.ButtonHelper(this.okbtn, 0, 1, 2, false, new lib.commonok_btn(), 3);
 
-	this.timeline.addTween(cjs.Tween.get(this.okbtn).wait(2));
+	this.add_chance_ok_btn = new lib.add_chance_ok_btn();
+	this.add_chance_ok_btn.name = "add_chance_ok_btn";
+	this.add_chance_ok_btn.parent = this;
+	this.add_chance_ok_btn.setTransform(376,855.5);
+	new cjs.ButtonHelper(this.add_chance_ok_btn, 0, 1, 2, false, new lib.add_chance_ok_btn(), 3);
+
+	this.timeline.addTween(cjs.Tween.get({}).to({state:[{t:this.okbtn}]}).to({state:[{t:this.add_chance_ok_btn}]},1).wait(1));
 
 	// 取消按钮
 	this.cancelbtn = new lib.commoncancel_btn();
@@ -167,28 +217,32 @@ p.nominalBounds = new cjs.Rectangle(-91.5,-22.5,183,45);
 	this.cancelbtn.setTransform(506.5,857.5);
 	new cjs.ButtonHelper(this.cancelbtn, 0, 1, 2, false, new lib.commoncancel_btn(), 3);
 
-	this.timeline.addTween(cjs.Tween.get(this.cancelbtn).wait(2));
+	this.timeline.addTween(cjs.Tween.get(this.cancelbtn).to({_off:true},1).wait(1));
 
 	// 文字
 	this.instance = new lib.common_text();
 	this.instance.parent = this;
 	this.instance.setTransform(157,625);
 
-	this.timeline.addTween(cjs.Tween.get(this.instance).wait(2));
+	this.instance_1 = new lib.h5_add_chance();
+	this.instance_1.parent = this;
+	this.instance_1.setTransform(157,626);
+
+	this.timeline.addTween(cjs.Tween.get({}).to({state:[{t:this.instance}]}).to({state:[{t:this.instance_1}]},1).wait(1));
 
 	// 边框
-	this.instance_1 = new lib.common_bg();
-	this.instance_1.parent = this;
-	this.instance_1.setTransform(29,376);
-
-	this.timeline.addTween(cjs.Tween.get(this.instance_1).wait(2));
-
-	// 遮罩
-	this.instance_2 = new lib.shade_mc();
+	this.instance_2 = new lib.common_bg();
 	this.instance_2.parent = this;
-	this.instance_2.setTransform(375,667);
+	this.instance_2.setTransform(29,376);
 
 	this.timeline.addTween(cjs.Tween.get(this.instance_2).wait(2));
+
+	// 遮罩
+	this.instance_3 = new lib.shade_mc();
+	this.instance_3.parent = this;
+	this.instance_3.setTransform(375,667);
+
+	this.timeline.addTween(cjs.Tween.get(this.instance_3).wait(2));
 
 }).prototype = p = new cjs.MovieClip();
 p.nominalBounds = new cjs.Rectangle(374.5,666.5,751,1335);
@@ -201,7 +255,7 @@ lib.properties = {
 	color: "#FFFFFF",
 	opacity: 1.00,
 	manifest: [
-		{src:"images/common_modal_atlas_.png?1534822580293", id:"common_modal_atlas_"}
+		{src:"images/common_modal_atlas_.png?1535092218376", id:"common_modal_atlas_"}
 	],
 	preloads: []
 };

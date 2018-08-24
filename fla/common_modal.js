@@ -3,7 +3,7 @@
 var p; // shortcut to reference prototypes
 var lib={};var ss={};var img={};
 lib.ssMetadata = [
-		{name:"common_modal_atlas_", frames: [[443,762,157,39],[0,0,1200,760],[602,762,157,39],[761,762,151,39],[0,762,441,119],[914,762,151,39]]}
+		{name:"common_modal_atlas_", frames: [[443,762,432,108],[877,762,157,39],[0,0,1200,760],[877,803,157,39],[0,883,151,39],[0,762,441,119],[877,844,151,39]]}
 ];
 
 
@@ -11,44 +11,51 @@ lib.ssMetadata = [
 
 
 
-(lib.cancelclicked = function() {
+(lib.addChance = function() {
 	this.spriteSheet = ss["common_modal_atlas_"];
 	this.gotoAndStop(0);
 }).prototype = p = new cjs.Sprite();
 
 
 
-(lib.common = function() {
+(lib.cancelclicked = function() {
 	this.spriteSheet = ss["common_modal_atlas_"];
 	this.gotoAndStop(1);
 }).prototype = p = new cjs.Sprite();
 
 
 
-(lib.commonbtn_07 = function() {
+(lib.common = function() {
 	this.spriteSheet = ss["common_modal_atlas_"];
 	this.gotoAndStop(2);
 }).prototype = p = new cjs.Sprite();
 
 
 
-(lib.commonbtn_10 = function() {
+(lib.commonbtn_07 = function() {
 	this.spriteSheet = ss["common_modal_atlas_"];
 	this.gotoAndStop(3);
 }).prototype = p = new cjs.Sprite();
 
 
 
-(lib.commonword_03 = function() {
+(lib.commonbtn_10 = function() {
 	this.spriteSheet = ss["common_modal_atlas_"];
 	this.gotoAndStop(4);
 }).prototype = p = new cjs.Sprite();
 
 
 
-(lib.okclicked = function() {
+(lib.commonword_03 = function() {
 	this.spriteSheet = ss["common_modal_atlas_"];
 	this.gotoAndStop(5);
+}).prototype = p = new cjs.Sprite();
+
+
+
+(lib.okclicked = function() {
+	this.spriteSheet = ss["common_modal_atlas_"];
+	this.gotoAndStop(6);
 }).prototype = p = new cjs.Sprite();
 // helper functions:
 
@@ -154,10 +161,11 @@ p.nominalBounds = new cjs.Rectangle(-78.5,-19.5,157,39);
 
 // stage content:
 (lib.common_modal = function(mode,startPosition,loop) {
-	this.initialize(mode,startPosition,loop,{});
+	this.initialize(mode,startPosition,loop,{lottery_one:0,add_chance:1});
 
 	// timeline functions:
 	this.frame_0 = function() {
+		this.stop()
 		window.commonModal_mc = this
 		this.visible = false
 		this.okbtn.addEventListener('click', closeModalsWards)
@@ -169,9 +177,12 @@ p.nominalBounds = new cjs.Rectangle(-78.5,-19.5,157,39);
 			self.visible = false
 		}
 	}
+	this.frame_1 = function() {
+		this.stop()
+	}
 
 	// actions tween:
-	this.timeline.addTween(cjs.Tween.get(this).call(this.frame_0).wait(1));
+	this.timeline.addTween(cjs.Tween.get(this).call(this.frame_0).wait(1).call(this.frame_1).wait(1));
 
 	// Layer_6
 	this.cancelbtn = new lib.commoncancel_btn();
@@ -180,7 +191,7 @@ p.nominalBounds = new cjs.Rectangle(-78.5,-19.5,157,39);
 	this.cancelbtn.setTransform(714.5,601.5);
 	new cjs.ButtonHelper(this.cancelbtn, 0, 1, 2, false, new lib.commoncancel_btn(), 3);
 
-	this.timeline.addTween(cjs.Tween.get(this.cancelbtn).wait(1));
+	this.timeline.addTween(cjs.Tween.get(this.cancelbtn).wait(2));
 
 	// Layer_5
 	this.okbtn = new lib.commonok_btn();
@@ -189,28 +200,32 @@ p.nominalBounds = new cjs.Rectangle(-78.5,-19.5,157,39);
 	this.okbtn.setTransform(506.5,601.5);
 	new cjs.ButtonHelper(this.okbtn, 0, 1, 2, false, new lib.commonok_btn(), 3);
 
-	this.timeline.addTween(cjs.Tween.get(this.okbtn).wait(1));
+	this.timeline.addTween(cjs.Tween.get(this.okbtn).wait(2));
 
 	// Layer_4
 	this.instance = new lib.commonWord_mc();
 	this.instance.parent = this;
 	this.instance.setTransform(609.5,412.5);
 
-	this.timeline.addTween(cjs.Tween.get(this.instance).wait(1));
+	this.instance_1 = new lib.addChance();
+	this.instance_1.parent = this;
+	this.instance_1.setTransform(392,355);
+
+	this.timeline.addTween(cjs.Tween.get({}).to({state:[{t:this.instance}]}).to({state:[{t:this.instance_1}]},1).wait(1));
 
 	// Layer_3
-	this.instance_1 = new lib.commoModal_mc();
-	this.instance_1.parent = this;
-	this.instance_1.setTransform(600,382);
+	this.instance_2 = new lib.commoModal_mc();
+	this.instance_2.parent = this;
+	this.instance_2.setTransform(600,382);
 
-	this.timeline.addTween(cjs.Tween.get(this.instance_1).wait(1));
+	this.timeline.addTween(cjs.Tween.get(this.instance_2).wait(2));
 
 	// Layer_2
-	this.instance_2 = new lib.Symbol1();
-	this.instance_2.parent = this;
-	this.instance_2.setTransform(600,380,1,1,0,0,0,600,380);
+	this.instance_3 = new lib.Symbol1();
+	this.instance_3.parent = this;
+	this.instance_3.setTransform(600,380,1,1,0,0,0,600,380);
 
-	this.timeline.addTween(cjs.Tween.get(this.instance_2).wait(1));
+	this.timeline.addTween(cjs.Tween.get(this.instance_3).wait(2));
 
 }).prototype = p = new cjs.MovieClip();
 p.nominalBounds = new cjs.Rectangle(600,380,1200,762);
@@ -223,7 +238,7 @@ lib.properties = {
 	color: "#FFFFFF",
 	opacity: 1.00,
 	manifest: [
-		{src:"images/common_modal_atlas_.png?1534499994867", id:"common_modal_atlas_"}
+		{src:"images/common_modal_atlas_.png?1535089983805", id:"common_modal_atlas_"}
 	],
 	preloads: []
 };

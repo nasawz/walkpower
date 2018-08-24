@@ -103,32 +103,24 @@ p.nominalBounds = new cjs.Rectangle(-75.5,-18.5,151,37);
 
 	// timeline functions:
 	this.frame_0 = function() {
-		//this.visible=false
-		
-		window.modal_intro=this	
-		var self=this
-		setTimeout(function()  {
-		  self.removeChild(self.txt)
-			
-		var canvas = document.querySelector("body")
-		var scroll = new createjs.ScrollContainer(canvas)
-		scroll.x = 213
-		scroll.y = 295
-		scroll.setBounds(0, 0, 820, 265)
-		scroll.contentSize = {
-		  width: 800,
-		  height: 565
-		}
-		self.addChild(scroll)
-		//this.txt.visible=false
-		
-		//this.removeChild(this.txt)
-		
-		console.log(self.txt,'--')
-		self.txt.x=0
-		self.txt.y=0
-		self.txt.visible=true
-		scroll.addChild(self.txt)
+		window.modal_intro = this;
+		var self = this;
+		setTimeout(function() {
+		  self.removeChild(self.txt);
+		  var canvas = document.querySelector('body');
+		  var scroll = new createjs.ScrollContainer(canvas);
+		  scroll.x = 213;
+		  scroll.y = 295;
+		  scroll.setBounds(0, 0, 820, 265);
+		  scroll.contentSize = {
+		    width: 800,
+		    height: 565
+		  };
+		  self.addChild(scroll);
+		  self.txt.x = 0;
+		  self.txt.y = 0;
+		  self.txt.visible = true;
+		  scroll.addChild(self.txt);
 		}, 300);
 	}
 	this.frame_1 = function() {
@@ -186,7 +178,7 @@ lib.properties = {
 	color: "#FFFFFF",
 	opacity: 1.00,
 	manifest: [
-		{src:"images/modal_test_atlas_.png?1534476143918", id:"modal_test_atlas_"}
+		{src:"images/modal_test_atlas_.png?1535091787758", id:"modal_test_atlas_"}
 	],
 	preloads: []
 };

@@ -36,7 +36,7 @@ export const movePeo = (nextWalk, index, end, cb) => {
  * @param sex 当前选择的性别
  * @param index 当前在第几个格子
  */
-export const locationPeo = index => {
+export const locationPeo = (channel, index) => {
   //   index = 27;
   //定位小人到当前位置
   var tiles_xy = window.tiles_xy;
@@ -45,7 +45,12 @@ export const locationPeo = index => {
     window.peo_target.x = tiles_xy[index - 1][0];
     window.peo_target.y = tiles_xy[index - 1][1];
   } else {
-    window.peo_target.x = 74.8;
-    window.peo_target.y = 422;
+    if (channel == 'web') {
+      window.peo_target.x = 74.8;
+      window.peo_target.y = 422;
+    } else {
+      window.peo_target.x = 110.15;
+      window.peo_target.y = 433.05;
+    }
   }
 };

@@ -3,7 +3,7 @@
 var p; // shortcut to reference prototypes
 var lib={};var ss={};var img={};
 lib.ssMetadata = [
-		{name:"sanfang_modal_atlas_", frames: [[669,769,662,766],[0,769,667,767],[0,1538,192,60],[1338,0,192,60],[0,1600,191,56],[669,0,667,767],[194,1538,191,56],[0,0,667,767]]}
+		{name:"sanfang_modal_atlas_", frames: [[1338,0,662,766],[0,0,667,767],[0,831,192,60],[0,769,192,60],[0,893,191,56],[193,893,191,56],[669,0,667,767],[1338,768,677,748]]}
 ];
 
 
@@ -46,25 +46,41 @@ lib.ssMetadata = [
 
 
 
-(lib.sh_03 = function() {
+(lib.shlqdown = function() {
 	this.spriteSheet = ss["sanfang_modal_atlas_"];
 	this.gotoAndStop(5);
 }).prototype = p = new cjs.Sprite();
 
 
 
-(lib.shlqdown = function() {
+(lib.st_03 = function() {
 	this.spriteSheet = ss["sanfang_modal_atlas_"];
 	this.gotoAndStop(6);
 }).prototype = p = new cjs.Sprite();
 
 
 
-(lib.st_03 = function() {
+(lib.弹框h5版2_03 = function() {
 	this.spriteSheet = ss["sanfang_modal_atlas_"];
 	this.gotoAndStop(7);
 }).prototype = p = new cjs.Sprite();
+// helper functions:
 
+function mc_symbol_clone() {
+	var clone = this._cloneProps(new this.constructor(this.mode, this.startPosition, this.loop));
+	clone.gotoAndStop(this.currentFrame);
+	clone.paused = this.paused;
+	clone.framerate = this.framerate;
+	return clone;
+}
+
+function getMCSymbolPrototype(symbol, nominalBounds, frameBounds) {
+	var prototype = cjs.extend(symbol, cjs.MovieClip);
+	prototype.clone = mc_symbol_clone;
+	prototype.nominalBounds = nominalBounds;
+	prototype.frameBounds = frameBounds;
+	return prototype;
+	}
 
 
 (lib.shlq_btn = function(mode,startPosition,loop) {
@@ -103,14 +119,37 @@ p.nominalBounds = new cjs.Rectangle(-95.5,-28,191,56);
 p.nominalBounds = new cjs.Rectangle(-96,-30,192,60);
 
 
+(lib.mask = function(mode,startPosition,loop) {
+	this.initialize(mode,startPosition,loop,{});
+
+	// timeline functions:
+	this.frame_0 = function() {
+		this.addEventListener('click',function(){})
+	}
+
+	// actions tween:
+	this.timeline.addTween(cjs.Tween.get(this).call(this.frame_0).wait(1));
+
+	// Layer_1
+	this.shape = new cjs.Shape();
+	this.shape.graphics.f().s("rgba(0,0,0,0.8)").ss(1,1,1).p("Eg6lhoNMB1LAAAMAAADQbMh1LAAAg");
+
+	this.shape_1 = new cjs.Shape();
+	this.shape_1.graphics.f("rgba(41,41,41,0.8)").s().p("Eg6lBoOMAAAjQbMB1LAAAMAAADQbg");
+
+	this.timeline.addTween(cjs.Tween.get({}).to({state:[{t:this.shape_1},{t:this.shape}]}).wait(1));
+
+}).prototype = getMCSymbolPrototype(lib.mask, new cjs.Rectangle(-376,-668,752,1336), null);
+
+
 // stage content:
 (lib.sanfang_modal = function(mode,startPosition,loop) {
-	this.initialize(mode,startPosition,loop,{chaoshi:0,shitang:1,jiaoxuelou:2,litang:3});
+	this.initialize(mode,startPosition,loop,{});
 
 	// timeline functions:
 	this.frame_0 = function() {
 		this.stop()
-		//this.visible = false
+		this.visible = false
 		window.sanfangModal_mc = this
 		
 		
@@ -118,22 +157,47 @@ p.nominalBounds = new cjs.Rectangle(-96,-30,192,60);
 		
 		var self = this;
 		
+		this.initGifts = function (gifts) {
+			self.gifts = gifts
+			self.gift1.text = gifts[0].giftName
+			self.gift2.text = gifts[1].giftName
+			self.gift3.text = gifts[2].giftName
+			self.gift4.text = gifts[3].giftName
+			self.gift5.text = gifts[4].giftName
+		}
+		
 		function closeModalsWards() {
 			self.visible = false
 		}
-	}
-	this.frame_1 = function() {
-		this.stop()
-	}
-	this.frame_2 = function() {
-		this.stop()
-	}
-	this.frame_3 = function() {
-		this.stop()
+		
+		this.lq1_btn.addEventListener('click', function () {
+			var gift = self.gifts[0]
+			window.onLingqu(gift)
+		})
+		
+		this.lq2_btn.addEventListener('click', function () {
+			var gift = self.gifts[1]
+			window.onLingqu(gift)
+		})
+		
+		this.lq3_btn.addEventListener('click', function () {
+			var gift = self.gifts[2]
+			window.onLingqu(gift)
+		})
+		
+		this.lq4_btn.addEventListener('click', function () {
+			var gift = self.gifts[3]
+			window.onLingqu(gift)
+		})
+		
+		this.lq5_btn.addEventListener('click', function () {
+			var gift = self.gifts[4]
+			window.onLingqu(gift)
+		})
 	}
 
 	// actions tween:
-	this.timeline.addTween(cjs.Tween.get(this).call(this.frame_0).wait(1).call(this.frame_1).wait(1).call(this.frame_2).wait(1).call(this.frame_3).wait(4));
+	this.timeline.addTween(cjs.Tween.get(this).call(this.frame_0).wait(7));
 
 	// Layer_3
 	this.lq5_btn = new lib.sfjplq_btn();
@@ -177,10 +241,52 @@ p.nominalBounds = new cjs.Rectangle(-96,-30,192,60);
 
 	this.timeline.addTween(cjs.Tween.get(this.shlq_btn).to({_off:true},4).wait(3));
 
+	// Layer_6
+	this.gift5 = new cjs.Text("唱吧麦颂/2小时欢唱", "24px 'Arial'", "#FF8B00");
+	this.gift5.name = "gift5";
+	this.gift5.lineHeight = 36;
+	this.gift5.lineWidth = 349;
+	this.gift5.alpha = 0.80000000;
+	this.gift5.parent = this;
+	this.gift5.setTransform(101.1,753);
+
+	this.gift4 = new cjs.Text("唱吧麦颂/2小时欢唱", "24px 'Arial'", "#FF8B00");
+	this.gift4.name = "gift4";
+	this.gift4.lineHeight = 36;
+	this.gift4.lineWidth = 341;
+	this.gift4.alpha = 0.80000000;
+	this.gift4.parent = this;
+	this.gift4.setTransform(104.1,665);
+
+	this.gift3 = new cjs.Text("唱吧麦颂/2小时欢唱", "24px 'Arial'", "#FF8B00");
+	this.gift3.name = "gift3";
+	this.gift3.lineHeight = 36;
+	this.gift3.lineWidth = 346;
+	this.gift3.alpha = 0.80000000;
+	this.gift3.parent = this;
+	this.gift3.setTransform(100.1,582);
+
+	this.gift2 = new cjs.Text("唱吧麦颂/2小时欢唱", "24px 'Arial'", "#FF8B00");
+	this.gift2.name = "gift2";
+	this.gift2.lineHeight = 36;
+	this.gift2.lineWidth = 344;
+	this.gift2.alpha = 0.80000000;
+	this.gift2.parent = this;
+	this.gift2.setTransform(100.1,494);
+
+	this.gift1 = new cjs.Text("唱吧麦颂/2小时欢唱", "24px 'Arial'", "#FF8B00");
+	this.gift1.name = "gift1";
+	this.gift1.lineHeight = 36;
+	this.gift1.lineWidth = 341;
+	this.gift1.parent = this;
+	this.gift1.setTransform(101.1,409);
+
+	this.timeline.addTween(cjs.Tween.get({}).to({state:[{t:this.gift1},{t:this.gift2},{t:this.gift3},{t:this.gift4},{t:this.gift5}]}).wait(7));
+
 	// Layer_4
-	this.instance = new lib.sh_03();
+	this.instance = new lib.弹框h5版2_03();
 	this.instance.parent = this;
-	this.instance.setTransform(31,238);
+	this.instance.setTransform(27,242);
 
 	this.instance_1 = new lib.st_03();
 	this.instance_1.parent = this;
@@ -197,18 +303,14 @@ p.nominalBounds = new cjs.Rectangle(-96,-30,192,60);
 	this.timeline.addTween(cjs.Tween.get({}).to({state:[{t:this.instance}]}).to({state:[{t:this.instance_1}]},1).to({state:[{t:this.instance_2}]},1).to({state:[{t:this.instance_3}]},1).to({state:[]},1).wait(3));
 
 	// Layer_2
-	this.shape = new cjs.Shape();
-	this.shape.graphics.f().s("rgba(0,0,0,0.8)").ss(1,1,1).p("Eg6lhoNMB1LAAAMAAADQbMh1LAAAg");
-	this.shape.setTransform(375,667);
+	this.instance_4 = new lib.mask();
+	this.instance_4.parent = this;
+	this.instance_4.setTransform(375,667);
 
-	this.shape_1 = new cjs.Shape();
-	this.shape_1.graphics.f("rgba(41,41,41,0.8)").s().p("Eg6lBoOMAAAjQbMB1LAAAMAAADQbg");
-	this.shape_1.setTransform(375,667);
-
-	this.timeline.addTween(cjs.Tween.get({}).to({state:[{t:this.shape_1},{t:this.shape}]}).wait(7));
+	this.timeline.addTween(cjs.Tween.get(this.instance_4).wait(7));
 
 }).prototype = p = new cjs.MovieClip();
-p.nominalBounds = new cjs.Rectangle(374,666,752,1336);
+p.nominalBounds = new cjs.Rectangle(374.5,666.5,751,1335);
 // library properties:
 lib.properties = {
 	id: '248DFC3ACE69489199DD208FB6330BFD',
@@ -218,7 +320,7 @@ lib.properties = {
 	color: "#FFFFFF",
 	opacity: 1.00,
 	manifest: [
-		{src:"images/sanfang_modal_atlas_.png?1535018921193", id:"sanfang_modal_atlas_"}
+		{src:"images/sanfang_modal_atlas_.png?1535093243244", id:"sanfang_modal_atlas_"}
 	],
 	preloads: []
 };
