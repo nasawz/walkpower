@@ -3,7 +3,7 @@
 var p; // shortcut to reference prototypes
 var lib={};var ss={};var img={};
 lib.ssMetadata = [
-		{name:"walkpower_atlas_", frames: [[1656,357,111,34],[1577,146,25,32],[0,0,750,1334],[1393,706,109,83],[752,812,537,247],[1851,68,19,31],[1572,259,154,47],[1572,308,154,47],[1451,220,381,37],[1876,68,24,31],[1877,0,24,31],[1577,113,26,31],[1849,106,25,31],[1851,0,24,32],[1877,33,24,30],[1577,180,25,32],[1851,34,24,32],[1567,485,111,34],[1728,259,76,48],[1291,1017,90,111],[1572,357,82,71],[1288,220,161,202],[1728,309,77,45],[1393,590,93,114],[1455,0,148,111],[1567,430,82,53],[1288,0,165,218],[752,0,534,810],[1806,259,79,20],[1728,106,119,105],[1728,0,121,104],[1455,113,120,104],[1605,0,121,105],[1605,107,120,104],[1451,259,119,104],[1291,803,101,106],[1291,911,101,104],[1288,590,103,105],[1288,697,103,104],[1464,365,101,104],[1464,471,101,104],[1288,424,174,164],[1488,577,154,56]]}
+		{name:"walkpower_atlas_", frames: [[1656,357,111,34],[1577,146,25,32],[0,0,750,1334],[1393,706,109,83],[752,812,537,247],[1851,68,19,31],[1572,259,154,47],[1572,308,154,47],[1451,220,381,37],[1876,68,24,31],[1877,0,24,31],[1577,113,26,31],[1849,106,25,31],[1851,0,24,32],[1877,33,24,30],[1577,180,25,32],[1851,34,24,32],[1567,485,111,34],[1728,259,76,48],[1291,1017,90,111],[1572,357,82,71],[1288,220,161,202],[1728,309,77,45],[1393,590,93,114],[1455,0,148,111],[1567,430,82,53],[1288,0,165,218],[752,0,534,810],[1806,259,79,20],[1728,106,119,105],[1728,0,121,104],[1605,107,120,104],[1605,0,121,105],[1455,113,120,104],[1451,259,119,104],[1291,803,101,106],[1464,365,101,104],[1288,590,103,105],[1288,697,103,104],[1464,471,101,104],[1291,911,101,104],[1288,424,174,164],[1488,577,154,56]]}
 ];
 
 
@@ -360,16 +360,16 @@ function getMCSymbolPrototype(symbol, nominalBounds, frameBounds) {
 	this.timeline.addTween(cjs.Tween.get(this).call(this.frame_0).wait(1));
 
 	// 图层_1
-	this.mingdan_txt = new cjs.Text("hgsadfljasdfajsdgfkajsdhgfasdfasdf", "28px 'Arial'", "#FFCC33");
+	this.mingdan_txt = new cjs.Text("139****1013 随手印/24页照片集免费打印", "28px 'Times New Roman'", "#FF7F41");
 	this.mingdan_txt.name = "mingdan_txt";
 	this.mingdan_txt.lineHeight = 33;
-	this.mingdan_txt.lineWidth = 682;
+	this.mingdan_txt.lineWidth = 563;
 	this.mingdan_txt.parent = this;
 	this.mingdan_txt.setTransform(-340.9,-15.5);
 
 	this.timeline.addTween(cjs.Tween.get(this.mingdan_txt).wait(1));
 
-}).prototype = getMCSymbolPrototype(lib.mingdan_txt_mc, new cjs.Rectangle(-342.9,-17.5,686,35.3), null);
+}).prototype = getMCSymbolPrototype(lib.mingdan_txt_mc, new cjs.Rectangle(-342.9,-17.5,567,36.5), null);
 
 
 (lib.girl_main_1 = function(mode,startPosition,loop) {
@@ -678,7 +678,7 @@ p.nominalBounds = new cjs.Rectangle(-38,-24,76,48);
 		maskedShapeInstanceList[shapedInstanceItr].mask = mask;
 	}
 
-	this.timeline.addTween(cjs.Tween.get(this.instance).to({x:-248.5},139).wait(1));
+	this.timeline.addTween(cjs.Tween.get(this.instance).to({x:-408.5},139).wait(1));
 
 	// 图层_1
 	this.instance_1 = new lib._15();
@@ -1138,7 +1138,7 @@ p.nominalBounds = new cjs.Rectangle(-99,-262,175,262);
 	this.timeline.addTween(cjs.Tween.get(this.instance_4).wait(2));
 
 }).prototype = p = new cjs.MovieClip();
-p.nominalBounds = new cjs.Rectangle(375,667,1253,1357.9);
+p.nominalBounds = new cjs.Rectangle(375,667,1134,1357.9);
 // library properties:
 lib.properties = {
 	id: '9D9F8B35CAEC4C57A50CE9E71747BFB2',
@@ -1148,7 +1148,7 @@ lib.properties = {
 	color: "#FFFFFF",
 	opacity: 1.00,
 	manifest: [
-		{src:"images/walkpower_atlas_.png?1535011305447", id:"walkpower_atlas_"}
+		{src:"images/walkpower_atlas_.png?1535524260291", id:"walkpower_atlas_"}
 	],
 	preloads: []
 };

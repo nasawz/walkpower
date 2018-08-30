@@ -7,7 +7,7 @@ var uglifycss = require('gulp-uglifycss');
 var path = require('path');
 var header = require('gulp-header');
 
-var DEST = path.join(__dirname, '../pub/web');
+var DEST = path.join(__dirname, '../pub/h5');
 
 var pkg = require('../package.json');
 var banner = [
@@ -21,7 +21,7 @@ var banner = [
 
 gulp.task('js', function() {
   return gulp
-    .src([path.join(__dirname, '../dist/app.js')])
+    .src([path.join(__dirname, '../dist/h5.js')])
     .pipe(uglify())
     .pipe(header(banner, { pkg: pkg }))
     .pipe(gulp.dest(DEST));
@@ -30,31 +30,31 @@ gulp.task('js', function() {
 gulp.task('lib', function() {
   return gulp
     .src([
-      path.join(__dirname, '../fla/introduce_modal.js'),
-      path.join(__dirname, '../fla/select_modal.js'),
-      path.join(__dirname, '../fla/common_modal.js'),
-      path.join(__dirname, '../fla/success_modal.js'),
-      path.join(__dirname, '../fla/getAward_modal.js'),
-      path.join(__dirname, '../fla/rule_modal.js'),
-      path.join(__dirname, '../fla/wards_modal.js'),
-      path.join(__dirname, '../fla/share_modal.js'),
-      path.join(__dirname, '../fla/knowledge_madal.js'),
-      path.join(__dirname, '../fla/liuliang_modal.js'),
-      path.join(__dirname, '../fla/sanfang_modal.js'),
-      path.join(__dirname, '../fla/walkpower.js'),
+      path.join(__dirname, '../fla_h5/introduce_modal.js'),
+      path.join(__dirname, '../fla_h5/select_modal.js'),
+      path.join(__dirname, '../fla_h5/common_modal.js'),
+      path.join(__dirname, '../fla_h5/success_modal.js'),
+      path.join(__dirname, '../fla_h5/getAward_modal.js'),
+      path.join(__dirname, '../fla_h5/rule_modal.js'),
+      path.join(__dirname, '../fla_h5/wards_modal.js'),
+      path.join(__dirname, '../fla_h5/share_modal.js'),
+      path.join(__dirname, '../fla_h5/knowledge_madal.js'),
+      path.join(__dirname, '../fla_h5/liuliang_modal.js'),
+      path.join(__dirname, '../fla_h5/sanfang_modal.js'),
+      path.join(__dirname, '../fla_h5/walkpower.js'),
       path.join(__dirname, '../static/lib/fx.js'),
       path.join(__dirname, '../static/lib/kinerLottery.js'),
+      path.join(__dirname, '../static/lib/soshm.js'),
       path.join(__dirname, '../static/lib/fastclick.js'),
-      path.join(__dirname, '../static/lib/sosh.js')
+      path.join(__dirname, '../static/lib/leadeon.js')
     ])
     .pipe(uglify())
-    .pipe(header(banner, { pkg: pkg }))
     .pipe(gulp.dest(path.join(DEST, 'lib')));
 });
 
 gulp.task('css', function() {
   gulp
-    .src(path.join(__dirname, '../dist/app.css'))
+    .src(path.join(__dirname, '../dist/h5.css'))
     .pipe(
       uglifycss({
         maxLineLen: 80,
@@ -66,17 +66,17 @@ gulp.task('css', function() {
 
 gulp.task('images', function() {
   gulp
-    .src([path.join(__dirname, '../static/images/*'), path.join(__dirname, '../fla/images/*')])
+    .src([path.join(__dirname, '../fla_h5/images/*'), path.join(__dirname, '../static/images/*')])
     .pipe(gulp.dest(path.join(DEST, 'images')));
 });
 
 gulp.task('cp', function() {
   gulp
-    .src([
-      path.join(__dirname, '../static/index.html'),
-      path.join(__dirname, '../static/favicon.ico')
-    ])
+    .src(path.join(__dirname, '../static/h5.html'))
+    .pipe(rename('index.html'))
     .pipe(gulp.dest(DEST));
+
+  gulp.src(path.join(__dirname, '../static/favicon.ico')).pipe(gulp.dest(DEST));
 });
 
 gulp.task('cp2', function() {
@@ -105,8 +105,8 @@ gulp.task('cp4', function() {
 gulp.task('cp5', function() {
   return gulp
     .src([
-      path.join(__dirname, '../static/lib/webTrends/siteStatistics_web.js'),
-      path.join(__dirname, '../static/lib/webTrends/webtrends_web.load.js')
+      path.join(__dirname, '../static/lib/webTrends/siteStatistics_h5.js'),
+      path.join(__dirname, '../static/lib/webTrends/webtrends_h5.load.js')
     ])
     .pipe(uglify())
     .pipe(header(banner, { pkg: pkg }))

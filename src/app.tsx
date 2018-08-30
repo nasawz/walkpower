@@ -108,6 +108,49 @@ let wards_scroll = null;
  * 显示我的奖品
  */
 let showWardsModal = () => {
+  // let res = {
+  //   data: {
+  //     ResInfo: [
+  //       { giftName: 'sssss', giftType: 0, url: '' },
+  //       { giftName: 'sssss', giftType: 0, url: '' },
+  //       { giftName: 'sssss', giftType: 0, url: '' },
+  //       { giftName: 'sssss', giftType: 0, url: '' },
+  //       { giftName: 'sssss', giftType: 0, url: '' },
+  //       { giftName: 'sssss', giftType: 0, url: '' },
+  //       { giftName: 'sssss', giftType: 0, url: '' },
+  //       { giftName: 'sssss', giftType: 0, url: '' },
+  //       { giftName: 'sssss', giftType: 0, url: '' },
+  //       { giftName: 'sssss', giftType: 0, url: '' },
+  //       { giftName: 'sssss', giftType: 0, url: '' },
+  //       { giftName: 'sssss', giftType: 0, url: '' },
+  //       { giftName: 'sssss', giftType: 0, url: '' },
+  //       { giftName: 'sssss', giftType: 0, url: '' },
+  //       { giftName: 'sssss', giftType: 0, url: '' },
+  //       { giftName: 'sssss', giftType: 0, url: '' },
+  //       { giftName: 'sssss', giftType: 0, url: '' },
+  //       { giftName: 'sssss', giftType: 0, url: '' },
+  //       { giftName: 'sssss', giftType: 0, url: '' },
+  //       { giftName: 'sssss', giftType: 0, url: '' },
+  //       { giftName: 'sssss', giftType: 0, url: '' },
+  //       { giftName: 'sssss', giftType: 0, url: '' },
+  //       { giftName: 'sssss', giftType: 0, url: '' },
+  //       { giftName: 'sssss', giftType: 0, url: '' },
+  //       { giftName: 'sssss', giftType: 0, url: '' },
+  //       { giftName: 'sssss', giftType: 0, url: '' },
+  //       { giftName: 'sssss', giftType: 0, url: '' },
+  //       { giftName: 'sssss', giftType: 0, url: '' },
+  //       { giftName: 'sssss', giftType: 0, url: '' },
+  //       { giftName: 'sssss', giftType: 0, url: '' },
+  //       { giftName: 'sssss', giftType: 0, url: '' },
+  //       { giftName: 'sssss', giftType: 0, url: '' },
+  //       { giftName: 'sssss', giftType: 0, url: '' },
+  //       { giftName: 'sssss', giftType: 0, url: '' },
+  //       { giftName: 'sssss', giftType: 0, url: '' },
+  //       { giftName: 'sssss', giftType: 0, url: '' },
+  //       { giftName: 'sssss', giftType: 0, url: '' }
+  //     ]
+  //   }
+  // };
   walk_myGifts(`${activityId},363`)
     .then(res => {
       // console.log('显示我的奖品', res.data);
@@ -209,7 +252,8 @@ let showSuccessModal = () => {
   }
   locationPeo(channel, '27');
 
-  window.successModal_mc.visible = true;
+  // window.successModal_mc.visible = true;
+  window.goLottery();
 };
 
 /**
@@ -356,7 +400,7 @@ let moveFinish = (type, end, giftList, knowledgeName, garden, diceCount) => {
 };
 //未登录弹框提示去登陆
 let noLogin = () => {
-  iAlert('未登录', '去登录', () => {
+  iAlert('请先登录', '确定', () => {
     goLogin();
   });
 };
@@ -387,15 +431,19 @@ let doShake = () => {
           });
           break;
         case '01': //未登陆
+          setDiscBtn(true);
           noLogin();
           break;
         case '02': //系统异常
+          setDiscBtn(true);
           iAlert('请求超时，请稍后重试！', '确定', () => {});
           break;
         case '03': //没有掷骰子机会
+          setDiscBtn(true);
           showShareModal();
           break;
         case '04': //没有选取角色
+          setDiscBtn(true);
           showSelectModal();
           break;
         case '06': //活动未开始
@@ -403,6 +451,7 @@ let doShake = () => {
           iAlert('不在活动时间内哦！', '确定', () => {});
           break;
         case '08': //非俱乐部会员
+          setDiscBtn(true);
           iAlert('请先加入中国移动客户俱乐部会员', '确定', () => {
             goVipJoin(activityId, channel);
           });
@@ -412,12 +461,14 @@ let doShake = () => {
           break;
         default:
           //不正确的code
+          setDiscBtn(true);
           iAlert('请求超时，请稍后重试！', '确定', () => {});
           break;
       }
     })
     .catch(err => {
       console.log(err);
+      setDiscBtn(true);
       iAlert('请求超时，请稍后重试！', '确定', () => {});
     });
 };
@@ -427,6 +478,7 @@ interface IGameState {
   sex?: string;
   isEuccess?: string;
   diceCount?: string;
+  lottery?: string;
 }
 let gameState: IGameState = {};
 
@@ -444,9 +496,22 @@ let userWalkInfo = () => {
         case '00':
           sex = res.data.resInfo.sex;
           gameState = res.data.resInfo;
-          if (gameState.isEuccess == 'Y') {
-            showSuccessModal();
-          } else {
+          if (gameState.isEuccess == 'Y' && gameState.lottery == 'Y') {
+            window.successModal_mc.visible = true;
+            setDiscBtn(false);
+            setLab(false);
+            if (gameState.sex == '0') {
+              window.boy.visible = true;
+              window.peo_target = window.boy;
+            }
+            if (gameState.sex == '1') {
+              window.girl.visible = true;
+              window.peo_target = window.girl;
+            }
+            locationPeo(channel, '27');
+          } else if (gameState.isEuccess == 'Y' && gameState.lottery == 'N') {
+            showSuccessModal();//去抽奖
+          }else {
             showIntroduceModal(true);
           }
           break;

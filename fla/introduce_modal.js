@@ -3,7 +3,7 @@
 var p; // shortcut to reference prototypes
 var lib={};var ss={};var img={};
 lib.ssMetadata = [
-		{name:"introduce_modal_atlas_", frames: [[0,0,865,497],[0,499,705,140],[707,595,151,37],[707,634,151,37],[707,499,186,46],[707,547,186,46]]}
+		{name:"introduce_modal_atlas_", frames: [[707,634,151,37],[0,0,865,497],[0,499,705,140],[707,499,186,46],[707,547,186,46],[707,595,151,37]]}
 ];
 
 
@@ -11,42 +11,42 @@ lib.ssMetadata = [
 
 
 
-(lib.introduce = function() {
+(lib.弹框web_03 = function() {
 	this.spriteSheet = ss["introduce_modal_atlas_"];
 	this.gotoAndStop(0);
 }).prototype = p = new cjs.Sprite();
 
 
 
-(lib.jieshao = function() {
+(lib.introduce = function() {
 	this.spriteSheet = ss["introduce_modal_atlas_"];
 	this.gotoAndStop(1);
 }).prototype = p = new cjs.Sprite();
 
 
 
-(lib.login_btn = function() {
+(lib.jieshao = function() {
 	this.spriteSheet = ss["introduce_modal_atlas_"];
 	this.gotoAndStop(2);
 }).prototype = p = new cjs.Sprite();
 
 
 
-(lib.login_btn_click = function() {
+(lib.togame_btn = function() {
 	this.spriteSheet = ss["introduce_modal_atlas_"];
 	this.gotoAndStop(3);
 }).prototype = p = new cjs.Sprite();
 
 
 
-(lib.togame_btn = function() {
+(lib.togame_click_btn = function() {
 	this.spriteSheet = ss["introduce_modal_atlas_"];
 	this.gotoAndStop(4);
 }).prototype = p = new cjs.Sprite();
 
 
 
-(lib.togame_click_btn = function() {
+(lib.www_03 = function() {
 	this.spriteSheet = ss["introduce_modal_atlas_"];
 	this.gotoAndStop(5);
 }).prototype = p = new cjs.Sprite();
@@ -110,15 +110,15 @@ p.nominalBounds = new cjs.Rectangle(-93,-23,186,46);
 }).prototype = getMCSymbolPrototype(lib.Symbol1, new cjs.Rectangle(-601,-381,1202,762), null);
 
 
-(lib.login_btn_1 = function(mode,startPosition,loop) {
+(lib.login_btn = function(mode,startPosition,loop) {
 	this.initialize(mode,startPosition,loop,{});
 
 	// 图层_1
-	this.instance = new lib.login_btn();
+	this.instance = new lib.www_03();
 	this.instance.parent = this;
 	this.instance.setTransform(-75.5,-18.5);
 
-	this.instance_1 = new lib.login_btn_click();
+	this.instance_1 = new lib.弹框web_03();
 	this.instance_1.parent = this;
 	this.instance_1.setTransform(-75.5,-18.5);
 
@@ -156,11 +156,11 @@ p.nominalBounds = new cjs.Rectangle(-75.5,-18.5,151,37);
 	this.timeline.addTween(cjs.Tween.get(this).call(this.frame_0).wait(1));
 
 	// 登录按钮
-	this.login_btn = new lib.login_btn_1();
+	this.login_btn = new lib.login_btn();
 	this.login_btn.name = "login_btn";
 	this.login_btn.parent = this;
-	this.login_btn.setTransform(605.5,542.5);
-	new cjs.ButtonHelper(this.login_btn, 0, 1, 2, false, new lib.login_btn_1(), 3);
+	this.login_btn.setTransform(605.5,542.5,1.04,1.04);
+	new cjs.ButtonHelper(this.login_btn, 0, 1, 2, false, new lib.login_btn(), 3);
 
 	this.timeline.addTween(cjs.Tween.get(this.login_btn).wait(1));
 
@@ -205,7 +205,7 @@ lib.properties = {
 	color: "#FFFFFF",
 	opacity: 1.00,
 	manifest: [
-		{src:"images/introduce_modal_atlas_.png?1534814332518", id:"introduce_modal_atlas_"}
+		{src:"images/introduce_modal_atlas_.png?1535441137609", id:"introduce_modal_atlas_"}
 	],
 	preloads: []
 };

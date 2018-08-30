@@ -1,7 +1,7 @@
 {
   "name": "walkpower",
   "version": "1.0.0",
-  "description": "",
+  "description": "行走的力量",
   "main": "index.js",
   "scripts": {
     "start": "cross-env NODE_ENV=development module=app npx concurrently --kill-others \"node tools/server.js\" --prefix \"[{name}]\" --names \"ROLLUP,SERVER\"",
@@ -24,6 +24,7 @@
     "cross-env": "^5.2.0",
     "express": "^4.16.3",
     "gulp": "^3.9.1",
+    "gulp-header": "^2.0.5",
     "gulp-rename": "^1.4.0",
     "gulp-uglify": "^3.0.1",
     "gulp-uglifycss": "^1.1.0",

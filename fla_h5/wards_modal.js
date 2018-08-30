@@ -3,7 +3,7 @@
 var p; // shortcut to reference prototypes
 var lib={};var ss={};var img={};
 lib.ssMetadata = [
-		{name:"wards_modal_atlas_", frames: [[0,667,556,47],[178,716,176,43],[0,716,176,43],[558,667,177,43],[558,712,177,43],[0,0,650,665]]}
+		{name:"wards_modal_atlas_", frames: [[0,667,556,47],[652,90,176,43],[652,135,176,43],[652,0,177,43],[652,45,177,43],[558,667,186,47],[0,0,650,665]]}
 ];
 
 
@@ -46,9 +46,16 @@ lib.ssMetadata = [
 
 
 
-(lib.wards_bg = function() {
+(lib.my_03 = function() {
 	this.spriteSheet = ss["wards_modal_atlas_"];
 	this.gotoAndStop(5);
+}).prototype = p = new cjs.Sprite();
+
+
+
+(lib.wards_bg = function() {
+	this.spriteSheet = ss["wards_modal_atlas_"];
+	this.gotoAndStop(6);
 }).prototype = p = new cjs.Sprite();
 // helper functions:
 
@@ -89,6 +96,22 @@ function getMCSymbolPrototype(symbol, nominalBounds, frameBounds) {
 }).prototype = getMCSymbolPrototype(lib.shade, new cjs.Rectangle(-375,-667,750,1334), null);
 
 
+(lib.noneword = function(mode,startPosition,loop) {
+	this.initialize(mode,startPosition,loop,{});
+
+	// Layer_1
+	this.text = new cjs.Text("还没有奖品哦！", "22px 'Arial'", "#FF9900");
+	this.text.lineHeight = 33;
+	this.text.lineWidth = 160;
+	this.text.alpha = 0.49803922;
+	this.text.parent = this;
+	this.text.setTransform(-80,-15.4);
+
+	this.timeline.addTween(cjs.Tween.get(this.text).wait(1));
+
+}).prototype = getMCSymbolPrototype(lib.noneword, new cjs.Rectangle(-82,-17.4,164,34.8), null);
+
+
 (lib.get_btn = function(mode,startPosition,loop) {
 	this.initialize(mode,startPosition,loop,{});
 
@@ -125,48 +148,43 @@ p.nominalBounds = new cjs.Rectangle(-88.5,-21.5,177,43);
 p.nominalBounds = new cjs.Rectangle(-88,-21.5,176,43);
 
 
-(lib.text_mc = function(mode,startPosition,loop) {
+(lib.ward_item = function(mode,startPosition,loop) {
 	this.initialize(mode,startPosition,loop,{});
 
 	// 领取按钮
-	this.get_btn = new lib.get_btn();
-	this.get_btn.name = "get_btn";
-	this.get_btn.parent = this;
-	this.get_btn.setTransform(189.5,1.5);
-	new cjs.ButtonHelper(this.get_btn, 0, 1, 2, false, new lib.get_btn(), 3);
+	this.lq_btn = new lib.get_btn();
+	this.lq_btn.name = "lq_btn";
+	this.lq_btn.parent = this;
+	this.lq_btn.setTransform(441.5,11.5);
+	new cjs.ButtonHelper(this.lq_btn, 0, 1, 2, false, new lib.get_btn(), 3);
 
-	this.timeline.addTween(cjs.Tween.get(this.get_btn).wait(1));
+	this.timeline.addTween(cjs.Tween.get(this.lq_btn).wait(1));
 
-	// 图层_3 (mask)
-	var mask = new cjs.Shape();
-	mask._off = true;
-	mask.graphics.p("A4XCXIAAktMAwwAAAIAAEtg");
-	mask.setTransform(-110,2.4);
-
-	// 文字
-	this.award_text = new cjs.Text("咪咕阅读七天免费至尊全站包", "22px 'SimHei'", "#FF8B00");
-	this.award_text.name = "award_text";
-	this.award_text.lineHeight = 24;
-	this.award_text.lineWidth = 308;
-	this.award_text.parent = this;
-	this.award_text.setTransform(-264,-10.8);
-
-	var maskedShapeInstanceList = [this.award_text];
-
-	for(var shapedInstanceItr = 0; shapedInstanceItr < maskedShapeInstanceList.length; shapedInstanceItr++) {
-		maskedShapeInstanceList[shapedInstanceItr].mask = mask;
-	}
-
-	this.timeline.addTween(cjs.Tween.get(this.award_text).wait(1));
-
-	// 图层_1
-	this.instance = new lib.beijing();
+	// 已领取
+	this.instance = new lib.my_03();
 	this.instance.parent = this;
-	this.instance.setTransform(-278,-23.5);
+	this.instance.setTransform(346,-10);
 
 	this.timeline.addTween(cjs.Tween.get(this.instance).wait(1));
 
-}).prototype = getMCSymbolPrototype(lib.text_mc, new cjs.Rectangle(-278,-23.5,556,47), null);
+	// 文字
+	this.gift = new cjs.Text("咪咕阅读七天免费至尊全站包", "22px 'Arial'", "#FF8B00");
+	this.gift.name = "gift";
+	this.gift.lineHeight = 33;
+	this.gift.lineWidth = 308;
+	this.gift.parent = this;
+	this.gift.setTransform(-2.1,-0.8);
+
+	this.timeline.addTween(cjs.Tween.get(this.gift).wait(1));
+
+	// 图层_1
+	this.instance_1 = new lib.beijing();
+	this.instance_1.parent = this;
+	this.instance_1.setTransform(-16,-14);
+
+	this.timeline.addTween(cjs.Tween.get(this.instance_1).wait(1));
+
+}).prototype = getMCSymbolPrototype(lib.ward_item, new cjs.Rectangle(-16,-14,556,51), null);
 
 
 // stage content:
@@ -177,11 +195,10 @@ p.nominalBounds = new cjs.Rectangle(-88,-21.5,176,43);
 	this.frame_0 = function() {
 		this.visible = false
 		window.wardsModal_mc = this
-	}
-	this.frame_1 = function() {
+		
 		this.stop()
 		var self = this
-		this.closeBtn.addEventListener('click', closeModalsWards)
+		this.closeBtn.addEventListener('click', closeModalsWards);
 		
 		function closeModalsWards() {
 			self.visible = false
@@ -189,7 +206,7 @@ p.nominalBounds = new cjs.Rectangle(-88,-21.5,176,43);
 	}
 
 	// actions tween:
-	this.timeline.addTween(cjs.Tween.get(this).call(this.frame_0).wait(1).call(this.frame_1).wait(1));
+	this.timeline.addTween(cjs.Tween.get(this).call(this.frame_0).wait(2));
 
 	// 关闭按钮
 	this.closeBtn = new lib.close_btn();
@@ -201,27 +218,20 @@ p.nominalBounds = new cjs.Rectangle(-88,-21.5,176,43);
 	this.timeline.addTween(cjs.Tween.get(this.closeBtn).wait(2));
 
 	// 奖品
-	this.text4 = new lib.text_mc();
-	this.text4.name = "text4";
-	this.text4.parent = this;
-	this.text4.setTransform(375,794.2);
+	this.ward_item = new lib.ward_item();
+	this.ward_item.name = "ward_item";
+	this.ward_item.parent = this;
+	this.ward_item.setTransform(128.1,532.5);
 
-	this.text3 = new lib.text_mc();
-	this.text3.name = "text3";
-	this.text3.parent = this;
-	this.text3.setTransform(375,704.2);
+	this.timeline.addTween(cjs.Tween.get(this.ward_item).wait(2));
 
-	this.text2 = new lib.text_mc();
-	this.text2.name = "text2";
-	this.text2.parent = this;
-	this.text2.setTransform(375,620.1);
+	// none
+	this.noneward = new lib.noneword();
+	this.noneward.name = "noneward";
+	this.noneward.parent = this;
+	this.noneward.setTransform(389,662.8);
 
-	this.text1 = new lib.text_mc();
-	this.text1.name = "text1";
-	this.text1.parent = this;
-	this.text1.setTransform(375,532.5);
-
-	this.timeline.addTween(cjs.Tween.get({}).to({state:[{t:this.text1},{t:this.text2},{t:this.text3},{t:this.text4}]}).wait(2));
+	this.timeline.addTween(cjs.Tween.get(this.noneward).wait(2));
 
 	// 边框
 	this.instance = new lib.wards_bg();
@@ -252,7 +262,7 @@ lib.properties = {
 	color: "#FFFFFF",
 	opacity: 1.00,
 	manifest: [
-		{src:"images/wards_modal_atlas_.png?1534758190510", id:"wards_modal_atlas_"}
+		{src:"images/wards_modal_atlas_.png?1535101011937", id:"wards_modal_atlas_"}
 	],
 	preloads: []
 };

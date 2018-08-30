@@ -3,108 +3,109 @@
  */
 
 (function(win, doc, $) {
-    var defaultOpt = {
-        rotateNum: 5, //转盘转动圈数
-        body: '', //大转盘整体的选择符或zepto对象
+  var defaultOpt = {
+    rotateNum: 5, //转盘转动圈数
+    body: '', //大转盘整体的选择符或zepto对象
 
-        disabledHandler: function() {}, //禁止抽奖时回调
+    disabledHandler: function() {}, //禁止抽奖时回调
 
-        clickCallback: function() {}, //点击抽奖按钮,再次回调中实现访问后台获取抽奖结果,拿到抽奖结果后显示抽奖画面
+    clickCallback: function() {}, //点击抽奖按钮,再次回调中实现访问后台获取抽奖结果,拿到抽奖结果后显示抽奖画面
 
-        KinerLotteryHandler: function(deg) {} //抽奖结束回调
-    };
+    KinerLotteryHandler: function(deg) {} //抽奖结束回调
+  };
 
-    function KinerLottery(opts) {
-        this.opts = $.extend(true, {}, defaultOpt, opts);
+  function KinerLottery(opts) {
+    this.opts = $.extend(true, {}, defaultOpt, opts);
 
-        this.doing = false;
+    this.doing = false;
 
-        this.init();
-    }
+    this.init();
+  }
 
-    KinerLottery.prototype.setOpts = function(opts) {
-        this.opts = $.extend(true, {}, defaultOpt, opts);
+  KinerLottery.prototype.setOpts = function(opts) {
+    this.opts = $.extend(true, {}, defaultOpt, opts);
 
-        this.init();
-    };
+    this.init();
+  };
 
-    KinerLottery.prototype.init = function() {
-        var self = this;
+  KinerLottery.prototype.init = function() {
+    var self = this;
+    FastClick.attach(document.body);
+    this.defNum = this.opts.rotateNum * 360; //转盘需要转动的角度
 
-        this.defNum = this.opts.rotateNum * 360; //转盘需要转动的角度
+    //点击抽奖
+    $('body').on('click', '.KinerLotteryBtn', function(e) {
+      e.preventDefault();
+      if ($(this).hasClass('start') && !self.doing) {
+        console.log('点击');
 
-        //点击抽奖
-        $('body').on('click', '.KinerLotteryBtn', function() {
-            if ($(this).hasClass('start') && !self.doing) {
-                console.log('点击');
+        self.opts.clickCallback.call(self);
+      } else {
+        var key = $(this).hasClass('no-start')
+          ? 'noStart'
+          : $(this).hasClass('completed')
+            ? 'completed'
+            : 'illegal';
 
-                self.opts.clickCallback.call(self);
-            } else {
-                var key = $(this).hasClass('no-start')
-                    ? 'noStart'
-                    : $(this).hasClass('completed')
-                        ? 'completed'
-                        : 'illegal';
+        self.opts.disabledHandler(key);
+      }
+    });
 
-                self.opts.disabledHandler(key);
-            }
-        });
+    $(this.opts.body)
+      .find('.KinerLotteryContent')
+      .get(0)
+      .addEventListener('webkitTransitionEnd', function() {
+        self.doing = false;
 
-        $(this.opts.body)
-            .find('.KinerLotteryContent')
-            .get(0)
-            .addEventListener('webkitTransitionEnd', function() {
-                self.doing = false;
+        var deg = $(self.opts.body).attr('data-deg');
 
-                var deg = $(self.opts.body).attr('data-deg');
-
-                if (self.opts.direction == 0) {
-                    $(self.opts.body).attr('data-deg', 360 - deg);
-                    $(self.opts.body)
-                        .find('.KinerLotteryContent')
-                        .css({
-                            '-webkit-transition': 'none',
-                            transition: 'none',
-                            '-webkit-transform': 'rotate(' + deg + 'deg)',
-                            transform: 'rotate(' + deg + 'deg)'
-                        });
-                    self.opts.KinerLotteryHandler(360 - deg);
-                } else {
-                    $(self.opts.body).attr('data-deg', deg);
-                    $(self.opts.body)
-                        .find('.KinerLotteryContent')
-                        .css({
-                            '-webkit-transition': 'none',
-                            transition: 'none',
-                            '-webkit-transform': 'rotate(' + -deg + 'deg)',
-                            transform: 'rotate(' + -deg + 'deg)'
-                        });
-                    self.opts.KinerLotteryHandler(deg);
-                }
-            });
-    };
-
-    KinerLottery.prototype.goKinerLottery = function(_deg) {
-        if (this.doing) {
-            return;
-        }
-        var deg = _deg + this.defNum;
-        var realDeg = this.opts.direction == 0 ? deg : -deg;
-        this.doing = true;
-        $(this.opts.body)
-            .find('.KinerLotteryBtn')
-            .addClass('doing');
-
-        $(this.opts.body)
+        if (self.opts.direction == 0) {
+          $(self.opts.body).attr('data-deg', 360 - deg);
+          $(self.opts.body)
             .find('.KinerLotteryContent')
             .css({
-                '-webkit-transition': 'all 5s',
-                transition: 'all 5s',
-                '-webkit-transform': 'rotate(' + realDeg + 'deg)',
-                transform: 'rotate(' + realDeg + 'deg)'
+              '-webkit-transition': 'none',
+              transition: 'none',
+              '-webkit-transform': 'rotate(' + deg + 'deg)',
+              transform: 'rotate(' + deg + 'deg)'
             });
-        $(this.opts.body).attr('data-deg', _deg);
-    };
+          self.opts.KinerLotteryHandler(360 - deg);
+        } else {
+          $(self.opts.body).attr('data-deg', deg);
+          $(self.opts.body)
+            .find('.KinerLotteryContent')
+            .css({
+              '-webkit-transition': 'none',
+              transition: 'none',
+              '-webkit-transform': 'rotate(' + -deg + 'deg)',
+              transform: 'rotate(' + -deg + 'deg)'
+            });
+          self.opts.KinerLotteryHandler(deg);
+        }
+      });
+  };
 
-    win.KinerLottery = KinerLottery;
+  KinerLottery.prototype.goKinerLottery = function(_deg) {
+    if (this.doing) {
+      return;
+    }
+    var deg = _deg + this.defNum;
+    var realDeg = this.opts.direction == 0 ? deg : -deg;
+    this.doing = true;
+    $(this.opts.body)
+      .find('.KinerLotteryBtn')
+      .addClass('doing');
+
+    $(this.opts.body)
+      .find('.KinerLotteryContent')
+      .css({
+        '-webkit-transition': 'all 5s',
+        transition: 'all 5s',
+        '-webkit-transform': 'rotate(' + realDeg + 'deg)',
+        transform: 'rotate(' + realDeg + 'deg)'
+      });
+    $(this.opts.body).attr('data-deg', _deg);
+  };
+
+  win.KinerLottery = KinerLottery;
 })(window, document, $);

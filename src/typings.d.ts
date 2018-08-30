@@ -11,3 +11,4 @@ declare const leadeon: any;
 declare const EventProxy: any;
 declare module 'history/createHashHistory';
 declare const Zepto: any;
+declare const FastClick: any;

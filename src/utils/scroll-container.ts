@@ -339,12 +339,66 @@ class ScrollContainer extends createjs.Container {
       this.container.x = e.target.value;
       this.dispatchEvent('scroll');
     });
-    canvas.addEventListener('mousewheel', e => {
+
+    let scrollFunc = e => {
       const h = this.contentSize.height - this.getBounds().height;
       const w = this.contentSize.width - this.getBounds().width;
       this.scrollY += e.wheelDeltaY;
       this.scrollX += e.wheelDeltaX;
+    };
+
+    function wheel(obj, fn, useCapture) {
+      var mousewheelevt = /Firefox/i.test(navigator.userAgent) ? 'DOMMouseScroll' : 'mousewheel'; //FF doesn't recognize mousewheel as of FF3.x
+      if (obj.attachEvent)
+        //if IE (and Opera depending on user setting)
+        obj.attachEvent('on' + mousewheelevt, handler, useCapture);
+      else if (obj.addEventListener)
+        //WC3 browsers
+        obj.addEventListener(mousewheelevt, handler, useCapture);
+
+      function handler(event) {
+        var delta = 0;
+        var event = window.event || event;
+        var delta = event.detail ? -event.detail / 3 : event.wheelDelta / 120;
+        if (event.preventDefault) event.preventDefault();
+        event.returnValue = false;
+        return fn.apply(obj, [event, delta]);
+      }
+    }
+
+    wheel(canvas, scrollFunc, false);
+
+    let pressmove_y;
+    this.on('pressmove', e => {
+      if (!pressmove_y) {
+        pressmove_y = e.stageY;
+      }
+      if (e.stageY > pressmove_y) {
+        this.scrollY += 6;
+      } else {
+        this.scrollY -= 6;
+      }
     });
+    this.on('pressup', e => {
+      pressmove_y = undefined;
+    });
+    // var mousewheelevt = /Firefox/i.test(navigator.userAgent) ? 'DOMMouseScroll' : 'mousewheel'; //FF doesn't recognize mousewheel as of FF3.x
+    // if (document.attachEvent)
+    //   //if IE (and Opera depending on user setting)
+    //   document.attachEvent('on' + mousewheelevt, function(e) {
+    //     alert('Mouse wheel movement detected!');
+    //   });
+    // else if (document.addEventListener)
+    //   //WC3 browsers
+    //   document.addEventListener(
+    //     mousewheelevt,
+    //     function(e) {
+    //       alert('Mouse wheel movement detected!');
+    //     },
+    //     false
+    //   );
+
+    // canvas.addEventListener('mousewheel', scrollFunc);
 
     this.superAddChild = this.addChild;
 

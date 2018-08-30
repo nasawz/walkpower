@@ -104,49 +104,136 @@ let showCommonModal = type => {
 let showRuleModal = () => {
   window.ruleModal_mc.visible = true;
 };
-
+let wards_scroll = null;
 /**
  * 显示我的奖品
  */
 let showWardsModal = () => {
+  // let res = {
+  //   data: {
+  //     ResInfo: [
+  //       { giftName: 'sssss', giftType: 1, url: 'http://baidu.com' },
+  //       { giftName: 'sssss', giftType: 1, url: 'http://baidu.com' },
+  //       { giftName: 'sssss', giftType: 1, url: 'http://baidu.com' },
+  //       { giftName: 'sssss', giftType: 1, url: 'http://baidu.com' },
+  //       { giftName: 'sssss', giftType: 1, url: 'http://baidu.com' },
+  //       { giftName: 'sssss', giftType: 1, url: 'http://baidu.com' },
+  //       { giftName: 'sssss', giftType: 0, url: '' },
+  //       { giftName: 'sssss', giftType: 0, url: '' },
+  //       { giftName: 'sssss', giftType: 0, url: '' },
+  //       { giftName: 'sssss', giftType: 0, url: '' },
+  //       { giftName: 'sssss', giftType: 0, url: '' },
+  //       { giftName: 'sssss', giftType: 0, url: '' },
+  //       { giftName: 'sssss', giftType: 0, url: '' },
+  //       { giftName: 'sssss', giftType: 0, url: '' },
+  //       { giftName: 'sssss', giftType: 0, url: '' },
+  //       { giftName: 'sssss', giftType: 0, url: '' },
+  //       { giftName: 'sssss', giftType: 0, url: '' },
+  //       { giftName: 'sssss', giftType: 0, url: '' },
+  //       { giftName: 'sssss', giftType: 0, url: '' },
+  //       { giftName: 'sssss', giftType: 0, url: '' },
+  //       { giftName: 'sssss', giftType: 0, url: '' },
+  //       { giftName: 'sssss', giftType: 0, url: '' },
+  //       { giftName: 'sssss', giftType: 0, url: '' },
+  //       { giftName: 'sssss', giftType: 0, url: '' },
+  //       { giftName: 'sssss', giftType: 0, url: '' },
+  //       { giftName: 'sssss', giftType: 0, url: '' },
+  //       { giftName: 'sssss', giftType: 0, url: '' },
+  //       { giftName: 'sssss', giftType: 0, url: '' },
+  //       { giftName: 'sssss', giftType: 0, url: '' },
+  //       { giftName: 'sssss', giftType: 0, url: '' },
+  //       { giftName: 'sssss', giftType: 0, url: '' },
+  //       { giftName: 'sssss', giftType: 0, url: '' },
+  //       { giftName: 'sssss', giftType: 0, url: '' },
+  //       { giftName: 'sssss', giftType: 0, url: '' },
+  //       { giftName: 'sssss', giftType: 0, url: '' },
+  //       { giftName: 'sssss', giftType: 0, url: '' },
+  //       { giftName: 'sssss', giftType: 0, url: '' }
+  //     ]
+  //   }
+  // };
   walk_myGifts(`${activityId},363`)
     .then(res => {
-      console.log('显示我的奖品', res.data);
+      // console.log('显示我的奖品', res.data);
       window.wardsModal_mc.visible = true;
-      // TODO 控制wardsModal_mc 展示的文字以及按钮的状态
-      console.log(window.noneWard);
-      console.log(window.wardText);
-      let resCode = res.data.ResCode;
-      let resInfo = res.data.ResInfo;
-      switch (resCode) {
-        case '100': //未登陆
-          noLogin();
-          break;
-        case '105': //没有奖品
-          window.wardText[0].visible = false;
-          window.wardText[1].visible = false;
-          window.wardText[2].visible = false;
-          window.wardText[3].visible = false;
-          console.log(window.wardText[0].visible);
-          window.noneWard.visible = true;
-          break;
-        case '000': //显示奖品
-          window.wardText[0].visible = true;
-          window.wardText[0].children[2].text = resInfo[0].giftName;
-          window.wardText[1].visible = false;
-          window.wardText[2].visible = false;
-          window.wardText[3].visible = false;
-          console.log(window.wardText[0].visible);
-          window.noneWard.visible = false;
-          break;
-        default:
-          console.log('不正确的code:', resCode);
-          break;
+      window.wardsModal_mc.removeChild(window.wardsModal_mc.ward_item);
+      if (wards_scroll) {
+        window.wardsModal_mc.removeChild(wards_scroll);
       }
+      if (res.data.ResInfo.length == 0) {
+        window.wardsModal_mc.noneward.visible = true;
+      } else {
+        window.wardsModal_mc.noneward.visible = false;
+        let count = res.data.ResInfo.length;
+        let canvas = document.querySelector('body');
+        let scroll = new createjs.ScrollContainer(canvas);
+        scroll.x = 103;
+        scroll.y = 513;
+        scroll.setBounds(0, 0, 570, 325);
+        scroll.contentSize = {
+          width: 560,
+          height: count * 50 + 10
+        };
+        window.wardsModal_mc.addChild(scroll);
+        wards_scroll = scroll;
+        let lib = AdobeAn.getComposition('56E5B54892F9CA41916DD3751A0B7295').getLibrary();
+        for (let index = 0; index < count; index++) {
+          const element = res.data.ResInfo[index];
+          let ward_item = new lib.ward_item();
+          ward_item.gift.text = element.giftName;
+
+          if (element.giftType == 0) {
+            ward_item.lq_btn.visible = false;
+          } else {
+            ward_item.lq_btn.addEventListener('click', () => {
+              window.open(element.url);
+            });
+          }
+
+          ward_item.parent = scroll;
+          ward_item.setTransform(20, 10 + index * 50);
+          scroll.addChild(ward_item);
+        }
+      }
+
+      //.ward_item
+
+      // window.wardsModal_mc
+
+      // TODO 控制wardsModal_mc 展示的文字以及按钮的状态
+      // console.log(window.noneWard);
+      // console.log(window.wardText);
+      // let resCode = res.data.ResCode;
+      // let resInfo = res.data.ResInfo;
+      // switch (resCode) {
+      //   case '100': //未登陆
+      //     noLogin();
+      //     break;
+      //   case '105': //没有奖品
+      //     window.wardText[0].visible = false;
+      //     window.wardText[1].visible = false;
+      //     window.wardText[2].visible = false;
+      //     window.wardText[3].visible = false;
+      //     console.log(window.wardText[0].visible);
+      //     window.noneWard.visible = true;
+      //     break;
+      //   case '000': //显示奖品
+      //     window.wardText[0].visible = true;
+      //     window.wardText[0].children[2].text = resInfo[0].giftName;
+      //     window.wardText[1].visible = false;
+      //     window.wardText[2].visible = false;
+      //     window.wardText[3].visible = false;
+      //     console.log(window.wardText[0].visible);
+      //     window.noneWard.visible = false;
+      //     break;
+      //   default:
+      //     console.log('不正确的code:', resCode);
+      //     break;
+      // }
     })
     .catch(err => {
-      console.log(err);
       iAlert('请求超时，请稍后重试！', '确定', () => {});
+      console.log(err);
     });
 };
 
@@ -166,7 +253,8 @@ let showSuccessModal = () => {
   }
   locationPeo(channel, '27');
 
-  window.successModal_mc.visible = true;
+  // window.successModal_mc.visible = true;
+  window.goLottery();
 };
 
 /**
@@ -176,9 +264,9 @@ let showSanfangModal = gifts => {
   window.sanfangModal_mc.initGifts(gifts);
   window.sanfangModal_mc.visible = true;
 };
+
 let onLingqu = (window.onLingqu = (gift: { giftName: string; giftUrl: string }) => {
-  console.log(gift);
-  // window.open(gift.giftUrl);
+  window.open(gift.giftUrl);
 });
 
 /**
@@ -312,7 +400,7 @@ let moveFinish = (type, end, giftList, knowledgeName, garden, diceCount) => {
 };
 //未登录弹框提示去登陆
 let noLogin = () => {
-  iAlert('未登录', '去登录', () => {
+  iAlert('请先登录', '确定', () => {
     goLogin();
   });
 };
@@ -343,15 +431,19 @@ let doShake = () => {
           });
           break;
         case '01': //未登陆
+          setDiscBtn(true);
           noLogin();
           break;
         case '02': //系统异常
+          setDiscBtn(true);
           iAlert('请求超时，请稍后重试！', '确定', () => {});
           break;
         case '03': //没有掷骰子机会
+          setDiscBtn(true);
           showShareModal();
           break;
         case '04': //没有选取角色
+          setDiscBtn(true);
           showSelectModal();
           break;
         case '06': //活动未开始
@@ -359,6 +451,7 @@ let doShake = () => {
           iAlert('不在活动时间内哦！', '确定', () => {});
           break;
         case '08': //非俱乐部会员
+          setDiscBtn(true);
           iAlert('请先加入中国移动客户俱乐部会员', '确定', () => {
             goVipJoin(activityId, channel);
           });
@@ -368,12 +461,14 @@ let doShake = () => {
           break;
         default:
           //不正确的code
+          setDiscBtn(true);
           iAlert('请求超时，请稍后重试！', '确定', () => {});
           break;
       }
     })
     .catch(err => {
       console.log(err);
+      setDiscBtn(true);
       iAlert('请求超时，请稍后重试！', '确定', () => {});
     });
 };
@@ -383,6 +478,7 @@ interface IGameState {
   sex?: string;
   isEuccess?: string;
   diceCount?: string;
+  lottery?: string;
 }
 let gameState: IGameState = {};
 
@@ -400,9 +496,22 @@ let userWalkInfo = () => {
         case '00':
           sex = res.data.resInfo.sex;
           gameState = res.data.resInfo;
-          if (gameState.isEuccess == 'Y') {
-            showSuccessModal();
-          } else {
+          if (gameState.isEuccess == 'Y' && gameState.lottery == 'Y') {
+            window.successModal_mc.visible = true;
+            setDiscBtn(false);
+            setLab(false);
+            if (gameState.sex == '0') {
+              window.boy.visible = true;
+              window.peo_target = window.boy;
+            }
+            if (gameState.sex == '1') {
+              window.girl.visible = true;
+              window.peo_target = window.girl;
+            }
+            locationPeo(channel, '27');
+          } else if (gameState.isEuccess == 'Y' && gameState.lottery == 'N') {
+            showSuccessModal();//去抽奖
+          }else {
             showIntroduceModal(true);
           }
           break;
@@ -444,7 +553,7 @@ let onSelectPeo = (window.onSelectPeo = peo => {
   if (peo == 'girl') {
     sel = '1';
   }
-  walk_putRole(sel, 'web')
+  walk_putRole(sel, channel)
     .then(res => {
       let resCode = res.data.resCode;
       switch (resCode) {

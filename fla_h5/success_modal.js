@@ -3,7 +3,7 @@
 var p; // shortcut to reference prototypes
 var lib={};var ss={};var img={};
 lib.ssMetadata = [
-		{name:"success_modal_atlas_", frames: [[509,1144,170,23],[0,1092,507,470],[0,652,551,438],[359,1564,205,50],[509,1092,205,50],[609,652,45,54],[553,652,54,52],[0,0,659,650],[0,1564,357,117]]}
+		{name:"success_modal_atlas_", frames: [[0,1066,585,167],[0,0,664,624],[0,626,551,438],[553,758,45,54],[553,704,54,52],[553,626,153,37],[553,665,153,37]]}
 ];
 
 
@@ -11,14 +11,14 @@ lib.ssMetadata = [
 
 
 
-(lib.gold = function() {
+(lib.弹框h5版2_03 = function() {
 	this.spriteSheet = ss["success_modal_atlas_"];
 	this.gotoAndStop(0);
 }).prototype = p = new cjs.Sprite();
 
 
 
-(lib.libao = function() {
+(lib.弹框h5版2_07 = function() {
 	this.spriteSheet = ss["success_modal_atlas_"];
 	this.gotoAndStop(1);
 }).prototype = p = new cjs.Sprite();
@@ -32,44 +32,30 @@ lib.ssMetadata = [
 
 
 
-(lib.lottery_btn = function() {
+(lib.pack1 = function() {
 	this.spriteSheet = ss["success_modal_atlas_"];
 	this.gotoAndStop(3);
 }).prototype = p = new cjs.Sprite();
 
 
 
-(lib.lottery_click_btn = function() {
+(lib.pack2 = function() {
 	this.spriteSheet = ss["success_modal_atlas_"];
 	this.gotoAndStop(4);
 }).prototype = p = new cjs.Sprite();
 
 
 
-(lib.pack1 = function() {
+(lib.ss_07 = function() {
 	this.spriteSheet = ss["success_modal_atlas_"];
 	this.gotoAndStop(5);
 }).prototype = p = new cjs.Sprite();
 
 
 
-(lib.pack2 = function() {
+(lib.ss_10 = function() {
 	this.spriteSheet = ss["success_modal_atlas_"];
 	this.gotoAndStop(6);
-}).prototype = p = new cjs.Sprite();
-
-
-
-(lib.success_bg = function() {
-	this.spriteSheet = ss["success_modal_atlas_"];
-	this.gotoAndStop(7);
-}).prototype = p = new cjs.Sprite();
-
-
-
-(lib.success_text = function() {
-	this.spriteSheet = ss["success_modal_atlas_"];
-	this.gotoAndStop(8);
 }).prototype = p = new cjs.Sprite();
 // helper functions:
 
@@ -156,18 +142,18 @@ p.nominalBounds = new cjs.Rectangle(-275.5,-219,551,438);
 	this.initialize(mode,startPosition,loop,{});
 
 	// 图层_1
-	this.instance = new lib.lottery_btn();
+	this.instance = new lib.ss_07();
 	this.instance.parent = this;
 	this.instance.setTransform(-102.5,-25);
 
-	this.instance_1 = new lib.lottery_click_btn();
+	this.instance_1 = new lib.ss_10();
 	this.instance_1.parent = this;
 	this.instance_1.setTransform(-102.5,-25);
 
 	this.timeline.addTween(cjs.Tween.get({}).to({state:[{t:this.instance}]}).to({state:[{t:this.instance_1}]},2).wait(2));
 
 }).prototype = p = new cjs.MovieClip();
-p.nominalBounds = new cjs.Rectangle(-102.5,-25,205,50);
+p.nominalBounds = new cjs.Rectangle(-102.5,-25,153,37);
 
 
 (lib.mh2_mc = function(mode,startPosition,loop) {
@@ -226,7 +212,7 @@ p.nominalBounds = new cjs.Rectangle(-161.5,-140.9,323,282);
 		this.golottery_btn.addEventListener("click",function(){
 			self.visible = false
 			//抽奖方法
-			window.goLottery()
+			//window.goLottery()
 		})
 	}
 
@@ -234,25 +220,11 @@ p.nominalBounds = new cjs.Rectangle(-161.5,-140.9,323,282);
 	this.timeline.addTween(cjs.Tween.get(this).call(this.frame_0).wait(1));
 
 	// 文字
-	this.instance = new lib.success_text();
+	this.instance = new lib.弹框h5版2_03();
 	this.instance.parent = this;
-	this.instance.setTransform(197,706);
+	this.instance.setTransform(83,617);
 
 	this.timeline.addTween(cjs.Tween.get(this.instance).wait(1));
-
-	// 金币
-	this.instance_1 = new lib.gold();
-	this.instance_1.parent = this;
-	this.instance_1.setTransform(290,688);
-
-	this.timeline.addTween(cjs.Tween.get(this.instance_1).wait(1));
-
-	// 礼包
-	this.instance_2 = new lib.libao();
-	this.instance_2.parent = this;
-	this.instance_2.setTransform(136,412);
-
-	this.timeline.addTween(cjs.Tween.get(this.instance_2).wait(1));
 
 	// 图层_14 (mask)
 	var mask = new cjs.Shape();
@@ -261,9 +233,35 @@ p.nominalBounds = new cjs.Rectangle(-161.5,-140.9,323,282);
 	mask.setTransform(379,709.1);
 
 	// 模糊4
+	this.instance_1 = new lib.mh2_mc();
+	this.instance_1.parent = this;
+	this.instance_1.setTransform(186.8,698.6,0.616,0.643,-160.3,0,0,-0.3,-0.1);
+
+	var maskedShapeInstanceList = [this.instance_1];
+
+	for(var shapedInstanceItr = 0; shapedInstanceItr < maskedShapeInstanceList.length; shapedInstanceItr++) {
+		maskedShapeInstanceList[shapedInstanceItr].mask = mask;
+	}
+
+	this.timeline.addTween(cjs.Tween.get(this.instance_1).wait(1));
+
+	// 模糊3
+	this.instance_2 = new lib.mh_mc();
+	this.instance_2.parent = this;
+	this.instance_2.setTransform(577.2,781.5,0.766,0.822,-177.2);
+
+	var maskedShapeInstanceList = [this.instance_2];
+
+	for(var shapedInstanceItr = 0; shapedInstanceItr < maskedShapeInstanceList.length; shapedInstanceItr++) {
+		maskedShapeInstanceList[shapedInstanceItr].mask = mask;
+	}
+
+	this.timeline.addTween(cjs.Tween.get(this.instance_2).wait(1));
+
+	// 模糊2
 	this.instance_3 = new lib.mh2_mc();
 	this.instance_3.parent = this;
-	this.instance_3.setTransform(186.8,698.6,0.616,0.643,-160.3,0,0,-0.3,-0.1);
+	this.instance_3.setTransform(492,523);
 
 	var maskedShapeInstanceList = [this.instance_3];
 
@@ -273,10 +271,10 @@ p.nominalBounds = new cjs.Rectangle(-161.5,-140.9,323,282);
 
 	this.timeline.addTween(cjs.Tween.get(this.instance_3).wait(1));
 
-	// 模糊3
+	// 模糊1
 	this.instance_4 = new lib.mh_mc();
 	this.instance_4.parent = this;
-	this.instance_4.setTransform(577.2,781.5,0.766,0.822,-177.2);
+	this.instance_4.setTransform(265.5,530);
 
 	var maskedShapeInstanceList = [this.instance_4];
 
@@ -286,65 +284,39 @@ p.nominalBounds = new cjs.Rectangle(-161.5,-140.9,323,282);
 
 	this.timeline.addTween(cjs.Tween.get(this.instance_4).wait(1));
 
-	// 模糊2
-	this.instance_5 = new lib.mh2_mc();
-	this.instance_5.parent = this;
-	this.instance_5.setTransform(492,523);
-
-	var maskedShapeInstanceList = [this.instance_5];
-
-	for(var shapedInstanceItr = 0; shapedInstanceItr < maskedShapeInstanceList.length; shapedInstanceItr++) {
-		maskedShapeInstanceList[shapedInstanceItr].mask = mask;
-	}
-
-	this.timeline.addTween(cjs.Tween.get(this.instance_5).wait(1));
-
-	// 模糊1
-	this.instance_6 = new lib.mh_mc();
-	this.instance_6.parent = this;
-	this.instance_6.setTransform(265.5,530);
-
-	var maskedShapeInstanceList = [this.instance_6];
-
-	for(var shapedInstanceItr = 0; shapedInstanceItr < maskedShapeInstanceList.length; shapedInstanceItr++) {
-		maskedShapeInstanceList[shapedInstanceItr].mask = mask;
-	}
-
-	this.timeline.addTween(cjs.Tween.get(this.instance_6).wait(1));
-
-	// 去抽奖按钮
+	// 确定按钮
 	this.golottery_btn = new lib.golottery_btn();
 	this.golottery_btn.name = "golottery_btn";
 	this.golottery_btn.parent = this;
-	this.golottery_btn.setTransform(375,883);
+	this.golottery_btn.setTransform(406.3,883.1,1.2,1.2,0,0,0,0.1,0.1);
 	new cjs.ButtonHelper(this.golottery_btn, 0, 1, 2, false, new lib.golottery_btn(), 3);
 
 	this.timeline.addTween(cjs.Tween.get(this.golottery_btn).wait(1));
 
 	// 礼花
-	this.instance_7 = new lib.hua_mc();
-	this.instance_7.parent = this;
-	this.instance_7.setTransform(379.5,678);
+	this.instance_5 = new lib.hua_mc();
+	this.instance_5.parent = this;
+	this.instance_5.setTransform(379.5,678);
 
-	this.timeline.addTween(cjs.Tween.get(this.instance_7).wait(1));
+	this.timeline.addTween(cjs.Tween.get(this.instance_5).wait(1));
 
 	// 边框
-	this.instance_8 = new lib.success_bg();
-	this.instance_8.parent = this;
-	this.instance_8.setTransform(33,367);
+	this.instance_6 = new lib.弹框h5版2_07();
+	this.instance_6.parent = this;
+	this.instance_6.setTransform(29,391);
 
-	this.timeline.addTween(cjs.Tween.get(this.instance_8).wait(1));
+	this.timeline.addTween(cjs.Tween.get(this.instance_6).wait(1));
 
 	// 遮罩
-	this.instance_9 = new lib.shade_mc();
-	this.instance_9.parent = this;
-	this.instance_9.setTransform(377,667);
+	this.instance_7 = new lib.shade_mc();
+	this.instance_7.parent = this;
+	this.instance_7.setTransform(377,667);
 
 	this.shape = new cjs.Shape();
 	this.shape.graphics.f().s("#99FF66").ss(1,1,1).p("Eg6lhoNMB1LAAAMAAADQbMh1LAAAg");
 	this.shape.setTransform(377,667);
 
-	this.timeline.addTween(cjs.Tween.get({}).to({state:[{t:this.shape},{t:this.instance_9}]}).wait(1));
+	this.timeline.addTween(cjs.Tween.get({}).to({state:[{t:this.shape},{t:this.instance_7}]}).wait(1));
 
 }).prototype = p = new cjs.MovieClip();
 p.nominalBounds = new cjs.Rectangle(376,666,752,1336);
@@ -357,7 +329,7 @@ lib.properties = {
 	color: "#FFFFFF",
 	opacity: 1.00,
 	manifest: [
-		{src:"images/success_modal_atlas_.png?1535017777984", id:"success_modal_atlas_"}
+		{src:"images/success_modal_atlas_.png?1535533454396", id:"success_modal_atlas_"}
 	],
 	preloads: []
 };
