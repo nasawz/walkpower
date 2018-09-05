@@ -6,8 +6,8 @@ export const onShare = channel => {
     let picUrl = burl + '/images/share100.png';
     let shareDesc = '';
 	if (channel == 'web') {
-		Zepto('#zhezhao').toggle();
-		Zepto('#soshid').toggle(); //显示隐藏分享模块
+		Zepto('#zhezhao').show();
+		Zepto('#soshid').show(); //显示隐藏分享模块
 		sosh('#soshid', {
 			url: shareUrl, // 分享的链接
 			title: shareTitle, // 分享的标题
@@ -32,8 +32,8 @@ export const onShare = channel => {
             }
         });
 	}else {
-		Zepto('#zhezhao').toggle();
-		Zepto('#soshm').toggle(); //显示隐藏分享模块
+		Zepto('#zhezhao').show();
+		Zepto('#soshm').show(); //显示隐藏分享模块
 		soshm('#soshm', {
 			url: shareUrl, // 分享的链接
 			title: shareTitle, // 分享的标题
@@ -47,8 +47,10 @@ export const onShare = channel => {
 		Zepto('#zhezhao').hide();	
 		if (channel == 'web') {
 			Zepto('#soshid').hide();
+			Zepto('.sosh-pop').removeClass("sosh-pop-show");
 		}else if (channel == 'touch' || channel == 'weChat'){
 			Zepto('#soshm').hide();
+			Zepto('.sosh-pop').removeClass("sosh-pop-show");
 		}
 	})
 

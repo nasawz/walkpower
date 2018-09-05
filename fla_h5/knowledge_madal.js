@@ -3,7 +3,7 @@
 var p; // shortcut to reference prototypes
 var lib={};var ss={};var img={};
 lib.ssMetadata = [
-		{name:"knowledge_madal_atlas_", frames: [[0,0,650,1069],[1304,0,650,851],[652,0,650,895],[1811,899,181,44],[1811,991,181,44],[1811,853,181,44],[1811,945,181,44],[1304,853,505,648],[0,1071,506,450],[652,897,506,491]]}
+		{name:"knowledge_madal_atlas_", frames: [[0,0,650,1069],[1304,0,650,851],[652,0,650,895],[1811,853,181,44],[1811,945,181,44],[1811,991,181,44],[1811,899,181,44],[1304,853,505,648],[0,1071,506,450],[652,897,506,491]]}
 ];
 
 
@@ -164,12 +164,17 @@ p.nominalBounds = new cjs.Rectangle(-90.5,-22,181,44);
 		
 		window.knowledgeModal_mc = this
 		
-		this.share_btn.addEventListener('click', window.onShare)
+		this.share_btn.addEventListener('click', closeAndShare)
 		this.goon_btn.addEventListener('click', closeModalsWards)
 		
 		var self = this;
 		
 		function closeModalsWards() {
+			self.visible = false
+		}
+		
+		function closeAndShare() {
+			window.onShare()
 			self.visible = false
 		}
 	}
@@ -254,7 +259,7 @@ lib.properties = {
 	color: "#FFFFFF",
 	opacity: 1.00,
 	manifest: [
-		{src:"images/knowledge_madal_atlas_.png?1534923594700", id:"knowledge_madal_atlas_"}
+		{src:"images/knowledge_madal_atlas_.png?1535689998684", id:"knowledge_madal_atlas_"}
 	],
 	preloads: []
 };

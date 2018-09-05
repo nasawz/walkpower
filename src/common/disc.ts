@@ -5,7 +5,7 @@ export const shake = (num, cb) => {
   setTimeout(() => {
     window.dice_mc.ss.gotoAndStop(num + 1);
     cb();
-  }, 3000);
+  }, 2000);
 };
 
 export const stopAt = num => {
@@ -13,7 +13,11 @@ export const stopAt = num => {
 };
 
 export const setCount = count => {
-  window.dice_mc.dice_label.gotoAndStop(count + 1);
+	if (count > 9) {
+		window.dice_mc.dice_label.gotoAndStop(10);
+	} else{
+		window.dice_mc.dice_label.gotoAndStop(count + 1);
+	}
 };
 
 export const setDiscBtn = enb => {

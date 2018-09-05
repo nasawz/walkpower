@@ -82,6 +82,7 @@ gulp.task('cp', function() {
 gulp.task('cp2', function() {
   gulp
     .src([
+      path.join(__dirname, '../static/lib/polyfill.min.js'),
       path.join(__dirname, '../static/lib/axios.min.js'),
       path.join(__dirname, '../static/lib/zepto.min.js'),
       path.join(__dirname, '../static/lib/createjs-2015.11.26.min.js'),

@@ -109,52 +109,8 @@ let wards_scroll = null;
  * 显示我的奖品
  */
 let showWardsModal = () => {
-  // let res = {
-  //   data: {
-  //     ResInfo: [
-  //       { giftName: 'sssss', giftType: 1, url: 'http://baidu.com' },
-  //       { giftName: 'sssss', giftType: 1, url: 'http://baidu.com' },
-  //       { giftName: 'sssss', giftType: 1, url: 'http://baidu.com' },
-  //       { giftName: 'sssss', giftType: 1, url: 'http://baidu.com' },
-  //       { giftName: 'sssss', giftType: 1, url: 'http://baidu.com' },
-  //       { giftName: 'sssss', giftType: 1, url: 'http://baidu.com' },
-  //       { giftName: 'sssss', giftType: 0, url: '' },
-  //       { giftName: 'sssss', giftType: 0, url: '' },
-  //       { giftName: 'sssss', giftType: 0, url: '' },
-  //       { giftName: 'sssss', giftType: 0, url: '' },
-  //       { giftName: 'sssss', giftType: 0, url: '' },
-  //       { giftName: 'sssss', giftType: 0, url: '' },
-  //       { giftName: 'sssss', giftType: 0, url: '' },
-  //       { giftName: 'sssss', giftType: 0, url: '' },
-  //       { giftName: 'sssss', giftType: 0, url: '' },
-  //       { giftName: 'sssss', giftType: 0, url: '' },
-  //       { giftName: 'sssss', giftType: 0, url: '' },
-  //       { giftName: 'sssss', giftType: 0, url: '' },
-  //       { giftName: 'sssss', giftType: 0, url: '' },
-  //       { giftName: 'sssss', giftType: 0, url: '' },
-  //       { giftName: 'sssss', giftType: 0, url: '' },
-  //       { giftName: 'sssss', giftType: 0, url: '' },
-  //       { giftName: 'sssss', giftType: 0, url: '' },
-  //       { giftName: 'sssss', giftType: 0, url: '' },
-  //       { giftName: 'sssss', giftType: 0, url: '' },
-  //       { giftName: 'sssss', giftType: 0, url: '' },
-  //       { giftName: 'sssss', giftType: 0, url: '' },
-  //       { giftName: 'sssss', giftType: 0, url: '' },
-  //       { giftName: 'sssss', giftType: 0, url: '' },
-  //       { giftName: 'sssss', giftType: 0, url: '' },
-  //       { giftName: 'sssss', giftType: 0, url: '' },
-  //       { giftName: 'sssss', giftType: 0, url: '' },
-  //       { giftName: 'sssss', giftType: 0, url: '' },
-  //       { giftName: 'sssss', giftType: 0, url: '' },
-  //       { giftName: 'sssss', giftType: 0, url: '' },
-  //       { giftName: 'sssss', giftType: 0, url: '' },
-  //       { giftName: 'sssss', giftType: 0, url: '' }
-  //     ]
-  //   }
-  // };
   walk_myGifts(`${activityId},363`)
     .then(res => {
-      // console.log('显示我的奖品', res.data);
       window.wardsModal_mc.visible = true;
       window.wardsModal_mc.removeChild(window.wardsModal_mc.ward_item);
       if (wards_scroll) {
@@ -303,7 +259,7 @@ window.onShare = () => {
       let resInfo = res.data.resInfo;
       switch (resCode) {
         case '00': //分享成功
-          console.log('分享成功');
+          // console.log('分享成功');
           // 机会+1
           setDiscBtn(true);
           setCount(parseInt(resInfo.diceCount));
@@ -315,7 +271,7 @@ window.onShare = () => {
         // case '03': //渠道错误
         default:
           iAlert('分享失败，请稍后重试！', '确定', () => {});
-          console.log(res.data.message);
+          // console.log(res.data.message);
           break;
       }
     })
@@ -347,6 +303,23 @@ window.goLogin = () => {
   goLogin();
 };
 
+// IOS 禁止缩放页面的实现方法
+let userScalable = () => {
+  document.addEventListener('touchstart',function (event) { 
+    if(event.touches.length>1){ 
+      event.preventDefault(); 
+    } 
+  }) 
+  var lastTouchEnd=0; 
+  document.addEventListener('touchend',function (event) {
+    var now=(new Date()).getTime(); 
+    if(now-lastTouchEnd<=300){ 
+      event.preventDefault(); 
+    } 
+    lastTouchEnd=now; 
+  },false)
+}
+
 /**
  * 初始化game
  */
@@ -362,7 +335,7 @@ let initGame = (walkIndex, sex, isEuccess, diceCount) => {
   setLab(true);
   setCount(parseInt(diceCount));
 
-  console.log(walkIndex, sex, isEuccess, diceCount);
+  // console.log(walkIndex, sex, isEuccess, diceCount);
   if (isEuccess == 'Y') walkIndex = 27;
   locationPeo(channel, walkIndex);
 
@@ -390,10 +363,8 @@ let moveFinish = (type, end, giftList, knowledgeName, garden, diceCount) => {
       //knowledgeName: lq/tsg/yyt
       showKnowledgeModal(knowledgeName);
     } else if (type == '1') {
-      console.log(`到达奖品点: 礼物名称：${giftList}`);
       showSanfangModal(giftList);
     } else if (type == '2') {
-      console.log('到达花园增加掷骰子次数:', garden);
       showCommonModal('add_chance');
     }
   }
@@ -418,7 +389,6 @@ let doShake = () => {
         case '00': //掷骰子成功
           shake(parseInt(resInfo.nextWalk), () => {
             movePeo(resInfo.nextWalk, resInfo.index, resInfo.end, () => {
-              console.log('移动完成，开始回调');
               moveFinish(
                 resInfo.type,
                 resInfo.end,
@@ -548,7 +518,6 @@ let goLottery = (window.goLottery = () => {
  * 选择人物
  */
 let onSelectPeo = (window.onSelectPeo = peo => {
-  console.log('当前选择是', peo);
   let sel = '0';
   if (peo == 'girl') {
     sel = '1';
@@ -558,17 +527,17 @@ let onSelectPeo = (window.onSelectPeo = peo => {
       let resCode = res.data.resCode;
       switch (resCode) {
         case '00':
-          console.log(res.data.message);
+          // console.log(res.data.message);
           initGame('0', sel, 'N', '6');
           break;
         case '01':
-          console.log(res.data.message);
+          // console.log(res.data.message);
           break;
         case '02':
-          console.log(res.data.message);
+          // console.log(res.data.message);
           break;
         case '03':
-          console.log(res.data.message);
+          // console.log(res.data.message);
           break;
         default:
           break;
@@ -622,7 +591,13 @@ Zepto(function($: any) {
       setTimeout(() => {
         playLotterys(activityId, channel);
         userWalkInfo();
-        // showGetAwardModal();
+        userScalable();
+        //解决浏览器后退不刷新页面
+        window.onpageshow = function(event) {
+          if (event.persisted) {
+              window.location.reload();
+          }
+        };
       }, 500);
       setTimeout(() => {
         Zepto('#canvas').animate(

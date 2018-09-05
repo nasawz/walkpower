@@ -710,16 +710,16 @@ p.nominalBounds = new cjs.Rectangle(-190.5,-18.5,381,37);
 	this.tile1 = new lib.tile_mc();
 	this.tile1.name = "tile1";
 	this.tile1.parent = this;
-	this.tile1.setTransform(322.5,432.2);
+	this.tile1.setTransform(322.5,392.2);
 
 	this.tile2 = new lib.tile_mc();
 	this.tile2.name = "tile2";
 	this.tile2.parent = this;
-	this.tile2.setTransform(432.3,432.2);
+	this.tile2.setTransform(432.3,392.2);
 
 	this.shape = new cjs.Shape();
 	this.shape.graphics.f().s("#454545").ss(1,1,1).p("AjUjUIGpAAIAAGpImpAAg");
-	this.shape.setTransform(432.3,432.2);
+	this.shape.setTransform(432.3,392.2);
 
 	this.timeline.addTween(cjs.Tween.get({}).to({state:[{t:this.shape},{t:this.tile2},{t:this.tile1}]}).wait(1));
 
@@ -727,135 +727,135 @@ p.nominalBounds = new cjs.Rectangle(-190.5,-18.5,381,37);
 	this.tile27 = new lib.tile_mc();
 	this.tile27.name = "tile27";
 	this.tile27.parent = this;
-	this.tile27.setTransform(577,1069.9);
+	this.tile27.setTransform(577,1029.9);
 
 	this.tile26 = new lib.tile_mc();
 	this.tile26.name = "tile26";
 	this.tile26.parent = this;
-	this.tile26.setTransform(480,1069.9);
+	this.tile26.setTransform(480,1029.9);
 
 	this.tile25 = new lib.tile_mc();
 	this.tile25.name = "tile25";
 	this.tile25.parent = this;
-	this.tile25.setTransform(424.5,1069.9);
+	this.tile25.setTransform(424.5,1029.9);
 
 	this.tile24 = new lib.tile_mc();
 	this.tile24.name = "tile24";
 	this.tile24.parent = this;
-	this.tile24.setTransform(322.5,1069.9);
+	this.tile24.setTransform(322.5,1029.9);
 
 	this.tile23 = new lib.tile_mc();
 	this.tile23.name = "tile23";
 	this.tile23.parent = this;
-	this.tile23.setTransform(225.1,1069.9);
+	this.tile23.setTransform(225.1,1029.9);
 
 	this.tile22 = new lib.tile_mc();
 	this.tile22.name = "tile22";
 	this.tile22.parent = this;
-	this.tile22.setTransform(225.1,1012.9);
+	this.tile22.setTransform(225.1,972.9);
 
 	this.tile21 = new lib.tile_mc();
 	this.tile21.name = "tile21";
 	this.tile21.parent = this;
-	this.tile21.setTransform(200.6,908.9);
+	this.tile21.setTransform(200.6,868.9);
 
 	this.tile20 = new lib.tile_mc();
 	this.tile20.name = "tile20";
 	this.tile20.parent = this;
-	this.tile20.setTransform(304.5,908.9);
+	this.tile20.setTransform(304.5,868.9);
 
 	this.tile19 = new lib.tile_mc();
 	this.tile19.name = "tile19";
 	this.tile19.parent = this;
-	this.tile19.setTransform(358.5,908.9);
+	this.tile19.setTransform(358.5,868.9);
 
 	this.tile18 = new lib.tile_mc();
 	this.tile18.name = "tile18";
 	this.tile18.parent = this;
-	this.tile18.setTransform(414.5,908.9);
+	this.tile18.setTransform(414.5,868.9);
 
 	this.tile17 = new lib.tile_mc();
 	this.tile17.name = "tile17";
 	this.tile17.parent = this;
-	this.tile17.setTransform(534.5,908.9);
+	this.tile17.setTransform(534.5,868.9);
 
 	this.tile16 = new lib.tile_mc();
 	this.tile16.name = "tile16";
 	this.tile16.parent = this;
-	this.tile16.setTransform(534.5,812.9);
+	this.tile16.setTransform(534.5,772.9);
 
 	this.tile15 = new lib.tile_mc();
 	this.tile15.name = "tile15";
 	this.tile15.parent = this;
-	this.tile15.setTransform(534.5,751.9);
+	this.tile15.setTransform(534.5,711.9);
 
 	this.tile14 = new lib.tile_mc();
 	this.tile14.name = "tile14";
 	this.tile14.parent = this;
-	this.tile14.setTransform(437.5,756.9);
+	this.tile14.setTransform(437.5,716.9);
 
 	this.tile13 = new lib.tile_mc();
 	this.tile13.name = "tile13";
 	this.tile13.parent = this;
-	this.tile13.setTransform(333.5,756.9);
+	this.tile13.setTransform(333.5,716.9);
 
 	this.tile12 = new lib.tile_mc();
 	this.tile12.name = "tile12";
 	this.tile12.parent = this;
-	this.tile12.setTransform(280,756.9);
+	this.tile12.setTransform(280,716.9);
 
 	this.tile11 = new lib.tile_mc();
 	this.tile11.name = "tile11";
 	this.tile11.parent = this;
-	this.tile11.setTransform(221.1,756.9);
+	this.tile11.setTransform(221.1,716.9);
 
 	this.tile10 = new lib.tile_mc();
 	this.tile10.name = "tile10";
 	this.tile10.parent = this;
-	this.tile10.setTransform(221.1,672.9);
+	this.tile10.setTransform(221.1,632.9);
 
 	this.tile9 = new lib.tile_mc();
 	this.tile9.name = "tile9";
 	this.tile9.parent = this;
-	this.tile9.setTransform(182.6,596.9);
+	this.tile9.setTransform(182.6,556.9);
 
 	this.tile8 = new lib.tile_mc();
 	this.tile8.name = "tile8";
 	this.tile8.parent = this;
-	this.tile8.setTransform(280,596.9);
+	this.tile8.setTransform(280,556.9);
 
 	this.tile7 = new lib.tile_mc();
 	this.tile7.name = "tile7";
 	this.tile7.parent = this;
-	this.tile7.setTransform(333.5,596.9);
+	this.tile7.setTransform(333.5,556.9);
 
 	this.tile6 = new lib.tile_mc();
 	this.tile6.name = "tile6";
 	this.tile6.parent = this;
-	this.tile6.setTransform(432.3,596.9);
+	this.tile6.setTransform(432.3,556.9);
 
 	this.tile5 = new lib.tile_mc();
 	this.tile5.name = "tile5";
 	this.tile5.parent = this;
-	this.tile5.setTransform(534.5,591.9);
+	this.tile5.setTransform(534.5,551.9);
 
 	this.tile4 = new lib.tile_mc();
 	this.tile4.name = "tile4";
 	this.tile4.parent = this;
-	this.tile4.setTransform(534.5,529.9);
+	this.tile4.setTransform(534.5,489.9);
 
 	this.tile3 = new lib.tile_mc();
 	this.tile3.name = "tile3";
 	this.tile3.parent = this;
-	this.tile3.setTransform(534.5,432.2);
+	this.tile3.setTransform(534.5,392.2);
 
 	this.instance = new lib.h5_luxian();
 	this.instance.parent = this;
-	this.instance.setTransform(125,349);
+	this.instance.setTransform(125,309);
 
 	this.timeline.addTween(cjs.Tween.get({}).to({state:[{t:this.instance},{t:this.tile3},{t:this.tile4},{t:this.tile5},{t:this.tile6},{t:this.tile7},{t:this.tile8},{t:this.tile9},{t:this.tile10},{t:this.tile11},{t:this.tile12},{t:this.tile13},{t:this.tile14},{t:this.tile15},{t:this.tile16},{t:this.tile17},{t:this.tile18},{t:this.tile19},{t:this.tile20},{t:this.tile21},{t:this.tile22},{t:this.tile23},{t:this.tile24},{t:this.tile25},{t:this.tile26},{t:this.tile27}]}).wait(1));
 
-}).prototype = getMCSymbolPrototype(lib.luxian_mc, new cjs.Rectangle(125,349,534,810), null);
+}).prototype = getMCSymbolPrototype(lib.luxian_mc, new cjs.Rectangle(125,309,534,810), null);
 
 
 (lib.girl = function(mode,startPosition,loop) {
@@ -1064,7 +1064,7 @@ p.nominalBounds = new cjs.Rectangle(-99,-262,175,262);
 	// disc_mc
 	this.instance = new lib.dice_mc();
 	this.instance.parent = this;
-	this.instance.setTransform(641,1215,1,1,0,0,0,-87,-82);
+	this.instance.setTransform(668,1118.9,0.74,0.74,0,0,0,-86.9,-81.9);
 
 	this.timeline.addTween(cjs.Tween.get(this.instance).wait(2));
 
@@ -1072,7 +1072,7 @@ p.nominalBounds = new cjs.Rectangle(-99,-262,175,262);
 	this.btn_wards = new lib.btn_wards();
 	this.btn_wards.name = "btn_wards";
 	this.btn_wards.parent = this;
-	this.btn_wards.setTransform(631,328.5);
+	this.btn_wards.setTransform(631,282.5);
 	new cjs.ButtonHelper(this.btn_wards, 0, 1, 2);
 
 	this.timeline.addTween(cjs.Tween.get(this.btn_wards).wait(2));
@@ -1081,7 +1081,7 @@ p.nominalBounds = new cjs.Rectangle(-99,-262,175,262);
 	this.btn_intro = new lib.btn_intro();
 	this.btn_intro.name = "btn_intro";
 	this.btn_intro.parent = this;
-	this.btn_intro.setTransform(633,259.5);
+	this.btn_intro.setTransform(633,219.5);
 	new cjs.ButtonHelper(this.btn_intro, 0, 1, 2);
 
 	this.timeline.addTween(cjs.Tween.get(this.btn_intro).wait(2));
@@ -1090,21 +1090,21 @@ p.nominalBounds = new cjs.Rectangle(-99,-262,175,262);
 	this.mingdan = new lib.mingdan_mc();
 	this.mingdan.name = "mingdan";
 	this.mingdan.parent = this;
-	this.mingdan.setTransform(372.5,1202.5);
+	this.mingdan.setTransform(372.5,1154.5);
 
 	this.timeline.addTween(cjs.Tween.get(this.mingdan).wait(2));
 
 	// power_logo
 	this.instance_1 = new lib._02();
 	this.instance_1.parent = this;
-	this.instance_1.setTransform(35,36);
+	this.instance_1.setTransform(35,26);
 
 	this.timeline.addTween(cjs.Tween.get(this.instance_1).wait(2));
 
 	// power_title
 	this.instance_2 = new lib._03();
 	this.instance_2.parent = this;
-	this.instance_2.setTransform(144,60);
+	this.instance_2.setTransform(144,20);
 
 	this.timeline.addTween(cjs.Tween.get(this.instance_2).wait(2));
 
@@ -1112,7 +1112,7 @@ p.nominalBounds = new cjs.Rectangle(-99,-262,175,262);
 	this.boy = new lib.boy();
 	this.boy.name = "boy";
 	this.boy.parent = this;
-	this.boy.setTransform(110.2,433.1,0.328,0.386);
+	this.boy.setTransform(110.2,393.1,0.328,0.386);
 
 	this.timeline.addTween(cjs.Tween.get(this.boy).wait(2));
 
@@ -1120,7 +1120,7 @@ p.nominalBounds = new cjs.Rectangle(-99,-262,175,262);
 	this.girl = new lib.girl();
 	this.girl.name = "girl";
 	this.girl.parent = this;
-	this.girl.setTransform(110.2,433.1,0.323,0.376);
+	this.girl.setTransform(110.2,393.1,0.323,0.376);
 
 	this.timeline.addTween(cjs.Tween.get(this.girl).wait(2));
 
@@ -1134,21 +1134,22 @@ p.nominalBounds = new cjs.Rectangle(-99,-262,175,262);
 	// power_bg
 	this.instance_4 = new lib._01();
 	this.instance_4.parent = this;
+	this.instance_4.setTransform(0,0,1,0.904);
 
-	this.timeline.addTween(cjs.Tween.get(this.instance_4).wait(2));
+	this.timeline.addTween(cjs.Tween.get(this.instance_4).wait(1).to({scaleY:1},0).wait(1));
 
 }).prototype = p = new cjs.MovieClip();
-p.nominalBounds = new cjs.Rectangle(375,667,1134,1357.9);
+p.nominalBounds = new cjs.Rectangle(375,603,1134,1334);
 // library properties:
 lib.properties = {
 	id: '9D9F8B35CAEC4C57A50CE9E71747BFB2',
 	width: 750,
-	height: 1334,
+	height: 1206,
 	fps: 24,
 	color: "#FFFFFF",
 	opacity: 1.00,
 	manifest: [
-		{src:"images/walkpower_atlas_.png?1535524260291", id:"walkpower_atlas_"}
+		{src:"images/walkpower_atlas_.png?1535593906388", id:"walkpower_atlas_"}
 	],
 	preloads: []
 };

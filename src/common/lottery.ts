@@ -11,8 +11,8 @@ import { iAlert, goLogin, goVipJoin } from '../common/help';
 export const onLottery = (activityId, channel) => {
 	
   // TODO lottrey
-  	Zepto('#zhezhao').toggle();
-	Zepto('.lottery-case').toggle(); //显示隐藏抽奖转盘模块
+  	Zepto('#zhezhao').show();
+	Zepto('.lottery-case').show(); //显示隐藏抽奖转盘模块
     var kinerLottery = new KinerLottery({
         rotateNum: 8, //转盘转动圈数
         body: "#lotteryBox", //大转盘整体的选择符或zepto对象
@@ -36,8 +36,8 @@ export const onLottery = (activityId, channel) => {
         KinerLotteryHandler: function(deg) { //抽奖结束回调
         	setTimeout(() => {
         		whichAward(deg);
-	        	Zepto('#zhezhao').toggle();
-				Zepto('.lottery-case').toggle();
+	        	Zepto('#zhezhao').hide();
+				Zepto('.lottery-case').hide();
 		    }, 1000);
 			
         }
@@ -85,16 +85,16 @@ export const onLottery = (activityId, channel) => {
 		    switch (resCode) {
 		    	case '00':
 		        	if (resInfo.giftName == '2G') {
-		        		randomDeg = Math.floor(Math.random() * 45+135);
+		        		randomDeg = Math.floor(Math.random() * 45+134);
 		        	}	
 		        	else if (resInfo.giftName == '1G') {
-		        		randomDeg = Math.floor(Math.random() * 45+90);
+		        		randomDeg = Math.floor(Math.random() * 45+89);
 		        	}
 		        	else if (resInfo.giftName == '500M') {
-			            randomDeg = Math.floor(Math.random() * 45+45);
+			            randomDeg = Math.floor(Math.random() * 45+44);
 			        }
 			        else if (resInfo.giftName == '100M') {
-			            randomDeg = Math.floor(Math.random() * 45+1);
+			            randomDeg = Math.floor(Math.random() * 45-1);
 			        }
 		        	break;
 		    	case '01':
@@ -118,6 +118,7 @@ export const onLottery = (activityId, channel) => {
 		        	iAlert('您目前没有抽奖机会哦', '确定', () => {
 			        });
 		        	break;
+                case '15':
 		    	case '17':
 			        iAlert('奖品已发放完，明天记得来抽奖哦', '确定', () => {
 			        });

@@ -170,12 +170,17 @@ p.nominalBounds = new cjs.Rectangle(-78.5,-18.5,157,37);
 		this.visible = false
 		window.knowledgeModal_mc = this
 		
-		this.share_btn.addEventListener('click', window.onShare)
+		this.share_btn.addEventListener('click', closeAndShare)
 		this.goon_btn.addEventListener('click', closeModalsWards)
 		
 		var self = this;
 		
 		function closeModalsWards() {
+			self.visible = false
+		}
+		
+		function closeAndShare() {
+			window.onShare()
 			self.visible = false
 		}
 	}
@@ -267,7 +272,7 @@ lib.properties = {
 	color: "#FFFFFF",
 	opacity: 1.00,
 	manifest: [
-		{src:"images/knowledge_madal_atlas_.png?1534922830152", id:"knowledge_madal_atlas_"}
+		{src:"images/knowledge_madal_atlas_.png?1535689781925", id:"knowledge_madal_atlas_"}
 	],
 	preloads: []
 };

@@ -103,60 +103,17 @@ let showCommonModal = type => {
 let showRuleModal = () => {
   window.ruleModal_mc.visible = true;
 };
-let wards_scroll = null;
+let wards_scroll: any = null;
 /**
  * 显示我的奖品
  */
 let showWardsModal = () => {
-  // let res = {
-  //   data: {
-  //     ResInfo: [
-  //       { giftName: 'sssss', giftType: 0, url: '' },
-  //       { giftName: 'sssss', giftType: 0, url: '' },
-  //       { giftName: 'sssss', giftType: 0, url: '' },
-  //       { giftName: 'sssss', giftType: 0, url: '' },
-  //       { giftName: 'sssss', giftType: 0, url: '' },
-  //       { giftName: 'sssss', giftType: 0, url: '' },
-  //       { giftName: 'sssss', giftType: 0, url: '' },
-  //       { giftName: 'sssss', giftType: 0, url: '' },
-  //       { giftName: 'sssss', giftType: 0, url: '' },
-  //       { giftName: 'sssss', giftType: 0, url: '' },
-  //       { giftName: 'sssss', giftType: 0, url: '' },
-  //       { giftName: 'sssss', giftType: 0, url: '' },
-  //       { giftName: 'sssss', giftType: 0, url: '' },
-  //       { giftName: 'sssss', giftType: 0, url: '' },
-  //       { giftName: 'sssss', giftType: 0, url: '' },
-  //       { giftName: 'sssss', giftType: 0, url: '' },
-  //       { giftName: 'sssss', giftType: 0, url: '' },
-  //       { giftName: 'sssss', giftType: 0, url: '' },
-  //       { giftName: 'sssss', giftType: 0, url: '' },
-  //       { giftName: 'sssss', giftType: 0, url: '' },
-  //       { giftName: 'sssss', giftType: 0, url: '' },
-  //       { giftName: 'sssss', giftType: 0, url: '' },
-  //       { giftName: 'sssss', giftType: 0, url: '' },
-  //       { giftName: 'sssss', giftType: 0, url: '' },
-  //       { giftName: 'sssss', giftType: 0, url: '' },
-  //       { giftName: 'sssss', giftType: 0, url: '' },
-  //       { giftName: 'sssss', giftType: 0, url: '' },
-  //       { giftName: 'sssss', giftType: 0, url: '' },
-  //       { giftName: 'sssss', giftType: 0, url: '' },
-  //       { giftName: 'sssss', giftType: 0, url: '' },
-  //       { giftName: 'sssss', giftType: 0, url: '' },
-  //       { giftName: 'sssss', giftType: 0, url: '' },
-  //       { giftName: 'sssss', giftType: 0, url: '' },
-  //       { giftName: 'sssss', giftType: 0, url: '' },
-  //       { giftName: 'sssss', giftType: 0, url: '' },
-  //       { giftName: 'sssss', giftType: 0, url: '' },
-  //       { giftName: 'sssss', giftType: 0, url: '' }
-  //     ]
-  //   }
-  // };
   walk_myGifts(`${activityId},363`)
     .then(res => {
-      // console.log('显示我的奖品', res.data);
       window.wardsModal_mc.visible = true;
       window.wardsModal_mc.removeChild(window.wardsModal_mc.ward_item);
       if (wards_scroll) {
+        wards_scroll.disableScroll();
         window.wardsModal_mc.removeChild(wards_scroll);
       }
       if (res.data.ResInfo.length == 0) {
@@ -166,6 +123,7 @@ let showWardsModal = () => {
         let count = res.data.ResInfo.length;
         let canvas = document.querySelector('body');
         let scroll = new createjs.ScrollContainer(canvas);
+        scroll.enableScroll();
         scroll.x = 250;
         scroll.y = 305;
         scroll.setBounds(0, 0, 710, 285);
@@ -510,8 +468,8 @@ let userWalkInfo = () => {
             }
             locationPeo(channel, '27');
           } else if (gameState.isEuccess == 'Y' && gameState.lottery == 'N') {
-            showSuccessModal();//去抽奖
-          }else {
+            showSuccessModal(); //去抽奖
+          } else {
             showIntroduceModal(true);
           }
           break;
@@ -622,7 +580,12 @@ Zepto(function($: any) {
       setTimeout(() => {
         playLotterys(activityId, channel);
         userWalkInfo();
-        // showGetAwardModal();
+        //解决浏览器后退不刷新页面
+        window.onpageshow = function(event) {
+          if (event.persisted) {
+            window.location.reload();
+          }
+        };
       }, 500);
       setTimeout(() => {
         Zepto('#canvas').animate(

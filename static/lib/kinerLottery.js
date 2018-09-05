@@ -37,7 +37,6 @@
     $('body').on('click', '.KinerLotteryBtn', function(e) {
       e.preventDefault();
       if ($(this).hasClass('start') && !self.doing) {
-        console.log('点击');
 
         self.opts.clickCallback.call(self);
       } else {

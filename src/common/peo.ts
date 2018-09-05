@@ -7,11 +7,10 @@ declare let window: any;
  * @param cb 回调
  */
 export const movePeo = (nextWalk, index, end, cb) => {
-  console.log('走啊走');
   var tiles_xy = window.tiles_xy;
   let to = parseInt(index) + parseInt(nextWalk);
 
-  console.log('to--', to);
+  // console.log('to--', to);
   //到达终点
   if (end == 'Y') to = 27;
 
@@ -47,10 +46,10 @@ export const locationPeo = (channel, index) => {
   } else {
     if (channel == 'web') {
       window.peo_target.x = 74.8;
-      window.peo_target.y = 422;
+      window.peo_target.y = 393.05;
     } else {
       window.peo_target.x = 110.15;
-      window.peo_target.y = 433.05;
+      window.peo_target.y = 393.05;
     }
   }
 };

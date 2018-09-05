@@ -23,7 +23,7 @@ import axios from 'axios';
  */
 export const walk_dice = (activityId, channel) => {
   return axios.post(
-    `/portal/walk/dice`,
+    `/portal/walk/dice?date=` + new Date().getTime(),
     {
       activityId,
       channel
@@ -61,7 +61,7 @@ export const walk_dice = (activityId, channel) => {
     {"resCode":"03","message":"渠道错误","resInfo":{}}
  */
 export const walk_share = (activityId, channel) => {
-  return axios.get(`/portal/walk/share`, {
+  return axios.get(`/portal/walk/share?date=` + new Date().getTime(), {
     params: {
       activityId,
       channel
@@ -83,12 +83,12 @@ export const walk_share = (activityId, channel) => {
  */
 export const walk_userInfo: any = () => {
   return axios.post(
-    `/portal/walk/userWalkInfo`,
+    `/portal/walk/userWalkInfo?date=` + new Date().getTime(),
     {},
     {
       transformRequest: [
         function(data) {
-          console.log(data);
+          // console.log(data);
           let ret = '';
           for (let it in data) {
             ret += encodeURIComponent(it) + '=' + encodeURIComponent(data[it]) + '&';
@@ -120,7 +120,7 @@ export const walk_userInfo: any = () => {
     {"resCode":"03","message":"当前用户已有选取角色","resInfo":{}}
  */
 export const walk_putRole = (role, channel) => {
-  return axios.get(`/portal/walk/putWalkRole`, {
+  return axios.get(`/portal/walk/putWalkRole?date=` + new Date().getTime(), {
     params: {
       role,
       channel
@@ -152,7 +152,7 @@ export const walk_putRole = (role, channel) => {
     17: 没有奖品了,明天再来!
  */
 export const walk_lottery = (activityId, channel) => {
-  return axios.get(`/portal/lottery/luck`, {
+  return axios.get(`/portal/lottery/luck?date=` + new Date().getTime(), {
     params: {
       activityId,
       channel
@@ -165,14 +165,13 @@ export const walk_lottery = (activityId, channel) => {
  */
 export const walk_myGifts = activityId => {
   return axios.post(
-    `/portal/specialTraval/myGifts`,
+    `/portal/specialTraval/myGifts?date=` + new Date().getTime(),
     {
       activityIdList: activityId
     },
     {
       transformRequest: [
         function(data) {
-          console.log(data);
           let ret = '';
           for (let it in data) {
             ret += encodeURIComponent(it) + '=' + encodeURIComponent(data[it]) + '&';
@@ -194,7 +193,7 @@ export const walk_myGifts = activityId => {
  */
 export const walk_memberLotterys = (activityId, channel) => {
   return axios.post(
-    `/portal/lottery/memberLotterys/nameList`,
+    `/portal/lottery/memberLotterys/nameList?date=` + new Date().getTime(),
     {
       activityIdList: activityId,
       channel

@@ -1,3 +1,5 @@
+import { mouseWheel } from './MouseWheel';
+
 // default browser scroll bar width
 const SCROLL_BAR_SIZE = 8;
 const BAR_COLOR = 'rgb(241, 241, 241,0.5)';
@@ -314,6 +316,7 @@ class ScrollBar extends createjs.Container {
 class ScrollContainer extends createjs.Container {
   constructor(canvas) {
     super();
+    this.canvas = canvas;
     this.container = new createjs.Container();
     this.container.setBounds(0, 0, 0, 0);
     this.addChild(this.container);
@@ -339,37 +342,14 @@ class ScrollContainer extends createjs.Container {
       this.container.x = e.target.value;
       this.dispatchEvent('scroll');
     });
+    this.superAddChild = this.addChild;
 
-    let scrollFunc = e => {
-      const h = this.contentSize.height - this.getBounds().height;
-      const w = this.contentSize.width - this.getBounds().width;
-      this.scrollY += e.wheelDeltaY;
-      this.scrollX += e.wheelDeltaX;
+    this.addChild = child => {
+      this.container.addChild(child);
     };
 
-    function wheel(obj, fn, useCapture) {
-      var mousewheelevt = /Firefox/i.test(navigator.userAgent) ? 'DOMMouseScroll' : 'mousewheel'; //FF doesn't recognize mousewheel as of FF3.x
-      if (obj.attachEvent)
-        //if IE (and Opera depending on user setting)
-        obj.attachEvent('on' + mousewheelevt, handler, useCapture);
-      else if (obj.addEventListener)
-        //WC3 browsers
-        obj.addEventListener(mousewheelevt, handler, useCapture);
-
-      function handler(event) {
-        var delta = 0;
-        var event = window.event || event;
-        var delta = event.detail ? -event.detail / 3 : event.wheelDelta / 120;
-        if (event.preventDefault) event.preventDefault();
-        event.returnValue = false;
-        return fn.apply(obj, [event, delta]);
-      }
-    }
-
-    wheel(canvas, scrollFunc, false);
-
     let pressmove_y;
-    this.on('pressmove', e => {
+    this.container.on('pressmove', e => {
       if (!pressmove_y) {
         pressmove_y = e.stageY;
       }
@@ -379,32 +359,22 @@ class ScrollContainer extends createjs.Container {
         this.scrollY -= 6;
       }
     });
-    this.on('pressup', e => {
+    this.container.on('pressup', e => {
       pressmove_y = undefined;
     });
-    // var mousewheelevt = /Firefox/i.test(navigator.userAgent) ? 'DOMMouseScroll' : 'mousewheel'; //FF doesn't recognize mousewheel as of FF3.x
-    // if (document.attachEvent)
-    //   //if IE (and Opera depending on user setting)
-    //   document.attachEvent('on' + mousewheelevt, function(e) {
-    //     alert('Mouse wheel movement detected!');
-    //   });
-    // else if (document.addEventListener)
-    //   //WC3 browsers
-    //   document.addEventListener(
-    //     mousewheelevt,
-    //     function(e) {
-    //       alert('Mouse wheel movement detected!');
-    //     },
-    //     false
-    //   );
+  }
+  scrollFunc = e => {
+    const h = this.contentSize.height - this.getBounds().height;
+    const w = this.contentSize.width - this.getBounds().width;
+    this.scrollY += e.wheelDir;
+    // this.scrollX += e.wheelDeltaX;
+  };
+  enableScroll() {
+    mouseWheel.on(this.canvas, this.scrollFunc);
+  }
 
-    // canvas.addEventListener('mousewheel', scrollFunc);
-
-    this.superAddChild = this.addChild;
-
-    this.addChild = child => {
-      this.container.addChild(child);
-    };
+  disableScroll() {
+    mouseWheel.un(this.canvas, this.scrollFunc);
   }
 
   get scrollX() {
